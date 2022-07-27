@@ -1,9 +1,50 @@
+@font-face {
+  font-family: 'Lemon/Milk';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lemon/Milk'), url('https://fonts.cdnfonts.com/s/14917/LemonMilk.woff') format('woff');
+}
+@font-face {
+  font-family: 'Lemon/Milk';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lemon/Milk'), url('https://fonts.cdnfonts.com/s/14917/LemonMilkitalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Lemon/Milk';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Lemon/Milk'), url('https://fonts.cdnfonts.com/s/14917/LemonMilklightitalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Lemon/Milk';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lemon/Milk'), url('https://fonts.cdnfonts.com/s/14917/LemonMilkbold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Lemon/Milk';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Lemon/Milk'), url('https://fonts.cdnfonts.com/s/14917/LemonMilkbolditalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Lemon/Milk light';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lemon/Milk light'), url('https://fonts.cdnfonts.com/s/14917/LemonMilklight.woff') format('woff');
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: var(--Bg);
 }
 
 a {
@@ -13,4 +54,24 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+
+h1, h2, h3, h4, h5, li, span, button{
+  font-family: 'Lemon/Milk light', sans-serif;
+}
+
+
+/*Colors*/
+:root {
+  --Red :#c8102e;;
+  --White : #f5f0ec;
+  --black-color: #1f1c1c;
+  --ParagraphColor  :#8c939d;
+  --Bg :#f8f8f8;
+
+  /*FontsVars*/
+  --font-primary :"Lemon/Milk light", sans-serif;
+  --font-secondary: 'Poppins', sans-serif;
+  --font-tertiary: "D-DIN Condensed", sans-serif;
 }
