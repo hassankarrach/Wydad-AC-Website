@@ -115,3 +115,19 @@
   }
 } */
 
+
+
+.ArTitle {
+  font-family: var( --Arabic );
+  text-align: right;
+  font-weight: 700;
+}
+
+.ArText{
+  font-family: var( --Arabic );
+  text-align: right;
+  font-weight: 100;
+  color : grey;
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+}

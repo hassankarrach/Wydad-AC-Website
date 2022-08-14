@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap');
+/*ArFonts*/
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;700&display=swap');
+
 @font-face {
   font-family: 'Lemon/Milk';
   font-style: normal;
@@ -34,8 +38,7 @@
   font-weight: 300;
   src: local('Lemon/Milk light'), url('https://fonts.cdnfonts.com/s/14917/LemonMilklight.woff') format('woff');
 }
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
 
 
 html,
@@ -57,21 +60,36 @@ a {
 }
 
 
-h1, h2, h3, h4, h5, li, span, button{
+h1, h2, h3, h4, h5, li, button{
   font-family: 'Lemon/Milk light', sans-serif;
+}
+span{
+  font-family: var(--font-secondary);
 }
 
 
 /*Colors*/
 :root {
+  --yellow : #f9b908;
   --Red :#c8102e;;
   --White : #f5f0ec;
   --black-color: #1f1c1c;
-  --ParagraphColor  :#8c939d;
+  --grey  :#717171;
   --Bg :#f8f8f8;
+  
 
   /*FontsVars*/
   --font-primary :"Lemon/Milk light", sans-serif;
   --font-secondary: 'Poppins', sans-serif;
   --font-tertiary: "D-DIN Condensed", sans-serif;
+
+  --Arabic : 'Almarai', sans-serif;
 }
+
+/*Swiper Arrows Custom*/
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--grey) !important;
+}
+
