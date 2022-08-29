@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 function SubNav({ Items }) {
-  console.log(Items);
-
   return (
     <StyledSubNav>
       {Items.map((item) => {
@@ -14,9 +12,10 @@ function SubNav({ Items }) {
 }
 
 const StyledSubNav = styled.div`
-  position: sticky;
-  top: 70px;
+  margin-top: 70px;
   height: 50px;
+  top: 70px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;

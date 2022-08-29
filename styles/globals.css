@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;700&family=Poppins:wght@300;400&display=swap');
 /*ArFonts*/
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;700&display=swap');
 
@@ -65,6 +65,7 @@ h1, h2, h3, h4, h5, li, button{
 }
 span{
   font-family: var(--font-secondary);
+  font-weight:  900;
 }
 
 

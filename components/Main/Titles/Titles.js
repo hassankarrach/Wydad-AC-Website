@@ -16,7 +16,10 @@ function Titles() {
   return (
     <StyledTitles>
       <div className="TitlesCard">
-        <div className="ImgHolder"></div>
+        <div
+          className="ImgHolder"
+          style={{ backgroundImage: "url(./assets/Media/Textures/White.png)" }}
+        ></div>
         <div className="TitlesCardData">
           <div className="RightTitlesCardData">
             <div className="TopRightTitlesCardData">
@@ -129,7 +132,7 @@ function Titles() {
 const StyledTitles = styled.div`
   width: 100%;
   padding: 0px 10%;
-  margin-top: 50px;
+  margin: 50px 0px;
   .TitlesCard {
     height: 350px;
     border-radius: 8px;
@@ -138,7 +141,6 @@ const StyledTitles = styled.div`
     .ImgHolder {
       width: 100%;
       height: 100%;
-      background-image: url("./assets/Media/Textures/White.png");
       background-position: top center;
       background-size: cover;
       mix-blend-mode: exclusion;
@@ -162,7 +164,7 @@ const StyledTitles = styled.div`
           height: 120%;
           position: absolute;
           bottom: 0;
-          z-index: 999;
+          z-index: 2;
           left: 0;
         }
 

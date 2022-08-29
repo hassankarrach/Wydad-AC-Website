@@ -53,7 +53,7 @@ const StyledLanguageDropDown = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 40px;
   padding: 0px 8px;
   border-radius: 3px;
   cursor: pointer;

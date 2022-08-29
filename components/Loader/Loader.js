@@ -74,11 +74,19 @@ function Loader() {
 const StyledLoader = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: white;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  z-index: 800;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   .main-fader {
     .loader {
       svg {

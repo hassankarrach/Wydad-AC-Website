@@ -1,21 +1,28 @@
 import styled from "styled-components";
+import Link from "next/link";
 //Icons
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-function SectionTitle({ text }) {
+function SectionTitle({ text, show, href }) {
   return (
     <StyledSectionTitle className="TtleSectionAnimation">
       <h1>{text}</h1>
-      <div className="ViewMore">
-        <span>View More</span>
-        <ArrowForwardIosIcon />
-      </div>
+      {show ? (
+        <Link href={href}>
+          <div className="ViewMore">
+            <span>View More</span>
+            <ArrowForwardIosIcon className="IconView" fontSize={"20"} />
+          </div>
+        </Link>
+      ) : (
+        ""
+      )}
     </StyledSectionTitle>
   );
 }
 
 const StyledSectionTitle = styled.div`
-  padding: 0px 9%;
+  padding: 0px 10%;
   width: 100%;
   display: flex;
   align-items: center;
@@ -27,7 +34,7 @@ const StyledSectionTitle = styled.div`
     align-items: center;
     overflow: hidden;
     font-size: 2rem;
-    padding: 20px;
+    padding: 20px 0px;
     color: #2a2a2a;
     @media (max-width: 768px) {
       font-size: 1.9rem;
@@ -39,9 +46,15 @@ const StyledSectionTitle = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      color: var(--Red);
+    }
+
     span {
       white-space: nowrap;
       margin-right: 5px;
+      font-weight: 100;
     }
   }
   /* h1:after {

@@ -16,6 +16,7 @@ function Header({ img, text }) {
 const StyledBanner = styled.div`
   width: 100%;
   height: 250px;
+  margin-top: 70px;
   background-position: center;
   background-size: cover;
   background-position-y: 15%;

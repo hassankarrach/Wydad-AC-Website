@@ -12,7 +12,7 @@ function Footer() {
       </div>
 
       <div className="FooterBottom">
-        <h1>Copyright © 2022 Wydad Ac. All rights reserved.</h1>
+        <p>Copyright © 2022 Wydad Ac. All rights reserved.</p>
       </div>
     </StyledFooter>
   );
@@ -46,7 +46,7 @@ const StyledFooter = styled.footer`
     display: flex;
     justify-content: center;
     align-items: center;
-    h1 {
+    p {
       color: white;
       font-size: 0.9rem;
       font-family: var(--font-secondary);

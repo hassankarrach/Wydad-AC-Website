@@ -14,9 +14,9 @@ function Matches() {
             </div>
             <div className="TopLeftBoxContentHolder">
               <div className="GameData">
-                <span>Serie A</span>
-                <span>MATCHDAY 1</span>
-                <span>13 August 2022 17:30</span>
+                <span>CAF Super Cup</span>
+                <span>Final</span>
+                <span>29 August 2022 17:30</span>
               </div>
               <div className="TeamsLogos">
                 <div className="TeamA">
@@ -36,8 +36,8 @@ function Matches() {
 
                 <div className="TeamB">
                   <div className="TeamLogoHolder">
-                    <img src="./assets/Media/Teams/fus.png" />
-                    <span>Fus</span>
+                    <img src="./assets/Media/Teams/rsb.png" />
+                    <span>Rs berkane</span>
                   </div>
                 </div>
               </div>
@@ -66,26 +66,37 @@ const StyledMatches = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  @media (max-width: 768px) {
+    height: 400px;
+  }
   .box {
-    width: 75%;
+    width: 80%;
     color: black;
     height: 400px;
     background-color: rgba(255, 255, 255);
-
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     position: absolute;
     top: -40%;
     border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     display: flex;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: row;
 
+    @media (max-width: 768px) {
+      flex-direction: column;
+      width: 90%;
+      height: auto;
+    }
+
     .LeftBox {
       width: 49%;
       height: 100%;
+      @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+      }
       .TopLeftBox {
         width: 100%;
         height: 100%;
@@ -94,8 +105,8 @@ const StyledMatches = styled.div`
         align-items: center;
         flex-direction: column;
         text-align: center;
+
         .TopLeftBoxTitleHolder {
-          height: 20%;
           h1 {
             font-size: 1.8rem;
           }
@@ -103,13 +114,15 @@ const StyledMatches = styled.div`
         .TopLeftBoxContentHolder {
           height: 80%;
           width: 100%;
+
           .GameData {
             height: 20%;
             width: 100%;
             display: flex;
             flex-direction: column;
-            h1 {
-              font-size: 1.3rem;
+            span {
+              color: var(--grey);
+              font-weight: 400;
             }
           }
           .TeamsLogos {
@@ -118,6 +131,7 @@ const StyledMatches = styled.div`
             display: flex;
             justify-content: space-between;
             padding: 25px;
+            position: relative;
             .TeamA {
               width: 30%;
               display: flex;
@@ -126,7 +140,7 @@ const StyledMatches = styled.div`
               justify-content: center;
               .TeamLogoHolder {
                 width: 90%;
-                height: 200px;
+                height: 80%;
                 padding: 15px 20px;
                 display: flex;
                 flex-direction: column;
@@ -134,6 +148,7 @@ const StyledMatches = styled.div`
                 align-items: center;
                 img {
                   width: 90px;
+                  margin-bottom: 20px;
                 }
                 span {
                   margin-top: auto;
@@ -145,9 +160,18 @@ const StyledMatches = styled.div`
               flex-direction: column;
               height: 100%;
               justify-content: center;
+              @media (max-width: 768px) {
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+              }
               span {
                 font-size: 2.6rem;
                 margin-top: 35%;
+                @media (max-width: 768px) {
+                  margin-top: 75%;
+                }
               }
               button {
                 padding: 10px 18px;
@@ -180,7 +204,7 @@ const StyledMatches = styled.div`
               justify-content: center;
               .TeamLogoHolder {
                 width: 90%;
-                height: 200px;
+                height: 80%;
                 padding: 15px 20px;
                 display: flex;
                 flex-direction: column;
@@ -188,6 +212,7 @@ const StyledMatches = styled.div`
                 align-items: center;
                 img {
                   width: 90px;
+                  margin-bottom: 20px;
                 }
                 span {
                   margin-top: auto;
@@ -203,6 +228,10 @@ const StyledMatches = styled.div`
       height: 100%;
       display: flex;
       justify-content: center;
+      @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+      }
       .Line {
         width: 1px;
         height: 100%;
@@ -213,11 +242,25 @@ const StyledMatches = styled.div`
           rgba(150, 150, 150, 0) 100%
         );
         opacity: 0.3;
+        @media (max-width: 768px) {
+          width: 100%;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            rgba(150, 150, 150, 0) 0%,
+            rgba(150, 150, 150, 1) 50%,
+            rgba(150, 150, 150, 0) 100%
+          );
+        }
       }
     }
     .RightBox {
       width: 49%;
       height: 100%;
+      @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+      }
       .RightBoxTitleHolder {
         width: 100%;
         display: flex;

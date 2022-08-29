@@ -19,7 +19,7 @@ const StyledMyWydad = styled.button`
   border: none;
   color: white;
   cursor: pointer;
-  height: 100%;
+  height: 40px;
   border-radius: 3px;
   display: flex;
   align-items: center;

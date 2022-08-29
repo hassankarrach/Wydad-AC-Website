@@ -230,7 +230,7 @@ const PlayerId = ({ PlayersData, CurrentID }) => {
             <DataItem
               icon_={<QueryBuilderIcon className="Icon" />}
               text="Minutes played"
-              value="90"
+              value="0"
             />
             <div className="Divider"></div>
 
@@ -280,7 +280,7 @@ const DataItem = ({ icon_, text, value, transform, color }) => {
     <StyledDataItem transform={transform} cardColor={color}>
       <div className="LeftStatsNumbers">
         {icon_}
-        <h1>{text}</h1>
+        <span>{text}</span>
       </div>
       <div className="RightStatsNumbers">
         <h1>{value}</h1>
@@ -306,8 +306,8 @@ const StyledDataItem = styled.div`
           ? "yellow"
           : ""};
     }
-    h1 {
-      font-size: 1.3rem;
+    span {
+      font-size: 1.1rem;
       color: var(--grey);
     }
   }
@@ -323,6 +323,7 @@ const StyledContainer = styled.div`
   height: auto;
 
   .StyledBanner {
+    margin-top: 70px;
     height: 250px;
     background-color: blue;
     position: "relative";

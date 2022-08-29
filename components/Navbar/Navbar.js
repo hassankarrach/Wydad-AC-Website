@@ -5,22 +5,86 @@ import Link from "next/link";
 import LanguageDropDown from "./LanguageDropDown";
 import MyWydad from "./MyWydad";
 
+const Football = [
+  {
+    title: "Players",
+    to: "players",
+    id: 0,
+  },
+  {
+    title: "News",
+    to: "news",
+    id: 1,
+  },
+  {
+    title: "Match Schedule",
+    to: "schedule",
+    id: 2,
+  },
+  {
+    title: "Standings",
+    to: "standings",
+    id: 6,
+  },
+  {
+    title: "Results",
+    to: "results",
+    id: 3,
+  },
+  {
+    title: "Acheivements",
+    to: "acheivements",
+    id: 5,
+  },
+];
+
+const Club = [
+  {
+    title: "history",
+    to: "history",
+    id: 0,
+  },
+  {
+    title: "management",
+    to: "management",
+    id: 1,
+  },
+  {
+    title: "wydad presidents",
+    to: "presidents",
+    id: 2,
+  },
+  {
+    title: "partners",
+    to: "partners",
+    id: 3,
+  },
+  {
+    title: "supporters",
+    to: "supporters",
+    id: 4,
+  },
+];
+
 const StyledNavbar = styled.nav`
+  position: fixed;
+  top: 0;
+  display: block;
   background-color: white;
   padding: 0px 10%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  right: 0;
-  left: 0;
   height: 70px;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   z-index: 99;
+  @media (max-width: 768px) {
+    padding: 0px 5%;
+  }
 
   .LeftNav {
     display: flex;
+    height: 100%;
 
     .NavLogo {
       width: 50px;
@@ -29,18 +93,72 @@ const StyledNavbar = styled.nav`
     .List {
       list-style: none;
       display: flex;
-      flex-direction: row;
-      align-items: center;
-
+      margin: 0;
+      width: auto;
+      padding: 0px 20px;
       @media (max-width: 768px) {
         display: none;
       }
-
-      li {
+      .special {
+        color: var(--Red);
+      }
+      .NavItem {
         cursor: pointer;
-        margin-right: 15px;
         font-size: 1rem;
         transition: 0.2s ease-in-out;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px 8px;
+
+        :hover .MegaMenu,
+        :focus .MegaMenu {
+          opacity: 1;
+          visibility: visible;
+        }
+        .MegaMenu {
+          position: absolute;
+          background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0.5) 100%
+          );
+
+          -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+          height: auto;
+          left: 0;
+          width: 100%;
+          top: 70px;
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+          padding: 0px 10%;
+          opacity: 0;
+          visibility: hidden;
+          transition: 0.25s ease-in-out;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          .WydadLogogs {
+            width: 20%;
+            margin-left: auto;
+            opacity: 0.2;
+          }
+
+          .MegaMenuUl {
+            padding: 30px;
+            list-style: none;
+
+            li {
+              color: #181818;
+              margin: 10px;
+              &:hover {
+                color: var(--Red);
+              }
+            }
+          }
+        }
 
         &:hover {
           color: var(--Red);
@@ -50,105 +168,75 @@ const StyledNavbar = styled.nav`
   }
   .RighNav {
     display: flex;
-    height: 50%;
-  }
-`;
-
-const StyledMegaMenu = styled.div`
-  background-color: white;
-  width: 100%;
-  position: sticky;
-  padding: 10px 10%;
-  top: 70px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  z-index: 98;
-  ul {
-    display: flex;
-    margin-left: 50px;
-    li {
-      list-style: none;
-      margin-right: 20px;
-      color: var(--grey);
-      font-size: 0.9rem;
-    }
+    margin-left: auto;
   }
 `;
 
 function Navbar() {
-  const [MegaMenuToggle, setMegaMenuToggle] = useState(false);
-  const [isMegaMenuHovered, setisMegaMenuHovered] = useState(false);
-
   return (
-    <>
-      <StyledNavbar className="Nav">
-        <div className="LeftNav">
+    <StyledNavbar className="Nav">
+      <div className="LeftNav">
+        <Link href={"/"}>
+          <img
+            className="NavLogo"
+            src={"/assets/Media/Logos/Wac.png"}
+            alt="Wydad Ac Logo"
+            layout="intrinsic"
+          />
+        </Link>
+
+        <ul className="List">
+          <li className="NavItem">
+            Football
+            <div className="MegaMenu">
+              <ul className="MegaMenuUl">
+                {Football.map((Item) => {
+                  return (
+                    <Link href={`/football/${Item.to}`}>
+                      <li key={Item.id}>{Item.title}</li>
+                    </Link>
+                  );
+                })}
+              </ul>
+              <img
+                className="WydadLogogs"
+                src={"/assets/Media/Logos/wydadLogos.png"}
+              />
+            </div>
+          </li>
           <Link href={"/"}>
-            <img
-              className="NavLogo"
-              src={"/assets/Media/Logos/Wac.png"}
-              alt="Wydad Ac Logo"
-              layout="intrinsic"
-            />
+            <li className="NavItem">News</li>
           </Link>
-          <ul className="List">
-            <Link href={"/football"}>
-              <li
-                onMouseEnter={() => {
-                  setMegaMenuToggle(true);
-                }}
-                onMouseLeave={() => {
-                  if (isMegaMenuHovered === false) {
-                    setMegaMenuToggle(false);
-                  }
-                }}
-              >
-                Football
-              </li>
-            </Link>
-            <Link href={"/"}>
-              <li>News</li>
-            </Link>
-            <Link href={"/club"}>
-              <li>club</li>
-            </Link>
-            <li>Store</li>
-            <li>Tickets</li>
+          <li className="NavItem">
+            club
+            <div className="MegaMenu">
+              <ul className="MegaMenuUl">
+                {Club.map((Item) => {
+                  return (
+                    <Link href={`/club/${Item.to}`} key={Item.id}>
+                      <li>{Item.title}</li>
+                    </Link>
+                  );
+                })}
+              </ul>
 
-            <li style={{ color: "blue" }}>{MegaMenuToggle}</li>
-          </ul>
-        </div>
+              <img
+                className="WydadLogogs"
+                src={"/assets/Media/Logos/wydadLogos.png"}
+              />
+            </div>
+          </li>
+          <li className="NavItem">Store</li>
+          <li className="NavItem">Tickets</li>
+          <li className="NavItem special">Fantasy</li>
+        </ul>
+      </div>
 
-        <div className="RighNav">
-          <MyWydad />
-          <LanguageDropDown />
-        </div>
-      </StyledNavbar>
-      {MegaMenuToggle ? (
-        <StyledMegaMenu
-          onMouseEnter={() => {
-            setisMegaMenuHovered(true);
-          }}
-          onMouseLeave={() => {
-            setTimeout(() => {
-              if (isMegaMenuHovered === false) {
-                setMegaMenuToggle(false);
-              }
-            }, 500);
-          }}
-        >
-          <ul>
-            <li>First Team</li>
-            <li>News</li>
-            <li>Match Schedule</li>
-            <li>Results</li>
-            <li>Players</li>
-            <li>Acheivements</li>
-          </ul>
-        </StyledMegaMenu>
-      ) : (
-        ""
-      )}
-    </>
+      <div className="RighNav">
+        <MyWydad />
+        <LanguageDropDown />
+      </div>
+    </StyledNavbar>
   );
 }
 

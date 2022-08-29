@@ -25,7 +25,6 @@ const SubNavList = [
 function presidents() {
   return (
     <>
-      <SubNav Items={SubNavList} />
       <StyledPresidents>
         <div className="CurrentPresident">
           <div className="CurrentPresidentImg">
@@ -114,6 +113,7 @@ const StyledPresidents = styled.div`
   display: flex;
   flex-direction: column;
   .CurrentPresident {
+    margin-top: 0px;
     overflow: hidden;
     width: 100%;
     height: 300px;

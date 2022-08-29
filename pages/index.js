@@ -8,6 +8,8 @@ import styles from "../styles/Home.module.css";
 import Sponsors from "../components/Sponsors/Sponsors";
 import TopNav from "../components/Navbar/TopNav";
 import Matches from "../components/Main/Matches/Matches";
+import UpComingGames from "../components/Main/UpCommingGames/UpComingGames";
+import Shop from "../components/Main/Shop/Shop";
 //Import Components
 
 export default function Home() {
@@ -15,11 +17,13 @@ export default function Home() {
     <>
       <Header />
       <Matches />
-      <Title text="Wydad News" />
+      <Title text="Wydad News" show href="news" />
       <News />
       <Title text="the most titled in morocco" />
       <Titles />
-      <Title text="Wydad Players" />
+      <Title text={"Wydad Shop"} />
+      <Shop />
+      <Title text="Wydad Players" show href="football/players" />
       <Players />
       <Sponsors />
     </>

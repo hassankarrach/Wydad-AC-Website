@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
 import { PlayersData } from "../../../data/Players";
@@ -15,7 +16,10 @@ function Players() {
   return (
     <StyledPlayers>
       <div className="PlayersCard">
-        <div className="ImgHolder">
+        <div
+          className="ImgHolder"
+          style={{ backgroundImage: "url(./assets/Media/Textures/White.png)" }}
+        >
           <img
             className="StadiumLamp"
             src={"./assets/Media/Extras/StadiumLamp.webp"}
@@ -49,18 +53,20 @@ function Players() {
               return (
                 <SwiperSlide>
                   {({ isActive }) => (
-                    <div className={`PlayerCard ${isActive ? "Actif" : ""}`}>
-                      <img
-                        className="PlayerImg"
-                        src={`/assets/Media/Players/${Player.id}.png`}
-                      />
-                      <div className="OverlayDetails">
-                        <h1>
-                          {Player.Number} {Player["Full Name"]}
-                        </h1>
-                        <span>{Player.Position}</span>
+                    <Link href={`football/players/${Player.id}`}>
+                      <div className={`PlayerCard ${isActive ? "Actif" : ""}`}>
+                        <img
+                          className="PlayerImg"
+                          src={`/assets/Media/Players/${Player.id}.png`}
+                        />
+                        <div className="OverlayDetails">
+                          <h1>
+                            {Player.Number} {Player["Full Name"]}
+                          </h1>
+                          <span>{Player.Position}</span>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   )}
                 </SwiperSlide>
               );
@@ -84,7 +90,6 @@ const StyledPlayers = styled.div`
     .ImgHolder {
       width: 100%;
       height: 100%;
-      background-image: url("./assets/Media/Textures/White.png");
       background-position: top center;
       background-size: cover;
       mix-blend-mode: difference;

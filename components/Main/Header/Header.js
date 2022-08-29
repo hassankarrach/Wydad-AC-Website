@@ -9,8 +9,7 @@ function Header() {
 }
 
 const StyledHeader = styled.div`
-  height: 87vh;
-  margin: 0 10%;
+  height: 100vh;
   background-image: linear-gradient(
       0deg,
       rgba(200, 16, 46, 1) 0%,
@@ -24,8 +23,6 @@ const StyledHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
   overflow: hidden;
 `;
 
