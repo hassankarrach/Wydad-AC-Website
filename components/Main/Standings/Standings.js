@@ -20,7 +20,7 @@ function Standings() {
   return (
     <StyledStandings>
       <div className="ContentHolder">
-        <table class="styled-table">
+        <table className="styled-table">
           <thead>
             <tr>
               <th></th>
@@ -34,9 +34,9 @@ function Standings() {
           </thead>
           <tbody>
             {TopTeams &&
-              TopTeams.map((Club) => {
+              TopTeams.map((Club, key) => {
                 return (
-                  <tr>
+                  <tr key={key}>
                     <td id="TeamPlace">{Club.position}</td>
                     <td>
                       <img

@@ -51,7 +51,7 @@ function Players() {
           >
             {PlayersData.map((Player) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={Player.id}>
                   {({ isActive }) => (
                     <Link href={`football/players/${Player.id}`}>
                       <div className={`PlayerCard ${isActive ? "Actif" : ""}`}>

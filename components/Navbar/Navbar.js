@@ -192,7 +192,7 @@ function Navbar() {
               <ul className="MegaMenuUl">
                 {Football.map((Item) => {
                   return (
-                    <Link href={`/football/${Item.to}`}>
+                    <Link href={`/football/${Item.to}`} key={Item.id}>
                       <li key={Item.id}>{Item.title}</li>
                     </Link>
                   );

@@ -12,7 +12,7 @@ export const getStaticProps = async () => {
   };
 };
 
-const index = ({ PlayersData }) => {
+const Index = ({ PlayersData }) => {
   const [ActiveTag, setActiveTag] = useState("All");
 
   const FilterPlayersByPosition = (Position) => {
@@ -421,4 +421,4 @@ const StyledCard = styled.div`
   }
 `;
 
-export default index;
+export default Index;

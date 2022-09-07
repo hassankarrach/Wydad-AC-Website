@@ -242,7 +242,7 @@ function Matches() {
         <div className="LeftBox">
           {isNextGameLive && (
             <StyledLive>
-              <div class="pulse"></div>
+              <div className="pulse"></div>
               <span>LIVE</span>
             </StyledLive>
           )}

@@ -8,7 +8,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Loader from "../../components/Loader/Loader";
 import Skeleton from "@mui/material/Skeleton";
 
-function results() {
+function Results() {
   const [CurrentPagination, setCurrentPagination] = useState(0);
   const [CurrentData, setCurrentData] = useState();
 
@@ -300,4 +300,4 @@ const StyledResultCard = styled.div`
   }
 `;
 
-export default results;
+export default Results;
