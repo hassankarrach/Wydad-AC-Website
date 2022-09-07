@@ -4,7 +4,7 @@ import PersonCard from "../../components/Cards/PersonCard";
 import { WydadManagement } from "../../data/Management";
 import Header from "../../components/Header/Header";
 
-function management() {
+function Management() {
   const [ActiveTag, setActiveTag] = useState("All");
   return (
     <StyledManagement>
@@ -126,4 +126,4 @@ const StyledFilterHolder = styled.div`
   }
 `;
 
-export default management;
+export default Management;

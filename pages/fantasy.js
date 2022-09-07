@@ -9,7 +9,7 @@ import AddIcon from "@mui/icons-material/Add";
 //Modal
 import Modal from "@mui/material/Modal";
 
-function fantasy() {
+function Fantasy() {
   //ModalStats
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -441,4 +441,4 @@ const StyledPlayer = styled.div`
   }
 `;
 
-export default fantasy;
+export default Fantasy;

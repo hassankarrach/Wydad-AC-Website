@@ -95,6 +95,7 @@ function presidents() {
           {WydadPresidents.map((President) => {
             return (
               <PersonCard
+                key={President.id}
                 name={President.EnName}
                 img={`/assets/Media/Presidents/${President.id}.jpg`}
                 sub={President.period}

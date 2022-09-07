@@ -9,7 +9,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-function login() {
+function Auth() {
   const [SignInUpAcif, setSignInUpAcif] = useState(0);
   const [IsTheFieldOkey, setIsTheFieldOkey] = useState(2);
   const [isPasswordVisible, setisPasswordVisible] = useState(0);
@@ -39,7 +39,7 @@ function login() {
           </div>
         </div>
 
-        <div class="form-inner">
+        <div className="form-inner">
           {SignInUpAcif === 0 ? (
             <form action="#">
               <div className="FieldHolder">
@@ -93,7 +93,7 @@ function login() {
               <button>Log In</button>
             </form>
           ) : (
-            <form action="#" class="signup">
+            <form action="#" className="signup">
               <div className="FieldHolder">
                 <div className="IconHolder">
                   <PersonIcon className="FieldIcon" />
@@ -363,4 +363,4 @@ const StyledLogin = styled.div`
   }
 `;
 
-export default login;
+export default Auth;

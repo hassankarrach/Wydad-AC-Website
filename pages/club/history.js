@@ -12,12 +12,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation, Autoplay]);
-
 import { WydadHistoryAr } from "../../data/History";
 
-function history() {
+function History() {
   const [currentID, setcurrentID] = useState(0);
-
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
 
@@ -85,7 +83,7 @@ function history() {
               >
                 {WydadHistoryAr.map((item) => {
                   return (
-                    <SwiperSlide>
+                    <SwiperSlide key={item.id}>
                       {({ isActive }) => (
                         <div className={`item ${isActive ? "actif" : ""}`}>
                           <p className="year">{item.id}</p>
@@ -295,4 +293,4 @@ const StyledHistory = styled.div`
   }
 `;
 
-export default history;
+export default History;
