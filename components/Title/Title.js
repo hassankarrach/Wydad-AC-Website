@@ -26,6 +26,9 @@ const StyledSectionTitle = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  @media (max-width: 768px) {
+    padding: 0px 5%;
+  }
 
   h1 {
     font-family: "Lemon/Milk light", sans-serif;

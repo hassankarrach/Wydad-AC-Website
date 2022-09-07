@@ -34,6 +34,11 @@ const StyledNewsCard = styled.div`
   transition: 0.2s ease-in-out;
   overflow: hidden;
   cursor: pointer;
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 5px 0px;
+  }
+
   &:hover .TopNewsCardHolder .TopNewsCard {
     transform: scale(1.1);
   }

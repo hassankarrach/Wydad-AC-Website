@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function MyWydad() {
   return (
-    <Link href="/login">
+    <Link href="/auth">
       <StyledMyWydad>
         <PersonIcon className="MyWydadIcon" />
         <span>My Wydad</span>

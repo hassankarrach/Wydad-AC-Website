@@ -81,6 +81,9 @@ function Players() {
 const StyledPlayers = styled.div`
   width: 100%;
   padding: 0px 10%;
+  @media (max-width: 768px) {
+    padding: 0px 5%;
+  }
   .PlayersCard {
     height: 400px;
     overflow: hidden;

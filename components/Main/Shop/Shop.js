@@ -23,6 +23,10 @@ const StyledShop = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
+  @media (max-width: 768px) {
+    margin: 0px 5%;
+  }
+
   .ImgHolder {
     margin-left: 5%;
     @media (max-width: 768px) {

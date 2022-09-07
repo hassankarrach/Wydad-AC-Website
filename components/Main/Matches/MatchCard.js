@@ -11,6 +11,8 @@ function MatchCard({ Opponent, GameDate, GameTime, Competition }) {
             ? "/assets/Media/Matches/Cdt.png"
             : Competition === "Cl"
             ? "/assets/Media/Matches/Cl.png"
+            : Competition === "CAF Super Cup"
+            ? "/assets/Media/Matches/Sc.png"
             : ""
         }
         className="BgMatchCard"
@@ -18,8 +20,20 @@ function MatchCard({ Opponent, GameDate, GameTime, Competition }) {
       <div className="MatchCardData">
         <div className="LeftCard">
           <div className="CompName">
-            <img src={"/assets/Media/competitions/botola.png"} />
-            <h1>Match Day 1</h1>
+            <img
+              src={
+                Competition === "Botola Pro"
+                  ? "/assets/Media/competitions/botola.png"
+                  : Competition === "CAF Super Cup"
+                  ? "/assets/Media/competitions/Sc.png"
+                  : Competition === "Cl"
+                  ? "/assets/Media/competitions/botola.png"
+                  : Competition === "Cdt"
+                  ? "/assets/Media/competitions/botola.png"
+                  : ""
+              }
+            />
+            <h1>{Competition}</h1>
           </div>
         </div>
 

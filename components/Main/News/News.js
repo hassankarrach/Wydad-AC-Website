@@ -109,6 +109,10 @@ const StyledNews = styled.div`
   padding: 0px 10%;
   height: auto;
   width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 10px 5%;
+  }
   /* --auto-grid-min-size: 22rem;
   display: grid;
   grid-template-columns: repeat(
@@ -122,9 +126,15 @@ const StyledNews = styled.div`
   .MainNews {
     display: flex;
     margin-bottom: 15px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
   .SecNews {
     display: flex;
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 `;
 

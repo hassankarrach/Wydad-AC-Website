@@ -44,7 +44,7 @@ function standings({ standingsData }) {
                   <td>
                     <img
                       className="Icon"
-                      src={`/assets/Media/Teams/${team.team.nameCode.toLowerCase()}.png`}
+                      src={`/assets/Media/Teams/${team.team.shortName}.png`}
                     />
                   </td>
                   <td>{team.team.name}</td>

@@ -2,12 +2,31 @@ import React from "react";
 import styled from "styled-components";
 import MatchCard from "../../components/Main/Matches/MatchCard";
 
-function schedule() {
+export const getStaticProps = async () => {
+  const Res = await fetch("http://localhost:3000/api/nextgame");
+  const data = await Res.json();
+
+  return {
+    props: { NextGames: data },
+  };
+};
+
+function schedule({ NextGames }) {
+  const Events = NextGames.events;
+
+  console.log(Events[0]);
   return (
     <StyledSchedule>
       <div className="Container">
-        <MatchCard Competition="Botola" GameDate="2/2/2922" Opponent={"far"} />
-        <MatchCard Competition="Botola" GameDate="2/2/2922" Opponent={"dhj"} />
+        {Events.map((event) => {
+          return (
+            <MatchCard
+              Competition={event.tournament.uniqueTournament.name}
+              GameDate="2/2/2922"
+              Opponent={"far"}
+            />
+          );
+        })}
       </div>
     </StyledSchedule>
   );

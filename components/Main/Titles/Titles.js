@@ -48,7 +48,18 @@ function Titles() {
               />
               <Swiper
                 className="SwiperHolder"
-                spaceBetween={0}
+                breakpoints={{
+                  100: {
+                    slidesPerView: 1,
+                  },
+                  // when window width is >= 480px
+                  480: {
+                    slidesPerView: 3,
+                  },
+                  1200: {
+                    slidesPerView: 5,
+                  },
+                }}
                 slidesPerView={5}
                 loop={true}
                 autoplay={{
@@ -58,7 +69,7 @@ function Titles() {
                 centeredSlides={true}
                 onSlideChange={(swiper) => SetActifSlide(swiper.realIndex)}
               >
-                <SwiperSlide>
+                <SwiperSlide className="SlideItem">
                   {({ isActive }) => (
                     <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
                       <img src={"/assets/Media/Titles/Botola_.png"} />
@@ -66,7 +77,7 @@ function Titles() {
                     </div>
                   )}
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="SlideItem">
                   {({ isActive }) => (
                     <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
                       <img src={"/assets/Media/Titles/Cl_.png"} />
@@ -74,7 +85,7 @@ function Titles() {
                     </div>
                   )}
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="SlideItem">
                   {({ isActive }) => (
                     <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
                       <img src={"/assets/Media/Titles/Cdt_.png"} />
@@ -82,7 +93,7 @@ function Titles() {
                     </div>
                   )}
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="SlideItem">
                   {({ isActive }) => (
                     <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
                       <img src={"/assets/Media/Titles/Sc_.png"} />
@@ -90,7 +101,7 @@ function Titles() {
                     </div>
                   )}
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="SlideItem">
                   {({ isActive }) => (
                     <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
                       <img src={"/assets/Media/Titles/Afro_.png"} />
@@ -98,7 +109,7 @@ function Titles() {
                     </div>
                   )}
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="SlideItem">
                   {({ isActive }) => (
                     <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
                       <img src={"/assets/Media/Titles/CafCupWinnersCup.png"} />
@@ -106,7 +117,7 @@ function Titles() {
                     </div>
                   )}
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="SlideItem">
                   {({ isActive }) => (
                     <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
                       <img src={"/assets/Media/Titles/MohamedV.png"} />
@@ -133,11 +144,20 @@ const StyledTitles = styled.div`
   width: 100%;
   padding: 0px 10%;
   margin: 50px 0px;
+  @media (max-width: 768px) {
+    padding: 0px 5%;
+    overflow: hidden;
+  }
   .TitlesCard {
     height: 350px;
     border-radius: 8px;
     position: relative;
     border: 1px solid #eeeeee;
+    @media (max-width: 768px) {
+      overflow: hidden;
+      height: 450px;
+    }
+
     .ImgHolder {
       width: 100%;
       height: 100%;
@@ -160,12 +180,19 @@ const StyledTitles = styled.div`
         align-items: flex-end;
         flex-direction: column;
         position: relative;
+
         .LeftImgClub {
-          height: 120%;
           position: absolute;
+          height: 120%;
           bottom: 0;
           z-index: 2;
           left: 0;
+          z-index: 1;
+
+          @media (max-width: 768px) {
+            height: 85%;
+            /* left: -50%; */
+          }
         }
 
         .TopRightTitlesCardData {
@@ -174,16 +201,27 @@ const StyledTitles = styled.div`
           align-items: center;
           display: flex;
           justify-content: center;
+          @media (max-width: 768px) {
+            width: 100%;
+            z-index: 4;
+            font-size: 0.8rem;
+          }
         }
         .MiddleRightTitlesCardData {
           width: 70%;
           height: 60%;
-          align-items: center;
-          display: flex;
-          justify-content: center;
+
+          @media (max-width: 768px) {
+            width: 100%;
+            height: 100%;
+          }
           .SwiperHolder {
             height: 100%;
-            max-width: 100%;
+
+            .SlideItem {
+              display: flex;
+              justify-content: center;
+            }
           }
           .TrophyHolder.Actif {
             filter: none;
@@ -212,7 +250,6 @@ const StyledTitles = styled.div`
             );
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
-            margin: 8px;
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -256,6 +293,15 @@ const StyledTitles = styled.div`
           align-items: center;
           justify-content: center;
           position: relative;
+          @media (max-width: 768px) {
+            width: 100%;
+            z-index: 2;
+
+            img {
+              position: absolute;
+              left: 10px;
+            }
+          }
           button {
             position: absolute;
             right: 20px;

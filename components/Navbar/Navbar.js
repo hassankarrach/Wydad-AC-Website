@@ -228,7 +228,9 @@ function Navbar() {
           </li>
           <li className="NavItem">Store</li>
           <li className="NavItem">Tickets</li>
-          <li className="NavItem special">Fantasy</li>
+          <Link href={"/fantasy"}>
+            <li className="NavItem special">Fantasy</li>
+          </Link>
         </ul>
       </div>
 

@@ -50,6 +50,7 @@ const StyledSponsors = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
 
   .SponsorsTitleHolder {
     display: flex;
@@ -70,6 +71,7 @@ const StyledSponsors = styled.div`
       cursor: pointer;
       opacity: 0.6;
       transition: 0.2s ease-in-out;
+
       &:hover {
         opacity: 1;
       }
@@ -80,11 +82,13 @@ const StyledSponsors = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+
     .SponsorLogo {
       margin: 10px;
       cursor: pointer;
       opacity: 0.6;
       transition: 0.2s ease-in-out;
+      max-width: 100px;
       &:hover {
         opacity: 1;
       }

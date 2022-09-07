@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import Loader from "../components/Loader/Loader";
 import Layout from "../components/Layout";
 import "../styles/globals.css";
+//Redux
+import store from "../store";
+import { Provider } from "react-redux";
 
 const Loading = () => {
   const router = useRouter();
@@ -28,10 +31,12 @@ const Loading = () => {
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Loading />
-      <Component {...pageProps} />
-    </Layout>
+    <Provider store={store}>
+      <Layout>
+        <Loading />
+        <Component {...pageProps} />
+      </Layout>
+    </Provider>
   );
 }
 

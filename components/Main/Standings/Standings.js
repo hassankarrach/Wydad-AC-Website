@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 function Standings() {
+  const [TopTeams, setTopTeams] = useState();
+  const [WydadStanding, setWydadStanding] = useState();
+
+  useEffect(() => {
+    async function GetStandings() {
+      // Call then() after using fetch to pass the result into a callback that saves state
+      fetch("/api/stats")
+        .then((response) => response.json())
+        .then((data) => {
+          setTopTeams(data.standings[0].rows.slice(0, 4));
+        });
+    }
+    GetStandings();
+  }, []);
+
   return (
     <StyledStandings>
       <div className="ContentHolder">
@@ -11,47 +26,32 @@ function Standings() {
               <th></th>
               <th></th>
               <th>P</th>
-              <th>GD</th>
+              <th>W</th>
+              <th>D</th>
+              <th>L</th>
               <th>PTS</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="active-row">
-              <td id="TeamPlace">1</td>
-              <td>
-                <img className="Icon" src="./assets/Media/Teams/wac.png" />
-              </td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td id="TeamPlace">2</td>
-              <td>
-                <img className="Icon" src="./assets/Media/Teams/Rsb.png" />
-              </td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td id="TeamPlace">3</td>
-              <td>
-                <img className="Icon" src="./assets/Media/Teams/far.png" />
-              </td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td id="TeamPlace">4</td>
-              <td>
-                <img className="Icon" src="./assets/Media/Teams/mas.png" />
-              </td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
+            {TopTeams &&
+              TopTeams.map((Club) => {
+                return (
+                  <tr>
+                    <td id="TeamPlace">{Club.position}</td>
+                    <td>
+                      <img
+                        className="Icon"
+                        src={`./assets/Media/Teams/${Club.team.shortName}.png`}
+                      />
+                    </td>
+                    <td>{Club.matches}</td>
+                    <td>{Club.wins}</td>
+                    <td>{Club.draws}</td>
+                    <td>{Club.losses}</td>
+                    <td>{Club.points}</td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

@@ -1,3 +1,4 @@
+//Import Components
 import Head from "next/head";
 import Header from "../components/Main/Header/Header";
 import News from "../components/Main/News/News.js";
@@ -10,7 +11,6 @@ import TopNav from "../components/Navbar/TopNav";
 import Matches from "../components/Main/Matches/Matches";
 import UpComingGames from "../components/Main/UpCommingGames/UpComingGames";
 import Shop from "../components/Main/Shop/Shop";
-//Import Components
 
 export default function Home() {
   return (

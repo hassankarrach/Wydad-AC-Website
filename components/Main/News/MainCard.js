@@ -34,6 +34,10 @@ const StyledMainCard = styled.div`
   display: flex;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border: 1px solid #f0f0f0;
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 5px 0px;
+  }
 
   &:hover {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
