@@ -460,7 +460,7 @@ const StyledMatches = styled.div`
           h1 {
             margin: 20px 0px;
             @media (max-width: 768px) {
-              font: 0.8rem;
+              font: 0.9rem;
             }
           }
           .GameDetails {
