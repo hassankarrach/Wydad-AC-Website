@@ -18,9 +18,10 @@ function schedule({ NextGames }) {
   return (
     <StyledSchedule>
       <div className="Container">
-        {Events.map((event) => {
+        {Events.map((event, key) => {
           return (
             <MatchCard
+              key={key}
               Competition={event.tournament.uniqueTournament.name}
               GameDate="2/2/2922"
               Opponent={"far"}
