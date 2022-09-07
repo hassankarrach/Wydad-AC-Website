@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { WydadPresidents } from "../../data/Presidents";
 import PersonCard from "../../components/Cards/PersonCard";
-import SubNav from "../../components/Navbar/SubNav";
 
 const SubNavList = [
   {
