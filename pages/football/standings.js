@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 export const getStaticProps = async () => {
-  const Res = await fetch("http://localhost:3000/api/stats");
+  const Res = await fetch(
+    "https://api.sofascore.com/api/v1/unique-tournament/937/season/45552/standings/total"
+  );
   const data = await Res.json();
 
   return {

@@ -3,7 +3,9 @@ import styled from "styled-components";
 import MatchCard from "../../components/Main/Matches/MatchCard";
 
 export const getStaticProps = async () => {
-  const Res = await fetch("http://localhost:3000/api/nextgame");
+  const Res = await fetch(
+    "https://api.sofascore.com/api/v1/team/36268/events/next/0"
+  );
   const data = await Res.json();
 
   return {
