@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import Header from "../../../components/Header/Header";
+import { PlayersData } from "../../../data/Players";
 
 export const getStaticProps = async () => {
-  const Res = await fetch("http://localhost:3000/api/players");
-  const data = await Res.json();
+  // const Res = await fetch("http://localhost:3000/api/players");
+  // const data = await Res.json();
 
   return {
-    props: { PlayersData: data },
+    props: { PlayersData: PlayersData },
   };
 };
 

@@ -14,14 +14,15 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 //Chart.Js
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import { PlayersData } from "../../../data/Players";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 //GetData
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:3000/api/players");
-  const data = await res.json();
+  // const res = await fetch("http://localhost:3000/api/players");
+  // const data = await res.json();
   // map data to an array of path objects with params (id)
-  const paths = data.map((player) => {
+  const paths = PlayersData.map((player) => {
     return {
       params: { id: player.id.toString() },
     };
@@ -35,9 +36,10 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const res = await fetch("http://localhost:3000/api/players/" + id);
-  const data = await res.json();
-
+  // const res = await fetch("http://localhost:3000/api/players/" + id);
+  const res = PlayersData.find((Player) => Player.id === parseInt(id));
+  // const data = await res.json();
+  const data = res;
   //GetScrappedStats
 
   return {
