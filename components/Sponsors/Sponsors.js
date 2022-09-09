@@ -9,17 +9,17 @@ function Sponsors() {
       <div className="MainSponsors">
         <img
           className="SponsorLogo"
-          src="/assets/Media/Logos/Partners/Ingelec.png"
+          src="/assets/Media/Logos/Partners/ingelec.png"
         />
         <img
           className="SponsorLogo"
-          src="/assets/Media/Logos/Partners/Macron.png"
+          src="/assets/Media/Logos/Partners/macron.png"
         />
       </div>
       <div className="SecPartners">
         <img
           className="SponsorLogo"
-          src="/assets/Media/Logos/Partners/Sama.png"
+          src="/assets/Media/Logos/Partners/sama.png"
         />
         <img
           className="SponsorLogo"
