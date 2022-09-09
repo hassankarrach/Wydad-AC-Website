@@ -160,60 +160,20 @@ const renderer = ({ hours, days, minutes, seconds, completed }) => {
 };
 
 function Matches({ NextGameData, LastGameData }) {
-  const [NextGame, setNextGame] = useState();
-  const [lastgame, setlastgame] = useState();
   const [isNextGameLive, setisNextGameLive] = useState(false);
   const [DisplayedGame, setDisplayedGame] = useState();
 
   useEffect(() => {
-    // const GetNextGame = async () => {
-    //   const res = await fetch(`/api/nextgame`)
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       //LogicHere
-    //       return fetch(
-    //         `https://api.sofascore.com/api/v1/event/${data.events[0].id}`
-    //       );
-    //     })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       setNextGame(data);
-    //       return data;
-    //     });
-    //   return res;
-    // };
-
-    // const GetLastGame = async () => {
-    //   const res = await fetch("/api/lastgame")
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       return fetch(
-    //         `https://api.sofascore.com/api/v1/event/${
-    //           data.events[data.events.length - 1].id
-    //         }`
-    //       );
-    //     })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       setlastgame(data);
-    //       return data;
-    //     });
-
-    //   return res;
-    // };
-
     const HandleShowedGame = async () => {
       const currentTimeStamp = new Date(Date.now());
       //GetNextAndLastGame
       const NextGame = NextGameData;
       const LastGame = LastGameData;
-
       //CalcTime;
       const GameStartTime = TimeStampToDate(LastGame.event.startTimestamp);
       const GameEndTime = TimeStampToDate(
         LastGame.event.startTimestamp + 3 * 3600
       );
-
       if (
         currentTimeStamp >= GameStartTime &&
         currentTimeStamp <= GameEndTime
@@ -224,7 +184,6 @@ function Matches({ NextGameData, LastGameData }) {
         setDisplayedGame(NextGame);
       }
     };
-
     HandleShowedGame();
   }, []);
 
