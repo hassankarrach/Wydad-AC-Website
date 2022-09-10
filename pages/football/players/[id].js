@@ -562,7 +562,7 @@ const StyledContainer = styled.div`
     }
     .InnerContainer {
       width: 100%;
-      height: 1000px;
+      height: auto;
       display: flex;
       @media (max-width: 768px) {
         flex-direction: column;
@@ -585,6 +585,10 @@ const StyledContainer = styled.div`
           .Charts {
             display: flex;
             width: 90%;
+            @media (max-width: 768px) {
+              flex-direction: column;
+              width: 100%;
+            }
             .ChartHolder {
               min-width: 20%;
               display: flex;

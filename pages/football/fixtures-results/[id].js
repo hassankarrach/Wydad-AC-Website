@@ -200,7 +200,13 @@ const ResultCard = ({
         <div className="ContentHolder">
           <div className="HomeClub">
             <span>{homeTeam}</span>
-            <img src={`/assets/Media/Teams/${homeTeamImg}.png`} />
+            <img
+              src={`/assets/Media/Teams/${homeTeamImg}.png`}
+              onError={(e) => (
+                (e.target.onerror = null),
+                (e.target.src = "/assets/Media/Teams/Team.svg")
+              )}
+            />
           </div>
 
           <div className="FinalResult">

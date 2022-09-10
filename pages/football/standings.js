@@ -43,9 +43,13 @@ function standings({ standingsData }) {
                   key={team.id}
                 >
                   <td id="TeamPlace">{team.position}</td>
-                  <td>
+                  <td
+                    className={`TeamIcon ${
+                      team.team.name === "Wydad AC" ? "Wydad" : ""
+                    }`}
+                  >
                     <img
-                      className="Icon"
+                      className={`Icon `}
                       src={`/assets/Media/Teams/${team.team.shortName}.png`}
                     />
                   </td>
@@ -70,23 +74,45 @@ function standings({ standingsData }) {
 
 const StyledStandings = styled.div`
   padding: 10px 10%;
+  @media (max-width: 768px) {
+    padding: 10px 5%;
+  }
   .StandingsContainer {
     width: 100%;
     background-color: white;
     border-radius: 10px;
     padding: 10px;
     margin: 10% 0px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    @media (max-width: 768px) {
+      padding: 5px;
+      max-width: 100vw;
+    }
 
     .styled-table {
       border-collapse: collapse;
       font-size: 0.9em;
       width: 100%;
       font-family: "Lemon/Milk light", sans-serif;
+
       #TeamPlace {
         color: #dfbe6d;
         font-size: 1rem;
       }
-
+      .TeamIcon {
+        @media (max-width: 768px) {
+          background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0) 100%
+          );
+          position: sticky;
+          left: -5px;
+        }
+      }
       thead tr {
         background-color: transparent;
         color: black;
@@ -101,10 +127,23 @@ const StyledStandings = styled.div`
         color: var(--grey);
         font-family: var(--font-secondary);
         font-size: 0.8rem;
+        @media (max-width: 768px) {
+          margin: 0px 10px;
+          padding: 20px;
+        }
       }
       td {
         padding: 8px 10px;
         width: 100px;
+      }
+      td.Wydad {
+        @media (max-width: 768px) {
+          background: linear-gradient(
+            90deg,
+            rgba(174, 36, 61, 1) 0%,
+            rgba(174, 36, 61, 0) 100%
+          );
+        }
       }
 
       tbody tr {
