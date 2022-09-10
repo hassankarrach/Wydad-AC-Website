@@ -21,7 +21,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export const getStaticPaths = async () => {
   // const res = await fetch("http://localhost:3000/api/players");
   // const data = await res.json();
-  // map data to an array of path objects with params (id)
+  // map data to  an array of path objects with params (id)
   const paths = PlayersData.map((player) => {
     return {
       params: { id: player.id.toString() },

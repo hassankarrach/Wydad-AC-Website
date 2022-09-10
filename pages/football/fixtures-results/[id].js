@@ -1,44 +1,57 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 //Icons
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-
 //Loader
-import Loader from "../../components/Loader/Loader";
 import Skeleton from "@mui/material/Skeleton";
 
-function Results() {
-  const [CurrentPagination, setCurrentPagination] = useState(0);
-  const [CurrentData, setCurrentData] = useState();
+//------------------------------------------------//
+export const getStaticPaths = async () => {
+  return {
+    paths: [
+      { params: { id: "0" } },
+      { params: { id: "1" } },
+      { params: { id: "2" } },
+      { params: { id: "3" } },
+      { params: { id: "4" } },
+      { params: { id: "5" } },
+      { params: { id: "6" } },
+      { params: { id: "7" } },
+    ],
+    fallback: false,
+  };
+};
+export const getStaticProps = async (context) => {
+  const id = context.params.id;
+  const res = await fetch(
+    "https://api.sofascore.com/api/v1/team/36268/events/last/" + id
+  );
+  const data = await res.json();
+  //GetScrappedStats
 
-  useEffect(() => {
-    const GetAllLastGames = async () => {
-      const Res = await fetch(
-        `https://api.sofascore.com/api/v1/team/36268/events/last/${CurrentPagination}`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          setCurrentData(data);
-        });
-    };
+  return {
+    props: { LastGamesData: data, CurrentID: id },
+  };
+};
+//------------------------------------------------//
 
-    GetAllLastGames();
-  }, [CurrentPagination]);
-
-  const HandleNext = () => {
-    if (CurrentData.hasNextPage) {
-      setCurrentPagination((prev) => prev + 1);
-      window.scrollTo(0, 0);
+const Matches = ({ LastGamesData, CurrentID }) => {
+  const router = useRouter();
+  const HandlePrev = (e) => {
+    if (CurrentID > 0) {
+      e.preventDefault();
+      router.push(`/football/fixtures-results/${CurrentID - 1}`);
     }
   };
-  const HandlePrev = () => {
-    if (CurrentPagination > 0) {
-      setCurrentPagination((prev) => prev - 1);
-      window.scrollTo(0, 0);
+
+  const HandleNext = (e) => {
+    if (CurrentID < 7) {
+      e.preventDefault();
+      router.push(`/football/fixtures-results/${Number(CurrentID) + 1}`);
     }
   };
-
   function timeConverter(UNIX_timestamp) {
     var a = new Date(UNIX_timestamp * 1000);
     var months = [
@@ -64,11 +77,10 @@ function Results() {
     var time = date + " " + month + " " + year + " | " + hour + ":" + min;
     return time;
   }
-
   return (
     <StyledResults>
-      {CurrentData ? (
-        CurrentData.events
+      {LastGamesData ? (
+        LastGamesData.events
           .slice(0)
           .reverse()
           .filter((game) => game.status.code != 60 && game.status.code != 70)
@@ -102,27 +114,21 @@ function Results() {
 
       <div className="Pagination">
         <div
-          className={`Icon ${CurrentPagination === 0 ? "Last" : ""}`}
-          onClick={() => {
-            HandlePrev();
-          }}
+          className={`Icon ${CurrentID == 0 ? "Last" : ""}`}
+          onClick={HandlePrev}
         >
           <ArrowBackIosNewIcon />
         </div>
         <div
-          className={`Icon Right ${
-            CurrentData && CurrentData.hasNextPage === false ? "Last" : ""
-          }`}
-          onClick={() => {
-            HandleNext();
-          }}
+          className={`Icon ${CurrentID == 7 ? "Last" : ""}`}
+          onClick={HandleNext}
         >
           <ArrowForwardIosIcon />
         </div>
       </div>
     </StyledResults>
   );
-}
+};
 
 const StyledResults = styled.div`
   height: auto;
@@ -300,4 +306,4 @@ const StyledResultCard = styled.div`
   }
 `;
 
-export default Results;
+export default Matches;

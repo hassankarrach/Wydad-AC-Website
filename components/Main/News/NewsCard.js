@@ -1,30 +1,55 @@
 import styled from "styled-components";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import moment from "moment";
+import Link from "next/dist/client/link";
 
-function NewsCard({ title, desc, img, date }) {
+function NewsCard({ title, desc, img, date, slug }) {
+  moment.updateLocale("en", {
+    relativeTime: {
+      future: "in %s",
+      past: "%s ",
+      s: "sec",
+      m: "%d M",
+      mm: "%d M",
+      h: "%d H",
+      hh: "%d H",
+      d: "%d D",
+      dd: "%d D",
+      M: "a mth",
+      MM: "%d mths",
+      y: "y",
+      yy: "%d y",
+    },
+  });
+
   return (
-    <StyledNewsCard>
-      <div className="TopNewsCardHolder">
-        <div
-          className="TopNewsCard"
-          style={{
-            backgroundImage: `url(${img})`,
-          }}
-        ></div>
-      </div>
-      <div className="BottomNewsCard">
-        <h1>{title}</h1>
-        <div className="BottomNewsCardBtnHolder">
-          <button className="BottomNewsCardBtn">read more</button>
-          <NavigateNextIcon />
+    <Link href={`/news/${slug}`}>
+      <StyledNewsCard>
+        <div className="TopNewsCardHolder">
+          <div
+            className="TopNewsCard"
+            style={{
+              backgroundImage: `url(${img})`,
+            }}
+          ></div>
         </div>
-      </div>
-    </StyledNewsCard>
+        <div className="BottomNewsCard">
+          <h1>{title}</h1>
+
+          <div className="BottomNewsCardBtnHolder">
+            <span>{moment(new Date(date)).fromNow()}</span>
+            <div className="ButtonHolder">
+              <button className="BottomNewsCardBtn">read more</button>
+              <NavigateNextIcon />
+            </div>
+          </div>
+        </div>
+      </StyledNewsCard>
+    </Link>
   );
 }
 
 const StyledNewsCard = styled.div`
-  width: 25%;
   height: 280px;
   margin: 1px 10px;
   background-color: white;
@@ -56,6 +81,8 @@ const StyledNewsCard = styled.div`
   .BottomNewsCard {
     height: 40%;
     padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
     h1 {
       font-size: 1.1rem;
       font-family: var(--font-secondary);
@@ -65,11 +92,22 @@ const StyledNewsCard = styled.div`
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      justify-content: space-between;
       cursor: pointer;
-      .BottomNewsCardBtn {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
+      margin-top: auto;
+      span {
+        font-weight: 80;
+        font-size: 0.9rem;
+      }
+      .ButtonHolder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .BottomNewsCardBtn {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+        }
       }
     }
   }

@@ -28,7 +28,7 @@ const Football = [
   },
   {
     title: "Results",
-    to: "results",
+    to: "fixtures-results/0",
     id: 3,
   },
   {
@@ -204,7 +204,7 @@ function Navbar() {
               />
             </div>
           </li>
-          <Link href={"/"}>
+          <Link href={"/news"}>
             <li className="NavItem">News</li>
           </Link>
           <li className="NavItem">

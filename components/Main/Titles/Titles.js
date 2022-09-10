@@ -42,10 +42,12 @@ function Titles() {
               </h1>
             </div>
             <div className="MiddleRightTitlesCardData">
-              <img
-                className="LeftImgClub"
-                src="/assets/Media/Extras/Team.png"
-              />
+              <div className="LeftImgClubHolder">
+                <img
+                  className="LeftImgClub"
+                  src="/assets/Media/Extras/Team.png"
+                />
+              </div>
               <Swiper
                 className="SwiperHolder"
                 breakpoints={{
@@ -53,10 +55,10 @@ function Titles() {
                     slidesPerView: 1,
                   },
                   // when window width is >= 480px
-                  480: {
-                    slidesPerView: 3,
+                  1280: {
+                    slidesPerView: 4,
                   },
-                  1200: {
+                  1500: {
                     slidesPerView: 5,
                   },
                 }}
@@ -180,18 +182,40 @@ const StyledTitles = styled.div`
         align-items: flex-end;
         flex-direction: column;
         position: relative;
-
-        .LeftImgClub {
-          position: absolute;
-          height: 120%;
-          bottom: 0;
-          z-index: 2;
-          left: 0;
-          z-index: 1;
-
+        .LeftImgClubHolder {
           @media (max-width: 768px) {
-            height: 85%;
-            /* left: -50%; */
+            width: 100%;
+            height: 100%;
+            position: absolute;
+
+            &:after {
+              width: 100%;
+              height: 80%;
+              position: absolute;
+              content: "";
+              background: linear-gradient(
+                0deg,
+                rgba(255, 255, 255, 1) 20%,
+                rgba(255, 255, 255, 0) 100%
+              );
+              z-index: 1;
+              bottom: 0;
+            }
+          }
+          .LeftImgClub {
+            position: absolute;
+            height: 120%;
+            bottom: 0;
+            z-index: 2;
+            left: -40px;
+
+            @media (max-width: 768px) {
+              height: 100%;
+              left: -35%;
+              z-index: 1;
+
+              /* left: -50%; */
+            }
           }
         }
 
@@ -217,7 +241,6 @@ const StyledTitles = styled.div`
           }
           .SwiperHolder {
             height: 100%;
-
             .SlideItem {
               display: flex;
               justify-content: center;
@@ -230,6 +253,15 @@ const StyledTitles = styled.div`
               rgba(217, 217, 217, 1) 0%,
               rgba(217, 217, 217, 0) 30%
             );
+
+            @media (max-width: 768px) {
+              background: linear-gradient(
+                0deg,
+                rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 0) 80%
+              );
+              border-bottom: 1px solid #e7e7e7;
+            }
             img {
               width: 100%;
               margin-bottom: 5px;
@@ -300,6 +332,7 @@ const StyledTitles = styled.div`
             img {
               position: absolute;
               left: 10px;
+              height: 30px;
             }
           }
           button {
