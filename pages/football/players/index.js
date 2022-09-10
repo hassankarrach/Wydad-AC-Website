@@ -4,6 +4,10 @@ import styled from "styled-components";
 import Header from "../../../components/Header/Header";
 import { PlayersData } from "../../../data/Players";
 
+//MaterialUI DropDown
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+
 export const getStaticProps = async () => {
   // const Res = await fetch("http://localhost:3000/api/players");
   // const data = await Res.json();
@@ -20,6 +24,10 @@ const Index = ({ PlayersData }) => {
     return PlayersData.filter((Player) => {
       return Player.Position == Position;
     });
+  };
+
+  const handleChange = (event) => {
+    setActiveTag(event.target.value);
   };
 
   return (
@@ -70,6 +78,22 @@ const Index = ({ PlayersData }) => {
               Forwards
             </li>
           </ul>
+
+          <Select
+            className="DropDown"
+            value={ActiveTag}
+            onChange={handleChange}
+            displayEmpty
+            inputProps={{ "aria-label": "Without label" }}
+          >
+            <MenuItem value="All">
+              <em>ALL</em>
+            </MenuItem>
+            <MenuItem value={"Goalkeepers"}>Goalkeepers</MenuItem>
+            <MenuItem value={"Defenders"}>Defenders</MenuItem>
+            <MenuItem value={"Midfielders"}>Midfielders</MenuItem>
+            <MenuItem value={"Forwards"}>Forwards</MenuItem>
+          </Select>
         </div>
       </StyledFilterHolder>
       {ActiveTag === "Goalkeepers" || ActiveTag === "All" ? (
@@ -312,6 +336,7 @@ const StyledFilterHolder = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   .PlayersFilter {
     width: 100%;
     width: 80%;
@@ -324,9 +349,26 @@ const StyledFilterHolder = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 768px) {
+      width: 90%;
+    }
+    .DropDown:focus {
+      border: 2px solid red;
+    }
+    .DropDown {
+      display: none;
+      width: 90%;
+
+      @media (max-width: 768px) {
+        display: block;
+      }
+    }
     ul {
       list-style-type: none;
       display: flex;
+      @media (max-width: 768px) {
+        display: none;
+      }
       li {
         margin: 15px;
         cursor: pointer;
@@ -346,6 +388,9 @@ const StyledContainer = styled.div`
   width: 100%;
   height: auto;
   padding: 0px 10%;
+  @media (max-width: 768px) {
+    padding: 0px 5%;
+  }
 
   .Container {
     --auto-grid-min-size: 19rem;

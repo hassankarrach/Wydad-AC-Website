@@ -335,41 +335,68 @@ const StyledContainer = styled.div`
     background-position-y: 68%;
     padding: 0px 10%;
     position: relative;
+    @media (max-width: 768px) {
+      justify-content: center;
+    }
 
     .PlayerData {
       color: white;
       margin-left: 20px;
       margin-top: auto;
       display: flex;
+      align-items: center;
+      align-items: flex-end;
+      @media (max-width: 768px) {
+        position: absolute;
+        bottom: 0;
+      }
 
       .PlayerNumber {
         padding: 0px 20px;
         display: flex;
-        justify-content: center;
         align-items: center;
+        align-items: flex-end;
         font-size: 2.1rem;
-        line-height: 0;
+        h1 {
+          margin-bottom: auto;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 1.5rem;
+        }
       }
 
       .PlayerName {
         h1 {
-          margin-bottom: 0px;
-          line-height: 0.4;
+          margin: 0px;
+          padding: 0px;
+          @media (max-width: 768px) {
+            font-size: 1.5rem;
+          }
         }
         h2 {
           font-family: var(--font-secondary);
           font-weight: 80;
           font-size: 1.4rem;
-          line-height: 1;
+          margin: 0px;
+          padding: 0px;
+          @media (max-width: 768px) {
+            font-size: 1rem;
+          }
         }
       }
     }
 
     .Avatar {
-      width: 250px;
       height: 120%;
+      width: 250px;
       background: white;
+      @media (max-width: 768px) {
+        width: 190px;
+        height: 160px;
+      }
 
+      background-repeat: no-repeat;
       background-image: ${(props) =>
         `url(/assets/Media/Players/${props.id}.png)`};
       border-bottom: 1px solid #e5e5e5;
@@ -411,6 +438,9 @@ const StyledContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     padding: 0px 10%;
+    @media (max-width: 768px) {
+      padding: 0px 5%;
+    }
 
     .Title {
       width: 100%;
@@ -429,6 +459,9 @@ const StyledContainer = styled.div`
       border-radius: 8px;
       padding: 10px 40px;
       border-bottom: 1px solid rgba(209, 209, 209, 0.3);
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
 
       .Divider {
         width: 1px;
@@ -439,6 +472,16 @@ const StyledContainer = styled.div`
           rgba(209, 209, 209, 0.7) 50%,
           rgba(209, 209, 209, 0) 100%
         );
+        @media (max-width: 768px) {
+          width: 100%;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            rgba(209, 209, 209, 0) 0%,
+            rgba(209, 209, 209, 1) 50%,
+            rgba(209, 209, 209, 0) 100%
+          );
+        }
       }
 
       .item {
@@ -446,9 +489,15 @@ const StyledContainer = styled.div`
         flex-direction: column;
         text-align: left;
         margin: 0px 30px;
+        @media (max-width: 768px) {
+          text-align: center;
+        }
         h1 {
           line-height: 0.5;
           font-size: 1.4rem;
+          @media (max-width: 768px) {
+            line-height: 1.2;
+          }
         }
         h2 {
           line-height: 0.5;
@@ -470,6 +519,9 @@ const StyledContainer = styled.div`
       border-radius: 8px;
       padding: 10px 40px;
       border-bottom: 1px solid rgba(209, 209, 209, 0.3);
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
 
       .Card {
         height: 50px;
@@ -480,6 +532,9 @@ const StyledContainer = styled.div`
         display: flex;
         overflow: hidden;
         margin-right: 10px;
+        @media (max-width: 768px) {
+          margin: 2px 0px;
+        }
         .LeftCard {
           background-color: #eabe00;
           display: flex;
@@ -509,9 +564,16 @@ const StyledContainer = styled.div`
       width: 100%;
       height: 1000px;
       display: flex;
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
       .LeftMainContainer {
         width: 70%;
         height: 100%;
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+
         .PlayerGoals {
           width: 100%;
           display: flex;
@@ -549,6 +611,9 @@ const StyledContainer = styled.div`
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         border: 1px solid #ededed;
+        @media (max-width: 768px) {
+          width: 100%;
+        }
         .Divider {
           background: linear-gradient(
             90deg,
