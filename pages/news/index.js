@@ -25,8 +25,6 @@ export const getServerSideProps = async (context) => {
 };
 
 function index({ posts }) {
-  console.log(posts);
-
   const imgBuilder = createImageUrlBuilder({
     projectId: "fr34sbmn",
     dataset: "production",
@@ -38,6 +36,7 @@ function index({ posts }) {
         {posts.map((post) => {
           return (
             <NewsCard
+              key={post._id}
               title={post.title}
               img={imgBuilder.image(post.mainImage)}
               date={post._createdAt}
