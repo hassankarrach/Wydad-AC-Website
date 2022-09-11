@@ -112,8 +112,11 @@ const StyledPresidents = styled.div`
   padding: 10px 10%;
   display: flex;
   flex-direction: column;
+  @media (max-width: 768px) {
+    padding: 0px 5%;
+  }
   .CurrentPresident {
-    margin-top: 0px;
+    margin-top: 70px;
     overflow: hidden;
     width: 100%;
     height: 300px;
@@ -126,6 +129,10 @@ const StyledPresidents = styled.div`
     border-bottom: 1px solid #ededed;
     display: flex;
     align-items: center;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      height: auto;
+    }
     .CurrentPresidentImg {
       height: 100%;
       border: 1px solid #ededed;
@@ -166,6 +173,9 @@ const StyledPresidents = styled.div`
         }
         .Cards {
           display: flex;
+          @media (max-width: 768px) {
+            flex-direction: column;
+          }
           .Card {
             height: 50px;
             width: auto;
@@ -175,6 +185,9 @@ const StyledPresidents = styled.div`
             display: flex;
             overflow: hidden;
             margin-right: 10px;
+            @media (max-width: 768px) {
+              margin: 3px 0px;
+            }
             .LeftCard {
               background-color: #eabe00;
               display: flex;

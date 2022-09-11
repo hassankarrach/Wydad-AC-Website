@@ -28,10 +28,6 @@ const StyledMyWydad = styled.button`
   font-family: var(--font-secondary);
 
   @media (max-width: 768px) {
-    span {
-      display: none;
-    }
-
     padding: 5px 8px;
   }
 

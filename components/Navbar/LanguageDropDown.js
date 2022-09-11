@@ -60,9 +60,6 @@ const StyledLanguageDropDown = styled.div`
   h3 {
     margin-right: 3px;
     font-family: var(--font-secondary);
-    @media (max-width: 768px) {
-      display: none;
-    }
   }
 
   .LanguageIcon {

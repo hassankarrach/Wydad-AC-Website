@@ -159,34 +159,7 @@ const renderer = ({ hours, days, minutes, seconds, completed }) => {
   }
 };
 
-function Matches({ NextGameData, LastGameData, DisplayedGame, isLive }) {
-  // const [isNextGameLive, setisNextGameLive] = useState(false);
-  // const [DisplayedGame, setDisplayedGame] = useState();
-
-  // useEffect(() => {
-  //   const HandleShowedGame = async () => {
-  //     const currentTimeStamp = new Date(Date.now());
-  //     //GetNextAndLastGame
-  //     const NextGame = NextGameData;
-  //     const LastGame = LastGameData;
-  //     //CalcTime;
-  //     const GameStartTime = TimeStampToDate(LastGame.event.startTimestamp);
-  //     const GameEndTime = TimeStampToDate(
-  //       LastGame.event.startTimestamp + 3 * 3600
-  //     );
-  //     if (
-  //       currentTimeStamp >= GameStartTime &&
-  //       currentTimeStamp <= GameEndTime
-  //     ) {
-  //       setisNextGameLive(true);
-  //       setDisplayedGame(LastGame);
-  //     } else {
-  //       setDisplayedGame(NextGame);
-  //     }
-  //   };
-  //   HandleShowedGame();
-  // }, []);
-
+function Matches({ DisplayedGame, isLive }) {
   const TimeStampToDate = (TimeStamp_) => {
     var timestamp = TimeStamp_;
     var date = new Date(timestamp * 1000 + 60 * 60); //60*60 =360

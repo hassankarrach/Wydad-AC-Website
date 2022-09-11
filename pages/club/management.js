@@ -3,9 +3,16 @@ import styled from "styled-components";
 import PersonCard from "../../components/Cards/PersonCard";
 import { WydadManagement } from "../../data/Management";
 import Header from "../../components/Header/Header";
+//MaterialUI DropDown
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 
 function Management() {
   const [ActiveTag, setActiveTag] = useState("All");
+
+  const handleChange = (event) => {
+    setActiveTag(event.target.value);
+  };
   return (
     <StyledManagement>
       <Header text="Management" />
@@ -47,6 +54,20 @@ function Management() {
               medical staff
             </li>
           </ul>
+          <Select
+            className="DropDown"
+            value={ActiveTag}
+            onChange={handleChange}
+            displayEmpty
+            inputProps={{ "aria-label": "Without label" }}
+          >
+            <MenuItem value="All">
+              <em>ALL</em>
+            </MenuItem>
+            <MenuItem value={"Goalkeepers"}>Management Structure</MenuItem>
+            <MenuItem value={"Defenders"}>Technical staff</MenuItem>
+            <MenuItem value={"Midfielders"}>medical staff</MenuItem>
+          </Select>
         </div>
       </StyledFilterHolder>
       <div className="Cards">
@@ -72,6 +93,9 @@ const StyledManagement = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-width: 768px) {
+    padding: 0px 5%;
+  }
 
   .Cards {
     width: 100%;
@@ -108,9 +132,20 @@ const StyledFilterHolder = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    .DropDown {
+      display: none;
+      @media (max-width: 768px) {
+        display: block;
+        width: 90%;
+      }
+    }
+
     ul {
       list-style-type: none;
       display: flex;
+      @media (max-width: 768px) {
+        display: none;
+      }
       li {
         margin: 15px;
         cursor: pointer;

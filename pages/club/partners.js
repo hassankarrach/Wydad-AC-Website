@@ -61,6 +61,7 @@ const StyledPartners = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   .MainSponsors,
   .SecPartners {
     display: flex;
@@ -78,6 +79,9 @@ const StyledPartners = styled.div`
     align-items: center;
     border-radius: 5px;
     margin: 0px 2px;
+    @media (max-width: 768px) {
+      padding: 5px 9px;
+    }
   }
 `;
 

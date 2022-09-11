@@ -28,6 +28,9 @@ function acheivements() {
 
 const StyledAcheivements = styled.div`
   padding: 0px 10%;
+  @media (max-width: 768px) {
+    padding: 0px;
+  }
   .Container {
     margin-top: 5%;
     width: 100%;
@@ -47,7 +50,11 @@ const StyledAcheivements = styled.div`
 const TitleCard = ({ TitleName, name, id, color }) => {
   return (
     <StyledTitleCard>
-      <div className="LeftCard" style={{ borderLeft: `5px solid #${color}` }}>
+      <div
+        className="LeftCard"
+        color_={color}
+        style={{ borderColor: `#${color}` }}
+      >
         <img src={`/assets/Media/Titles/${TitleName}_.png`} />
       </div>
 
@@ -94,10 +101,17 @@ const StyledTitleCard = styled.div`
     align-items: center;
     border-radius: 8px;
     overflow: hidden;
+    border: 3px solid black;
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
+
     @media (max-width: 768px) {
       height: 30%;
       overflow: hidden;
       width: 100%;
+      border-top: 3px solid black;
+      border-left: none;
     }
     img {
       height: 140px;

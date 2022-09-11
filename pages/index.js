@@ -88,12 +88,7 @@ export default function Home({ NextGame, Lastgame }) {
   return (
     <>
       <Header />
-      <Matches
-        NextGameData={NextGame}
-        LastGameData={Lastgame}
-        DisplayedGame={DisplayedGame}
-        isLive={isNextGameLive}
-      />
+      <Matches DisplayedGame={DisplayedGame} isLive={isNextGameLive} />
       <Title text="Wydad News" show href="news" />
       <News />
       <Title text="the most titled in morocco" />
