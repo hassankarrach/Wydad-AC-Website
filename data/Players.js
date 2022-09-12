@@ -4,7 +4,7 @@ export const PlayersData = [
     "Full Name": "Ahmed Reda Tagnaouti",
     Position: "Goalkeeper",
     Number: "26",
-    img: "",
+    img: "" || "",
     BirthDate: "Apr 5, 1996",
     Citizenship: "Moroccan",
     "Current market value": "€1.50m",

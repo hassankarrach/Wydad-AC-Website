@@ -164,9 +164,21 @@ const StyledNavbar = styled.nav`
     .LogoHolder {
       background-color: red;
       padding: 6px;
+      height: 100%;
+      width: auto;
+      display: flex;
+      color: white;
+      justify-content: center;
+      align-items: center;
+      transition: 0.2s ease-in-out;
+      h1 {
+        display: none;
+      }
+
       .NavLogo {
         height: 100%;
         cursor: pointer;
+        margin-right: auto;
       }
     }
 
@@ -210,6 +222,8 @@ const StyledNavbar = styled.nav`
           height: auto;
           left: 0;
           width: 100%;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
           top: 70px;
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
           padding: 0px 10%;
@@ -337,22 +351,23 @@ const StyledNavbar = styled.nav`
 
 function Navbar() {
   const [toggle, setToggle] = useState(false);
-  const [MobileItemToggle, setMobileItemToggle] = useState(false);
-  const [ClubMobileItemToggle, setClubMobileItemToggle] = useState(false);
+
   return (
     <>
       <StyledNavbar className="Nav">
         <div className="LeftNav">
-          <div className="LogoHolder">
-            <Link href={"/"}>
-              <img
+          <Link href={"/"}>
+            <motion.div className="LogoHolder">
+              <motion.img
                 className="NavLogo"
                 src={"/assets/Media/Logos/Wac.png"}
                 alt="Wydad Ac Logo"
-                layout="intrinsic"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               />
-            </Link>
-          </div>
+              <h1>wydad</h1>
+            </motion.div>
+          </Link>
 
           <ul className="List">
             <li className="NavItem">
@@ -428,67 +443,9 @@ function Navbar() {
         </div>
       </StyledNavbar>
       <Fade in={toggle} timeout={460}>
-        <StyledMenu
-          isActive={MobileItemToggle}
-          isAClubActive={ClubMobileItemToggle}
-        >
+        <StyledMenu IsOpen={toggle}>
           <div className="OverlayContent">
-            <ul>
-              <li className="Item">
-                <div
-                  className="UlTitle"
-                  onClick={() => {
-                    setMobileItemToggle(!MobileItemToggle);
-                  }}
-                >
-                  Football
-                  <ChevronRightIcon className="Icon" />
-                </div>
-                <ul className={`InnerUL ${MobileItemToggle ? "open" : ""}`}>
-                  <li>Players</li>
-                  <li>News</li>
-                  <li>Match Schedule</li>
-                  <li>Standings</li>
-                  <li>Results</li>
-                  <li>Achievements</li>
-                </ul>
-              </li>
-
-              <li className="Item">
-                <div
-                  className="UlTitle"
-                  onClick={() => {
-                    setClubMobileItemToggle(!ClubMobileItemToggle);
-                  }}
-                >
-                  club
-                  <ChevronRightIcon className="Icon" />
-                </div>
-                <ul className={`InnerUL ${ClubMobileItemToggle ? "open" : ""}`}>
-                  <li>history</li>
-                  <li>management</li>
-                  <li>wydad presidents</li>
-                  <li>partners</li>
-                  <li>supporters</li>
-                </ul>
-              </li>
-
-              <li className="Item">
-                <div className="UlTitle">News</div>
-              </li>
-              <li className="Item">
-                <div className="UlTitle">Store </div>
-              </li>
-
-              <li className="Item">
-                <div className="UlTitle">Tickets </div>
-              </li>
-            </ul>
-
-            <img
-              className="BottomLogo"
-              src={"./assets/Media/Logos/WydadFull.png"}
-            />
+            <div className="MobileMenu"></div>
           </div>
         </StyledMenu>
       </Fade>
@@ -498,78 +455,27 @@ function Navbar() {
 
 export const StyledMenu = styled.div`
   height: 100%;
-  width: 100%;
+  width: 85%;
   position: fixed;
-  /* background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.3) 100%
-  ); */
   background: linear-gradient(
     0deg,
-    rgba(200, 16, 46, 0.4) 0%,
+    rgba(200, 16, 46, 0.5) 0%,
     rgba(200, 16, 46, 1) 100%
   );
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   z-index: 92;
 
-  .OverlayContent {
-    width: 100%;
-    height: 100%;
-    padding-top: 50px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  transform: translateX(
+    ${(props) => {
+      props.IsOpen ? "-150vw" : "0";
+    }}
+  );
 
-    ul {
-      list-style: none;
-      padding: 15px 5%;
-      margin-bottom: auto;
-      width: 100%;
-      color: white;
-      /* background: linear-gradient(
-        0deg,
-        rgba(200, 16, 46, 0) 0%,
-        rgba(200, 16, 46, 1) 100%
-      ); */
-      li {
-        transition: 0.2s linear;
-
-        .UlTitle {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 10px;
-          color: white;
-          .Icon {
-            transform: rotate(${(props) => (props.isActive ? 0 : 90)}deg);
-            transition: all 0.2s ease-in-out;
-          }
-        }
-
-        .InnerUL.open {
-          display: flex;
-          flex-direction: column;
-          li {
-            margin: 5px 30px;
-          }
-        }
-        .InnerUL {
-          padding: 20px 0px;
-          display: none;
-
-          li {
-            color: white;
-          }
-        }
-      }
-    }
-
-    .BottomLogo {
-      width: 40%;
-    }
+  .MobileMenu {
+    height: 3000px;
+    overflow: auto;
+    max-height: 100vh;
   }
 `;
 

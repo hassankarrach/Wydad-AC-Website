@@ -73,7 +73,7 @@ span{
 /*Colors*/
 :root {
   --yellow : #f9b908;
-  --Red :#c8102e;;
+  --Red :#DC052D;
   --White : #f5f0ec;
   --black-color: #1f1c1c;
   --grey  :#717171;
@@ -95,3 +95,4 @@ span{
     color: var(--grey) !important;
 }
 
+/* #c8102e */

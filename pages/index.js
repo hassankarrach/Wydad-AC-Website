@@ -91,7 +91,7 @@ export default function Home({ NextGame, Lastgame }) {
       <Matches DisplayedGame={DisplayedGame} isLive={isNextGameLive} />
       <Title text="Wydad News" show href="news" />
       <News />
-      <Title text="the most titled in morocco" />
+      <Title text="HONOURS" />
       <Titles />
       <Title text={"Wydad Shop"} />
       <Shop />
