@@ -325,7 +325,7 @@ const StyledContainer = styled.div`
   height: auto;
 
   .StyledBanner {
-    margin-top: 70px;
+    margin-top: 64px;
     height: 250px;
     background-color: blue;
     position: "relative";

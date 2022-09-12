@@ -29,6 +29,9 @@ const StyledMyWydad = styled.button`
 
   @media (max-width: 768px) {
     padding: 5px 8px;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
   }
 
   &:hover {

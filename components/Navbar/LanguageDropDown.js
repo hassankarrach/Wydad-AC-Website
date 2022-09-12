@@ -57,6 +57,9 @@ const StyledLanguageDropDown = styled.div`
   padding: 0px 8px;
   border-radius: 3px;
   cursor: pointer;
+  @media (max-width: 768px) {
+    width: 50%;
+  }
   h3 {
     margin-right: 3px;
     font-family: var(--font-secondary);

@@ -75,7 +75,7 @@ const Club = [
 const MobileMenu = [
   {
     id: 0,
-    title: "Football",
+    title: "football",
     data: [
       {
         title: "Players",
@@ -111,7 +111,7 @@ const MobileMenu = [
   },
   {
     id: 1,
-    title: "Club",
+    title: "club",
     data: [
       {
         title: "history",
@@ -149,7 +149,7 @@ const StyledNavbar = styled.nav`
   background-color: white;
   padding: 0px 10%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  height: 70px;
+  height: 64px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -224,7 +224,7 @@ const StyledNavbar = styled.nav`
           width: 100%;
           border-bottom-left-radius: 10px;
           border-bottom-right-radius: 10px;
-          top: 70px;
+          top: 64px;
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
           padding: 0px 10%;
           opacity: 0;
@@ -285,7 +285,7 @@ const StyledNavbar = styled.nav`
       }
       #nav-icon3 {
         width: 40px;
-        height: 30px;
+        height: 25px;
         position: relative;
         -webkit-transform: rotate(0deg);
         -moz-transform: rotate(0deg);
@@ -300,7 +300,7 @@ const StyledNavbar = styled.nav`
       #nav-icon3 span {
         display: block;
         position: absolute;
-        height: 4px;
+        height: 3px;
         width: 100%;
         background: var(--Red);
         opacity: 1;
@@ -319,10 +319,10 @@ const StyledNavbar = styled.nav`
       }
       #nav-icon3 span:nth-child(2),
       #nav-icon3 span:nth-child(3) {
-        top: 13px;
+        top: 10px;
       }
       #nav-icon3 span:nth-child(4) {
-        top: 26px;
+        top: 20px;
       }
       #nav-icon3.open span:nth-child(1) {
         top: 18px;
@@ -351,7 +351,29 @@ const StyledNavbar = styled.nav`
 
 function Navbar() {
   const [toggle, setToggle] = useState(false);
+  const [toggleChildMenu, settoggleChildMenu] = useState(33);
 
+  const ToggleSetter = (id) => {
+    const TargetedUL = id;
+    if (toggleChildMenu === TargetedUL) {
+      settoggleChildMenu(33);
+    } else {
+      settoggleChildMenu(TargetedUL);
+    }
+  };
+
+  //DisableScroll when menu is open
+  useEffect(() => {
+    if (toggle) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [toggle]);
+
+  const HandleShowMobileMenu = () => {
+    setToggle(!toggle);
+  };
   return (
     <>
       <StyledNavbar className="Nav">
@@ -429,7 +451,7 @@ function Navbar() {
           <div className="HambergerMenu">
             <div
               onClick={() => {
-                setToggle(!toggle);
+                HandleShowMobileMenu();
               }}
               id="nav-icon3"
               className={`${toggle ? "open" : ""}`}
@@ -442,40 +464,179 @@ function Navbar() {
           </div>
         </div>
       </StyledNavbar>
-      <Fade in={toggle} timeout={460}>
-        <StyledMenu IsOpen={toggle}>
-          <div className="OverlayContent">
-            <div className="MobileMenu"></div>
+      <StyledMenu
+        style={{ transform: toggle ? "translateX(0%)" : "translateX(-100%)" }}
+      >
+        <div className="MobileMenu">
+          <div className="TopButtons">
+            <MyWydad />
+            <LanguageDropDown />
           </div>
-        </StyledMenu>
-      </Fade>
+
+          <ul className="MainUl">
+            {MobileMenu.map((item) => {
+              return (
+                <li className="MaiUlLi">
+                  <div
+                    className="MainListTitle"
+                    onClick={() => {
+                      ToggleSetter(item.id);
+                    }}
+                  >
+                    {item.title} {item.data && <ChevronRightIcon />}
+                  </div>
+
+                  {item.data && (
+                    <ul
+                      className={`NestedUl ${
+                        toggleChildMenu === item.id ? "open" : ""
+                      }`}
+                    >
+                      {item.data.map((page) => {
+                        return (
+                          <Link href={`/${item.title}/${page.to}`}>
+                            <li className="NestedUlLi">{page.title}</li>
+                          </Link>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
+            <Link href="news">
+              <li className="MaiUlLi">
+                <div
+                  className="MainListTitle"
+                  onClick={() => {
+                    ToggleSetter(item.id);
+                  }}
+                >
+                  news
+                </div>
+              </li>
+            </Link>
+            <Link href="Store">
+              <li className="MaiUlLi">
+                <div
+                  className="MainListTitle"
+                  onClick={() => {
+                    ToggleSetter(item.id);
+                  }}
+                >
+                  Store
+                </div>
+              </li>
+            </Link>
+            <Link href="tickets">
+              <li className="MaiUlLi">
+                <div
+                  className="MainListTitle"
+                  onClick={() => {
+                    ToggleSetter(item.id);
+                  }}
+                >
+                  Tickets
+                </div>
+              </li>
+            </Link>
+            <Link href="fantasy">
+              <li className="MaiUlLi">
+                <div
+                  className="MainListTitle"
+                  onClick={() => {
+                    ToggleSetter(item.id);
+                  }}
+                >
+                  fantasy
+                </div>
+              </li>
+            </Link>
+          </ul>
+
+          <img
+            className="BottomFullLogo"
+            src={"./assets/Media/Logos/WydadFull.png"}
+          />
+        </div>
+      </StyledMenu>
     </>
   );
 }
 
 export const StyledMenu = styled.div`
   height: 100%;
-  width: 85%;
+  width: 100%;
   position: fixed;
   background: linear-gradient(
-    0deg,
-    rgba(200, 16, 46, 0.5) 0%,
-    rgba(200, 16, 46, 1) 100%
+    90deg,
+    rgba(220, 5, 45, 1) 0%,
+    rgba(220, 5, 45, 0.7) 100%
   );
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   z-index: 92;
-
-  transform: translateX(
-    ${(props) => {
-      props.IsOpen ? "-150vw" : "0";
-    }}
-  );
+  transition: transform 250ms ease-in-out 0s;
 
   .MobileMenu {
-    height: 3000px;
-    overflow: auto;
-    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-top: 65px;
+    li {
+      cursor: pointer;
+    }
+
+    .TopButtons {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 5px 20px;
+    }
+    .MainUl {
+      margin-bottom: auto;
+      width: 100%;
+      align-items: center;
+      list-style: none;
+      margin: 0px;
+      padding: 5px 25px;
+      color: white;
+      background: linear-gradient(
+        90deg,
+        rgba(220, 5, 45, 1) 0%,
+        rgba(220, 5, 45, 0) 100%
+      );
+
+      .MaiUlLi {
+        .MainListTitle {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 0px;
+        }
+        .NestedUl {
+          list-style: none;
+          padding: 0px;
+          transition: max-height 0.2s ease-in-out 0s;
+          overflow: hidden;
+          max-height: 0px;
+          .NestedUlLi {
+            margin: 5px 15px;
+          }
+        }
+        .NestedUl.open {
+          max-height: 200px;
+        }
+      }
+    }
+    .BottomFullLogo {
+      height: 80px;
+      margin-top: auto;
+    }
   }
 `;
 

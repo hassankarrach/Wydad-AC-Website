@@ -325,7 +325,7 @@ const StyledBanner = styled.div`
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   overflow: hidden;
-  margin-top: 70px;
+  margin-top: 65px;
   img {
     width: 100%;
   }
