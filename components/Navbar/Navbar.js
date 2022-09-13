@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import LanguageDropDown from "./LanguageDropDown";
 import MyWydad from "./MyWydad";
 //Icons
@@ -350,6 +351,7 @@ const StyledNavbar = styled.nav`
 `;
 
 function Navbar() {
+  const router = useRouter();
   const [toggle, setToggle] = useState(false);
   const [toggleChildMenu, settoggleChildMenu] = useState(33);
 
@@ -373,6 +375,11 @@ function Navbar() {
 
   const HandleShowMobileMenu = () => {
     setToggle(!toggle);
+  };
+
+  const HandleClick = (to) => {
+    setToggle(false);
+    router.push(to);
   };
   return (
     <>
@@ -494,12 +501,15 @@ function Navbar() {
                     >
                       {item.data.map((page) => {
                         return (
-                          <Link
-                            href={`/${item.title}/${page.to}`}
+                          <li
+                            className="NestedUlLi"
                             key={page.id}
+                            onClick={() => {
+                              HandleClick(`/${item.title}/${page.to}`);
+                            }}
                           >
-                            <li className="NestedUlLi">{page.title}</li>
-                          </Link>
+                            {page.title}
+                          </li>
                         );
                       })}
                     </ul>
@@ -507,54 +517,42 @@ function Navbar() {
                 </li>
               );
             })}
-            <Link href="news">
-              <li className="MaiUlLi">
-                <div
-                  className="MainListTitle"
-                  onClick={() => {
-                    ToggleSetter(item.id);
-                  }}
-                >
-                  news
-                </div>
-              </li>
-            </Link>
-            <Link href="Store">
-              <li className="MaiUlLi">
-                <div
-                  className="MainListTitle"
-                  onClick={() => {
-                    ToggleSetter(item.id);
-                  }}
-                >
-                  Store
-                </div>
-              </li>
-            </Link>
-            <Link href="tickets">
-              <li className="MaiUlLi">
-                <div
-                  className="MainListTitle"
-                  onClick={() => {
-                    ToggleSetter(item.id);
-                  }}
-                >
-                  Tickets
-                </div>
-              </li>
-            </Link>
-            <Link href="fantasy">
-              <li className="MaiUlLi">
-                <div
-                  className="MainListTitle"
-                  onClick={() => {
-                    ToggleSetter(item.id);
-                  }}
-                >
-                  fantasy
-                </div>
-              </li>
-            </Link>
+
+            <li
+              className="MaiUlLi"
+              onClick={() => {
+                HandleClick("news");
+              }}
+            >
+              <div className="MainListTitle">news</div>
+            </li>
+
+            <li
+              className="MaiUlLi"
+              onClick={() => {
+                HandleClick("store");
+              }}
+            >
+              <div className="MainListTitle">Store</div>
+            </li>
+
+            <li
+              className="MaiUlLi"
+              onClick={() => {
+                HandleClick("tickets");
+              }}
+            >
+              <div className="MainListTitle">Tickets</div>
+            </li>
+
+            <li
+              className="MaiUlLi"
+              onClick={() => {
+                HandleClick("fantasy");
+              }}
+            >
+              <div className="MainListTitle">fantasy</div>
+            </li>
           </ul>
 
           <img
@@ -571,6 +569,8 @@ export const StyledMenu = styled.div`
   height: 100%;
   width: 100%;
   position: fixed;
+  top: 0;
+  left: 0;
   background: linear-gradient(
     90deg,
     rgba(220, 5, 45, 1) 0%,
