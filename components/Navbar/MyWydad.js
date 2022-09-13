@@ -32,12 +32,18 @@ const StyledMyWydad = styled.button`
     width: 50%;
     justify-content: center;
     align-items: center;
+    border: 1px solid #ba0023;
   }
 
   &:hover {
     color: var(--Red);
     background-color: transparent;
     border: 1px solid var(--Red);
+
+    @media (max-width: 768px) {
+      color: white;
+      border: 1px solid #ba0023;
+    }
   }
   .MyWydadIcon {
     margin-right: 5px;

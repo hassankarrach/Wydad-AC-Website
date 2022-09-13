@@ -224,7 +224,7 @@ const StyledNavbar = styled.nav`
           width: 100%;
           border-bottom-left-radius: 10px;
           border-bottom-right-radius: 10px;
-          top: 64px;
+          top: 6px;
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
           padding: 0px 10%;
           opacity: 0;
@@ -476,7 +476,7 @@ function Navbar() {
           <ul className="MainUl">
             {MobileMenu.map((item) => {
               return (
-                <li className="MaiUlLi">
+                <li className="MaiUlLi" key={item.id}>
                   <div
                     className="MainListTitle"
                     onClick={() => {
@@ -494,7 +494,10 @@ function Navbar() {
                     >
                       {item.data.map((page) => {
                         return (
-                          <Link href={`/${item.title}/${page.to}`}>
+                          <Link
+                            href={`/${item.title}/${page.to}`}
+                            key={page.id}
+                          >
                             <li className="NestedUlLi">{page.title}</li>
                           </Link>
                         );
