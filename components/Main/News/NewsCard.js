@@ -59,23 +59,31 @@ const StyledNewsCard = styled.div`
   transition: 0.2s ease-in-out;
   overflow: hidden;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
   @media (max-width: 768px) {
     width: 100%;
+    height: 150px;
     margin: 5px 0px;
-  }
-
-  &:hover .TopNewsCardHolder .TopNewsCard {
-    transform: scale(1.1);
+    flex-direction: row;
   }
 
   .TopNewsCardHolder {
     height: 60%;
+    width: 100%;
     overflow: hidden;
+    @media (max-width: 768px) {
+      width: 30%;
+      height: 100%;
+    }
     .TopNewsCard {
       height: 100%;
       background-position: top center;
       background-size: cover;
       transition: 1.1s ease all;
+      @media (max-width: 768px) {
+        width: 100%;
+      }
     }
   }
   .BottomNewsCard {
@@ -83,11 +91,15 @@ const StyledNewsCard = styled.div`
     padding: 5px 10px;
     display: flex;
     flex-direction: column;
+    @media (max-width: 768px) {
+      height: 100%;
+      width: 80%;
+    }
+
     h1 {
       font-size: 1.1rem;
       font-family: var(--font-secondary);
     }
-
     .BottomNewsCardBtnHolder {
       display: flex;
       justify-content: flex-end;
@@ -110,6 +122,10 @@ const StyledNewsCard = styled.div`
         }
       }
     }
+  }
+
+  &:hover .TopNewsCardHolder .TopNewsCard {
+    transform: scale(1.1);
   }
 
   &:hover {

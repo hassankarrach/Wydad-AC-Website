@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
-function MatchCard({ Opponent, GameDate, GameTime, Competition }) {
+function MatchCard({
+  AwayClub,
+  AwayClubLogo,
+  HomeClub,
+  HomeClubLogo,
+  GameDate,
+  GameTime,
+  Competition,
+}) {
   return (
     <StyledMatchCard>
       <img
@@ -40,8 +48,8 @@ function MatchCard({ Opponent, GameDate, GameTime, Competition }) {
         <div className="Data">
           <div className="GameTeams">
             <div className="Team">
-              <img src={"/assets/Media/Teams/wac.png"} />
-              <span>Wydad AC</span>
+              <img src={`/assets/Media/Teams/${HomeClubLogo}.png`} />
+              <span>{HomeClub}</span>
             </div>
 
             <div className="Vs">
@@ -49,13 +57,13 @@ function MatchCard({ Opponent, GameDate, GameTime, Competition }) {
             </div>
 
             <div className="Team">
-              <img src={`/assets/Media/Teams/${Opponent}.png`} />
-              <span>{Opponent}</span>
+              <img src={`/assets/Media/Teams/${AwayClubLogo}.png`} />
+              <span>{AwayClub}</span>
             </div>
           </div>
           <div className="GameDate">
-            <span className="date">12 aug 2022</span>
-            <span className="time">18:00</span>
+            <span className="date">{GameDate}</span>
+            <span className="time">{GameTime}</span>
           </div>
         </div>
       </div>
@@ -64,13 +72,13 @@ function MatchCard({ Opponent, GameDate, GameTime, Competition }) {
 }
 
 const StyledMatchCard = styled.div`
-  height: 90px;
-  width: 90%;
+  height: 70px;
+  width: 100%;
   background-color: white;
   border: 1px solid #f0f0f0;
   border-radius: 8px;
   position: relative;
-  margin: 5px;
+  margin: 5px 0px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
   overflow: hidden;
@@ -99,45 +107,45 @@ const StyledMatchCard = styled.div`
     height: 100%;
 
     .LeftCard {
+      width: 20%;
       height: 100%;
       background: linear-gradient(
         90deg,
         rgba(149, 67, 151, 1) 0%,
         rgba(149, 67, 151, 0) 200%
       );
-      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       .CompName {
-        width: 200px;
         height: 100%;
+        width: 100%;
+
         color: white;
         display: flex;
         justify-content: center;
         align-items: center;
         @media (max-width: 768px) {
-          width: 50px;
+          flex-direction: column;
         }
         img {
-          height: 90%;
+          height: 40px;
           margin-right: 10px;
           @media (max-width: 768px) {
-            width: 80%;
-            height: auto;
             margin-right: 0px;
           }
         }
         h1 {
           font-size: 1.3rem;
-          @media (max-width: 768px) {
-            display: none;
-          }
+          text-align: center;
         }
       }
     }
 
     .Data {
       display: flex;
-      width: 100%;
+      width: 80%;
       @media (max-width: 768px) {
         flex-direction: column;
         .GameDate {
@@ -150,14 +158,16 @@ const StyledMatchCard = styled.div`
         }
       }
       .GameDate {
+        width: 30%;
         margin-left: auto;
         z-index: 3;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        text-align: left;
-        padding: 0px 15px;
+        align-items: center;
+        padding: 5px 10px;
         @media (max-width: 768px) {
+          width: 100%;
           flex-direction: row;
           display: flex;
           justify-content: center;
@@ -165,10 +175,10 @@ const StyledMatchCard = styled.div`
         }
         .time {
           color: var(--Red);
+          width: 120px;
           font-weight: 900;
           font-size: 1.3rem;
           background-color: var(--Red);
-          padding: 2px 5px;
           border-radius: 5px;
           color: white;
           display: flex;
@@ -177,11 +187,13 @@ const StyledMatchCard = styled.div`
           @media (max-width: 768px) {
             font-size: 1rem;
             margin-left: 8px;
+            width: auto;
+            padding: 0px 10px;
           }
         }
         .date {
           font-size: 1.3rem;
-          font-weight: 900;
+          font-weight: 100;
           @media (max-width: 768px) {
             font-size: 1rem;
           }
@@ -189,18 +201,20 @@ const StyledMatchCard = styled.div`
       }
 
       .GameTeams {
+        width: 75%;
         display: flex;
         justify-content: center;
         align-items: center;
         @media (max-width: 768px) {
           border-bottom: 1px solid #f0f0f0;
+          width: 100%;
         }
         .Team {
           display: flex;
           justify-content: center;
           align-items: center;
           height: 100%;
-          width: 150px;
+          width: 50%;
           background: linear-gradient(
             90deg,
             rgba(245, 245, 245, 1) 0%,
@@ -209,7 +223,7 @@ const StyledMatchCard = styled.div`
 
           border-top-left-radius: 15px;
           border-left: 2px solid #f0f0f0;
-          margin: 0px 30px;
+          margin: 0px 10px;
           padding: 5px;
 
           @media (max-width: 768px) {

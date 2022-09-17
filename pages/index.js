@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Router, useRouter } from "next/router";
 //Import Components
 import Head from "next/head";
 import Header from "../components/Main/Header/Header";
@@ -12,6 +13,9 @@ import TopNav from "../components/Navbar/TopNav";
 import Matches from "../components/Main/Matches/Matches";
 import UpComingGames from "../components/Main/UpCommingGames/UpComingGames";
 import Shop from "../components/Main/Shop/Shop";
+
+//I18N
+import useTranslation from "next-translate/useTranslation";
 
 export const getStaticProps = async () => {
   //GettingNextGameData
@@ -55,6 +59,13 @@ export default function Home({ NextGame, Lastgame }) {
   const [isNextGameLive, setisNextGameLive] = useState(false);
   const [DisplayedGame, setDisplayedGame] = useState();
 
+  //GetCurrentLocale
+  const router = useRouter();
+  const CurrentLocale = router.locale;
+
+  //I18N
+  let { t } = useTranslation();
+
   useEffect(() => {
     const HandleShowedGame = async () => {
       const currentTimeStamp = new Date(Date.now());
@@ -88,16 +99,34 @@ export default function Home({ NextGame, Lastgame }) {
   return (
     <>
       <Header />
-      <Matches DisplayedGame={DisplayedGame} isLive={isNextGameLive} />
-      <Title text="Wydad News" show href="news" />
+      <Matches
+        DisplayedGame={DisplayedGame}
+        isLive={isNextGameLive}
+        locale={CurrentLocale}
+        NextMatchText={t("main:NextMatchText")}
+        StandingText={t("main:StandingText")}
+      />
+      <Title
+        text={t("main:NewsTitle")}
+        show
+        href="news"
+        hrefText={t("main:HrefText")}
+        locale={CurrentLocale}
+      />
       <News />
-      <Title text="HONOURS" />
-      <Titles />
-      <Title text={"Wydad Shop"} />
+      <Title text={t("main:HonoursTitle")} locale={CurrentLocale} />
+      <Titles locale={CurrentLocale} />
+      <Title text={t("main:StoreTitle")} locale={CurrentLocale} />
       <Shop />
-      <Title text="Wydad Players" show href="football/players" />
-      <Players />
-      <Sponsors />
+      <Title
+        text={t("main:WydadPlayersTitle")}
+        show
+        href="football/players"
+        hrefText={t("main:HrefText")}
+        locale={CurrentLocale}
+      />
+      <Players locale={CurrentLocale} />
+      <Sponsors locale={CurrentLocale} Title={t("main:Our Partners")} />
     </>
   );
 }

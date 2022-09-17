@@ -1,0 +1,14 @@
+{
+    "ProfileTitle" : "profil",
+    "JOINED" : "REJOINTE",
+    "Country": "Nationalité",
+    "Date Of Birth" :"Date de naissance",
+    "Market Value" :"Valeur marchande",
+    "TitlesTitle"     : "Principales réalisations",
+    "StatsTitle"     : "Statistiques",
+
+    "Appearances" :"apparences",
+    "Minutes played" :"minutes jouées",
+    "Red Cards" :"Cartons rouges",
+    "Yellow Cards":"Cartons jaunes"
+}

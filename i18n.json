@@ -1,0 +1,9 @@
+{
+    "locales": ["ar", "en", "fr"],
+    "defaultLocale" : "en",
+    "pages" : {
+        "*" : ["main", "navbar", "player"]
+    }
+}
+
+ 

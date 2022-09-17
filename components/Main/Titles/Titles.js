@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
+import styles from "../../../styles/Home.module.css";
+import Link from "next/link";
 //Icons
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 //Swiper
@@ -8,11 +10,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+//ImportWydadTitlesData
+import { WydadTytles } from "../../../data/Titles";
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
-function Titles() {
+function Titles({ locale }) {
   const [ActifSlide, SetActifSlide] = useState();
+  // ActifSlide
+
   return (
     <StyledTitles>
       <div className="TitlesCard">
@@ -23,22 +29,12 @@ function Titles() {
         <div className="TitlesCardData">
           <div className="RightTitlesCardData">
             <div className="TopRightTitlesCardData">
-              <h1>
-                {ActifSlide === 0
-                  ? "MOROCCON CHAMPION"
-                  : ActifSlide === 1
-                  ? "CAF Champions League"
-                  : ActifSlide === 2
-                  ? "MOROCCON CUP"
-                  : ActifSlide === 3
-                  ? "CAF SUPER CUP"
-                  : ActifSlide === 4
-                  ? "afro-Asiatic cup"
-                  : ActifSlide === 5
-                  ? "CAF Cup Winners Cup"
-                  : ActifSlide === 6
-                  ? "Mohammed V Cup"
-                  : ""}
+              <h1 className={`${locale === "ar" ? styles.ArTitle : ""}`}>
+                {locale === "ar"
+                  ? WydadTytles[ActifSlide || 0].ArName
+                  : locale === "fr"
+                  ? WydadTytles[ActifSlide || 0].FrName
+                  : WydadTytles[ActifSlide || 0].name}
               </h1>
             </div>
             <div className="MiddleRightTitlesCardData">
@@ -71,69 +67,29 @@ function Titles() {
                 centeredSlides={true}
                 onSlideChange={(swiper) => SetActifSlide(swiper.realIndex)}
               >
-                <SwiperSlide className="SlideItem">
-                  {({ isActive }) => (
-                    <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
-                      <img src={"/assets/Media/Titles/Botola_.png"} />
-                      <span>X22</span>
-                    </div>
-                  )}
-                </SwiperSlide>
-                <SwiperSlide className="SlideItem">
-                  {({ isActive }) => (
-                    <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
-                      <img src={"/assets/Media/Titles/Cl_.png"} />
-                      <span>X22</span>
-                    </div>
-                  )}
-                </SwiperSlide>
-                <SwiperSlide className="SlideItem">
-                  {({ isActive }) => (
-                    <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
-                      <img src={"/assets/Media/Titles/Cdt_.png"} />
-                      <span>X9</span>
-                    </div>
-                  )}
-                </SwiperSlide>
-                <SwiperSlide className="SlideItem">
-                  {({ isActive }) => (
-                    <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
-                      <img src={"/assets/Media/Titles/Sc_.png"} />
-                      <span>X1</span>
-                    </div>
-                  )}
-                </SwiperSlide>
-                <SwiperSlide className="SlideItem">
-                  {({ isActive }) => (
-                    <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
-                      <img src={"/assets/Media/Titles/Afro_.png"} />
-                      <span>X1</span>
-                    </div>
-                  )}
-                </SwiperSlide>
-                <SwiperSlide className="SlideItem">
-                  {({ isActive }) => (
-                    <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
-                      <img src={"/assets/Media/Titles/CafCupWinnersCup.png"} />
-                      <span>X1</span>
-                    </div>
-                  )}
-                </SwiperSlide>
-                <SwiperSlide className="SlideItem">
-                  {({ isActive }) => (
-                    <div className={`TrophyHolder ${isActive ? "Actif" : ""}`}>
-                      <img src={"/assets/Media/Titles/MohamedV.png"} />
-                      <span>X1</span>
-                    </div>
-                  )}
-                </SwiperSlide>
+                {WydadTytles.slice(0, 6).map((Title) => {
+                  return (
+                    <SwiperSlide className="SlideItem">
+                      {({ isActive }) => (
+                        <div
+                          className={`TrophyHolder ${isActive ? "Actif" : ""}`}
+                        >
+                          <img src={`/assets/Media/Titles/${Title.Link}.png`} />
+                          <span>{Title.times.length}</span>
+                        </div>
+                      )}
+                    </SwiperSlide>
+                  );
+                })}
               </Swiper>
             </div>
             <div className="BottomRightTitlesCardData">
               <img src={"/assets/Media/Logos/wydadLogos.png"} />
-              <button>
-                See all <ArrowForwardIosIcon fontSize="20" />
-              </button>
+              <Link href={"/football/achievements"}>
+                <button>
+                  See all <ArrowForwardIosIcon fontSize="20" />
+                </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -37,6 +37,7 @@ const StyledMainCard = styled.div`
   @media (max-width: 768px) {
     width: 100%;
     margin: 5px 0px;
+    flex-direction: column;
   }
 
   &:hover {
@@ -50,9 +51,17 @@ const StyledMainCard = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 60%;
+    }
     img {
       height: 100%;
       transition: 1.1s ease-in-out;
+      @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+      }
       &:hover {
         transform: scale(1.1);
       }
@@ -65,15 +74,23 @@ const StyledMainCard = styled.div`
     padding: 10px 30px;
     display: flex;
     flex-direction: column;
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 200px;
+    }
+
     h1 {
       font-size: 1.4rem;
       margin-bottom: 0px;
+      @media (max-width: 768px) {
+        font-size: 1.2rem;
+      }
     }
-
     .Bottom {
       display: flex;
       margin-top: auto;
       span {
+        font-weight: 100;
       }
       .Line {
         width: 1px;

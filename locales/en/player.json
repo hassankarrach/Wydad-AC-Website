@@ -1,0 +1,14 @@
+{
+    "ProfileTitle" : "Profile",
+    "JOINED" : "JOINED",
+    "Country": "Country",
+    "Date Of Birth" :"Date Of Birth",
+    "Market Value" :"Market Value",
+    "TitlesTitle"     : "Titles",
+    "StatsTitle"     : "Stats",
+
+    "Appearances" :"Appearances",
+    "Minutes played" :"Minutes played",
+    "Red Cards" :"Red Cards",
+    "Yellow Cards":"Yellow Cards"
+}

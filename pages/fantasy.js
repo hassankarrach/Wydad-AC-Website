@@ -1,13 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../components/Header/Header.js";
-
 //icons
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
-
 //Modal
 import Modal from "@mui/material/Modal";
+import { PlayersData } from "../data/Players";
 
 function Fantasy() {
   //ModalStats
@@ -16,33 +15,70 @@ function Fantasy() {
   const handleClose = () => setOpen(false);
 
   //PlayersStats
-  const [PlayerPositionClicked, setPlayerPositionClicked] = useState("");
+  const [PlayerPositionClicked, setPlayerPositionClicked] =
+    useState("Goalkeeper");
+  const [DisplayedList, SetDisplayedList] = useState([]);
   const SetPlayerPosition = (position) => {
     setPlayerPositionClicked(position);
   };
 
+  // if (PlayerPositionClicked === "Goalkeeper") {
+  //   SetDisplayedList(
+  //     PlayersData.filter((Player) => Player.Position === "Goalkeeper")
+  //   );
+  // } else if (PlayerPositionClicked === "Defender") {
+  //   SetDisplayedList(
+  //     PlayersData.filter(
+  //       (Player) =>
+  //         Player.Position === "Centre-Back" ||
+  //         Player.Position === "Left-Back" ||
+  //         Player.Position === "Right-Back"
+  //     )
+  //   );
+  // } else if (PlayerPositionClicked === "Midfielder") {
+  //   SetDisplayedList(
+  //     PlayersData.filter(
+  //       (Player) =>
+  //         Player.Position === "Defensive Midfield" ||
+  //         Player.Position === "Central Midfield" ||
+  //         Player.Position === "Attacking Midfield"
+  //     )
+  //   );
+  // } else if (PlayerPositionClicked === "striker") {
+  //   SetDisplayedList(
+  //     PlayersData.filter(
+  //       (Player) =>
+  //         Player.Position === "Left Winger" ||
+  //         Player.Position === "Right Winger" ||
+  //         Player.Position === "Centre-Forward"
+  //     )
+  //   );
+  // }
+
+  const FilterByPosition = (Position) => {
+    PlayersData.filter((Player) => Player.Position === Position);
+  };
+
+  console.log(FilterByPosition("Centre-Back"));
+
   return (
     <StyledFantasy>
       <StyledBanner>
-        <img src="./assets/Media/Extras/fantasy.jpg"></img>
+        <img src="/assets/Media/Extras/fantasy.jpg"></img>
         <h1></h1>
       </StyledBanner>
 
       <div className="Container">
         <h1>Pick Team - 7snUw</h1>
-
         <div className="LeftContainer">
           <div className="GameDet">
             <h3>Gameweek 6 Sat 3 Sep 11:00</h3>
-            <img
-              className="Pattern"
-              src={"./assets/Media/Extras/pattern.png"}
-            />
+            <img className="Pattern" src={"/assets/Media/Extras/pattern.png"} />
           </div>
           <div className="StadHolder">
-            <div className="GoolKeeper">
+            <div className="Goalkeeper">
               <PlayerCard
-                position="GoolKeeper"
+                position="Goalkeeper"
                 handleOpenModal={handleOpen}
                 SetPlayer={SetPlayerPosition}
               />
@@ -109,28 +145,28 @@ function Fantasy() {
           </div>
           <div className="Bench">
             <div className="PlayerItem">
-              <img src={"./assets/Media/Fantasy/FantasyKit.webp"} />
+              <img src={"/assets/Media/Fantasy/FantasyKit.webp"} />
               <div className="PlayerDet">
                 <div className="DetTop"></div>
                 <div className="DetBottom"></div>
               </div>
             </div>
             <div className="PlayerItem">
-              <img src={"./assets/Media/Fantasy/FantasyKit.webp"} />
+              <img src={"/assets/Media/Fantasy/FantasyKit.webp"} />
               <div className="PlayerDet">
                 <div className="DetTop"></div>
                 <div className="DetBottom"></div>
               </div>
             </div>
             <div className="PlayerItem">
-              <img src={"./assets/Media/Fantasy/FantasyKit.webp"} />
+              <img src={"/assets/Media/Fantasy/FantasyKit.webp"} />
               <div className="PlayerDet">
                 <div className="DetTop"></div>
                 <div className="DetBottom"></div>
               </div>
             </div>
             <div className="PlayerItem">
-              <img src={"./assets/Media/Fantasy/FantasyKit.webp"} />
+              <img src={"/assets/Media/Fantasy/FantasyKit.webp"} />
               <div className="PlayerDet">
                 <div className="DetTop"></div>
                 <div className="DetBottom"></div>
@@ -149,9 +185,9 @@ function Fantasy() {
               handleClose();
             }}
           />
-
-          <Player name="Ahmed Reda" pic="1" />
-          <Player name="aissa syoudi" pic="2" />
+          {DisplayedList.map((Player) => {
+            return <Player key={Player.id} name="Ahmed Reda" pic="1" />;
+          })}
         </StyledModal>
       </Modal>
     </StyledFantasy>
@@ -166,7 +202,7 @@ const PlayerCard = ({ handleOpenModal, position, SetPlayer }) => {
         SetPlayer(position);
       }}
     >
-      <img src={"./assets/Media/Fantasy/addPlayer.webp"} />
+      <img src={"/assets/Media/Fantasy/addPlayer.webp"} />
       <div className="PlayerDet">
         <div className="DetTop"></div>
         <div className="DetBottom"></div>
@@ -179,8 +215,8 @@ const Player = ({ name, pic }) => {
   return (
     <StyledPlayer>
       <div className="PhotoHolder">
-        <img className="Pattern" src={"./assets/Media/Extras/pattern.png"} />
-        <img className="PlayerImg" src={`./assets/Media/Players/${pic}.png`} />
+        <img className="Pattern" src={"/assets/Media/Extras/pattern.png"} />
+        <img className="PlayerImg" src={`/assets/Media/Players/${pic}.png`} />
       </div>
       <div className="PlayerName">
         <h1>{name}</h1>
@@ -253,7 +289,7 @@ const StyledFantasy = styled.div`
         background-position: center;
         background-repeat: no-repeat;
         overflow: hidden;
-        .GoolKeeper,
+        .Goalkeeper,
         .Defenders,
         .Midfielders,
         .strikers {
@@ -263,7 +299,7 @@ const StyledFantasy = styled.div`
           display: flex;
         }
 
-        .GoolKeeper {
+        .Goalkeeper {
           /* margin-bottom: auto; */
         }
 
@@ -407,6 +443,8 @@ const StyledPlayer = styled.div`
     width: 20%;
     height: 100%;
     background-color: red;
+    border: 2px solid var(--Red);
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: flex-start;

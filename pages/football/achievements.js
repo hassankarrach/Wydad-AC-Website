@@ -3,9 +3,9 @@ import styled from "styled-components";
 import Header from "../../components/Header/Header";
 import { WydadTytles } from "../../data/Titles";
 
-function acheivements() {
+function achievements() {
   return (
-    <StyledAcheivements>
+    <StyledAchievements>
       <Header
         img={"/assets/Media/History/titles.jpg"}
         text={"the most titled in morocco"}
@@ -22,11 +22,11 @@ function acheivements() {
         <TitleCard TitleName="Sc" name="CAF Super Cup" id="2" color="eabe00" />
         <TitleCard TitleName="Cdt" name="Moroccan cup" id="3" color="5aa586" />
       </div>
-    </StyledAcheivements>
+    </StyledAchievements>
   );
 }
 
-const StyledAcheivements = styled.div`
+const StyledAchievements = styled.div`
   padding: 0px 10%;
   @media (max-width: 768px) {
     padding: 0px;
@@ -138,4 +138,4 @@ const StyledTitleCard = styled.div`
   }
 `;
 
-export default acheivements;
+export default achievements;

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
+import styles from "../../styles/Home.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -7,40 +8,53 @@ import LanguageDropDown from "./LanguageDropDown";
 import MyWydad from "./MyWydad";
 //Icons
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-
 //FramerMotion
 import { motion, AnimatePresence } from "framer-motion";
 import Fade from "@mui/material/Fade";
+//I18N
+import useTranslation from "next-translate/useTranslation";
 
 const Football = [
   {
     title: "Players",
+    ArTitle: "الفريق الأول",
+    frTitle: "Première équipe",
     to: "players",
     id: 0,
   },
   {
     title: "News",
+    ArTitle: "الأخبار",
+    frTitle: "Actualités",
     to: "news",
     id: 1,
   },
   {
     title: "Match Schedule",
+    ArTitle: "جدول المباريات",
+    frTitle: "Calendrier des matchs",
     to: "schedule",
     id: 2,
   },
   {
     title: "Standings",
+    ArTitle: "جدول الترتيب",
+    frTitle: "Classement",
     to: "standings",
     id: 6,
   },
   {
     title: "Results",
+    ArTitle: "نتائج المباريات",
+    frTitle: "Résultats",
     to: "fixtures-results/0",
     id: 3,
   },
   {
-    title: "Acheivements",
-    to: "acheivements",
+    title: "achievements",
+    ArTitle: "الإنجازات",
+    frTitle: "Accomplissements",
+    to: "achievements",
     id: 5,
   },
 ];
@@ -48,26 +62,36 @@ const Football = [
 const Club = [
   {
     title: "history",
+    ArTitle: "تاريخ النادي",
+    FrTitle: "Histoire du club",
     to: "history",
     id: 0,
   },
   {
     title: "management",
+    FrTitle: "Membres du conseil d'administration",
+    ArTitle: "مجلس الإدارة",
     to: "management",
     id: 1,
   },
   {
     title: "wydad presidents",
+    FrTitle: "Présidents",
+    ArTitle: "رؤساء الوداد",
     to: "presidents",
     id: 2,
   },
   {
     title: "partners",
+    FrTitle: "Les partenaires",
+    ArTitle: "الشركاء",
     to: "partners",
     id: 3,
   },
   {
     title: "supporters",
+    FrTitle: "Partisans Du Wydad",
+    ArTitle: "أنصار النادي",
     to: "supporters",
     id: 4,
   },
@@ -104,8 +128,8 @@ const MobileMenu = [
         id: 3,
       },
       {
-        title: "Acheivements",
-        to: "acheivements",
+        title: "Achievements",
+        to: "achievements",
         id: 5,
       },
     ],
@@ -147,7 +171,8 @@ const StyledNavbar = styled.nav`
   position: fixed;
   top: 0;
   display: block;
-  background-color: white;
+  background-color: var(--Red);
+  color: white;
   padding: 0px 10%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   height: 64px;
@@ -155,6 +180,46 @@ const StyledNavbar = styled.nav`
   display: flex;
   align-items: center;
   z-index: 99;
+
+  &.AR_ {
+    flex-direction: row-reverse;
+    .LeftNav {
+      flex-direction: row-reverse;
+
+      .List {
+        height: 100%;
+        flex-direction: row-reverse;
+        font-weight: 700;
+
+        .NavItem {
+          white-space: nowrap;
+          font-size: 1.03rem;
+          font-family: var(--Arabic);
+
+          .MegaMenu {
+            flex-direction: row-reverse;
+
+            .MegaMenuUl {
+              width: 100%;
+
+              li {
+                font-family: var(--Arabic);
+              }
+            }
+            .WydadLogogs {
+              margin-right: auto;
+            }
+          }
+        }
+      }
+    }
+    .RightNav {
+      position: absolute;
+      left: 10%;
+      flex-direction: row;
+      flex-direction: row-reverse;
+    }
+  }
   @media (max-width: 768px) {
     padding: 0px 5%;
   }
@@ -162,39 +227,23 @@ const StyledNavbar = styled.nav`
   .LeftNav {
     display: flex;
     height: 100%;
-    .LogoHolder {
-      background-color: red;
-      padding: 6px;
-      height: 100%;
-      width: auto;
-      display: flex;
-      color: white;
-      justify-content: center;
-      align-items: center;
-      transition: 0.2s ease-in-out;
-      h1 {
-        display: none;
-      }
+    align-items: center;
 
-      .NavLogo {
-        height: 100%;
-        cursor: pointer;
-        margin-right: auto;
-      }
+    .NavLogo {
+      height: 90%;
+      cursor: pointer;
+      margin-right: auto;
     }
-
     .List {
       list-style: none;
       display: flex;
-      margin: 0;
+      margin: 0px 20px;
       width: auto;
       padding: 0px 20px;
       @media (max-width: 768px) {
         display: none;
       }
-      .special {
-        color: var(--Red);
-      }
+
       .NavItem {
         cursor: pointer;
         font-size: 1rem;
@@ -212,20 +261,20 @@ const StyledNavbar = styled.nav`
         }
         .MegaMenu {
           position: absolute;
-          background: linear-gradient(
+          /* background: linear-gradient(
             180deg,
             rgba(255, 255, 255, 1) 0%,
             rgba(255, 255, 255, 0.5) 100%
           );
-
           -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px); */
+          background-color: white;
           height: auto;
           left: 0;
           width: 100%;
-          border-bottom-left-radius: 10px;
-          border-bottom-right-radius: 10px;
-          top: 6px;
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+          top: 64px;
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
           padding: 0px 10%;
           opacity: 0;
@@ -256,7 +305,7 @@ const StyledNavbar = styled.nav`
         }
 
         &:hover {
-          color: var(--Red);
+          /* color: var(--Red); */
         }
       }
     }
@@ -303,7 +352,7 @@ const StyledNavbar = styled.nav`
         position: absolute;
         height: 3px;
         width: 100%;
-        background: var(--Red);
+        background: white;
         opacity: 1;
         left: 0;
         -webkit-transform: rotate(0deg);
@@ -352,6 +401,9 @@ const StyledNavbar = styled.nav`
 
 function Navbar() {
   const router = useRouter();
+  //I18N
+  let { t } = useTranslation();
+
   const [toggle, setToggle] = useState(false);
   const [toggleChildMenu, settoggleChildMenu] = useState(33);
 
@@ -383,30 +435,39 @@ function Navbar() {
   };
   return (
     <>
-      <StyledNavbar className="Nav">
+      <StyledNavbar
+        className={`Nav ${router.locale === "ar" ? "AR_ ArText" : ""}`}
+      >
         <div className="LeftNav">
           <Link href={"/"}>
-            <motion.div className="LogoHolder">
-              <motion.img
-                className="NavLogo"
-                src={"/assets/Media/Logos/Wac.png"}
-                alt="Wydad Ac Logo"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              />
-              <h1>wydad</h1>
-            </motion.div>
+            <img
+              className="NavLogo"
+              src={"/assets/Media/Logos/LogoWhite.png"}
+              alt="Wydad Ac Logo"
+            />
           </Link>
 
-          <ul className="List">
+          <ul className={`List`}>
             <li className="NavItem">
-              Football
+              {t("navbar:football")}
               <div className="MegaMenu">
-                <ul className="MegaMenuUl">
+                <ul
+                  className={`MegaMenuUl ${
+                    router.locale === "ar" ? styles.ArTitle : ""
+                  }`}
+                >
                   {Football.map((Item) => {
                     return (
                       <Link href={`/football/${Item.to}`} key={Item.id}>
-                        <li key={Item.id}>{Item.title}</li>
+                        <li key={Item.id}>
+                          {router.locale === "en"
+                            ? Item.title
+                            : router.locale === "fr"
+                            ? Item.frTitle
+                            : router.locale === "ar"
+                            ? Item.ArTitle
+                            : ""}
+                        </li>
                       </Link>
                     );
                   })}
@@ -418,16 +479,28 @@ function Navbar() {
               </div>
             </li>
             <Link href={"/news"}>
-              <li className="NavItem">News</li>
+              <li className="NavItem">{t("navbar:News")}</li>
             </Link>
             <li className="NavItem">
-              club
+              {t("navbar:club")}
               <div className="MegaMenu">
-                <ul className="MegaMenuUl">
+                <ul
+                  className={`MegaMenuUl ${
+                    router.locale === "ar" ? styles.ArTitle : ""
+                  }`}
+                >
                   {Club.map((Item) => {
                     return (
                       <Link href={`/club/${Item.to}`} key={Item.id}>
-                        <li>{Item.title}</li>
+                        <li>
+                          {router.locale === "en"
+                            ? Item.title
+                            : router.locale === "fr"
+                            ? Item.FrTitle
+                            : router.locale === "ar"
+                            ? Item.ArTitle
+                            : ""}
+                        </li>
                       </Link>
                     );
                   })}
@@ -439,10 +512,10 @@ function Navbar() {
                 />
               </div>
             </li>
-            <li className="NavItem">Store</li>
-            <li className="NavItem">Tickets</li>
+            <li className="NavItem"> {t("navbar:store")}</li>
+            <li className="NavItem"> {t("navbar:Tickets")}</li>
             <Link href={"/fantasy"}>
-              <li className="NavItem special">Fantasy</li>
+              <li className="NavItem">Fantasy</li>
             </Link>
           </ul>
         </div>
@@ -476,7 +549,15 @@ function Navbar() {
       >
         <div className="MobileMenu">
           <div className="TopButtons">
-            <MyWydad />
+            <div
+              onClick={() => {
+                setToggle(false);
+              }}
+              style={{ width: "50%" }}
+            >
+              <MyWydad />
+            </div>
+
             <LanguageDropDown />
           </div>
 

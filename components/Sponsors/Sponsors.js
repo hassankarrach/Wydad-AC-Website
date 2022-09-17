@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import styles from "../../styles/Home.module.css";
 
-function Sponsors() {
+function Sponsors({ Title, locale }) {
   return (
     <StyledSponsors>
       <div className="SponsorsTitleHolder">
-        <h1>Our Partners</h1>
+        <h1 className={`${locale === "ar" ? styles.ArTitle : ""}`}>{Title}</h1>
       </div>
       <div className="MainSponsors">
         <img

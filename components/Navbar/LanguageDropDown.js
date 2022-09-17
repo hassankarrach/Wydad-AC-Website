@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Router, useRouter } from "next/router";
+import Link from "next/link";
 
 import styled from "styled-components";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -8,6 +10,9 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 function LanguageDropDown() {
+  //Router
+  const { locale, locales, asPath } = useRouter();
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -25,7 +30,7 @@ function LanguageDropDown() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <h3>EN</h3>
+        <h3>{locale.toUpperCase()}</h3>
         <LanguageIcon className="LanguageIcon" />
       </StyledLanguageDropDown>
 
@@ -38,9 +43,15 @@ function LanguageDropDown() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Français</MenuItem>
-        <MenuItem onClick={handleClose}>العربية</MenuItem>
-        <MenuItem onClick={handleClose}>English</MenuItem>
+        <Link href={asPath} locale={"fr"}>
+          <MenuItem onClick={handleClose}>Français</MenuItem>
+        </Link>
+        <Link href={asPath} locale={"ar"}>
+          <MenuItem onClick={handleClose}>العربية</MenuItem>
+        </Link>
+        <Link href={asPath} locale={"en"}>
+          <MenuItem onClick={handleClose}>English</MenuItem>
+        </Link>
       </Menu>
     </>
   );
@@ -51,6 +62,7 @@ const StyledLanguageDropDown = styled.div`
   color: var(--grey);
   border: 1px solid #efefef;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
   height: 40px;

@@ -1,6 +1,8 @@
+
 /* .container {
   padding: 0 2rem;
 }
+
 
 .main {
   min-height: 100vh;
@@ -120,11 +122,13 @@
 .ArTitle {
   font-family: var( --Arabic );
   text-align: right;
-  font-weight: 700;
+  font-weight: 400;
+  margin: 0px;
+  padding:  0px;
 }
 
 .ArText{
-  font-family: var( --Arabic );
+  font-family: 'Cairo', sans-serif;
   text-align: right;
   font-weight: 100;
   color : grey;

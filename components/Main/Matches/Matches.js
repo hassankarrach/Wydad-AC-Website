@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import styles from "../../../styles/Home.module.css";
 import MatchCard from "./MatchCard";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import Standings from "../../../components/Main/Standings/Standings";
@@ -159,7 +160,13 @@ const renderer = ({ hours, days, minutes, seconds, completed }) => {
   }
 };
 
-function Matches({ DisplayedGame, isLive }) {
+function Matches({
+  DisplayedGame,
+  isLive,
+  locale,
+  NextMatchText,
+  StandingText,
+}) {
   const TimeStampToDate = (TimeStamp_) => {
     var timestamp = TimeStamp_;
     var date = new Date(timestamp * 1000 + 60 * 60); //60*60 =360
@@ -178,7 +185,9 @@ function Matches({ DisplayedGame, isLive }) {
           )}
           <div className="LeftBoxContentHolder">
             <div className="TopData">
-              <h1>Next Match</h1>
+              <h1 className={`${locale === "ar" ? styles.ArTitle : ""}`}>
+                {NextMatchText}
+              </h1>
               {DisplayedGame ? (
                 <div className="GameDetails">
                   <div className="Tournament">
@@ -305,7 +314,9 @@ function Matches({ DisplayedGame, isLive }) {
         </div>
         <div className="RightBox">
           <div className="RightBoxTitleHolder">
-            <h1>STANDINGS</h1>
+            <h1 className={`${locale === "ar" ? styles.ArTitle : ""}`}>
+              {StandingText}
+            </h1>
           </div>
           {DisplayedGame ? (
             <Standings />

@@ -64,14 +64,14 @@ function News() {
       <div className="MainNews">
         <MainCard
           title={NewsData[0].title}
-          desc={NewsData[0].desc}
           img={NewsData[0].img}
+          desc={NewsData[0].desc.split(" ").slice(0, 7).join(" ") + "..."}
           date={NewsData[0].date}
         />
         <MainCard
           title={NewsData[1].title}
-          desc={NewsData[1].desc}
           img={NewsData[1].img}
+          desc={NewsData[1].desc.split(" ").slice(0, 7).join(" ") + "..."}
           date={NewsData[1].date}
         />
       </div>
@@ -94,6 +94,7 @@ function News() {
           img={NewsData[4].img}
           date={NewsData[4].date}
         />
+
         <NewsCard
           title={NewsData[5].title}
           desc={NewsData[5].desc}

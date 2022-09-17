@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+//I18N
+import { Router, useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import styled from "styled-components";
+import styles from "../../../styles/Home.module.css";
 import Header from "../../../components/Header/Header";
 import { PlayersData } from "../../../data/Players";
 
@@ -29,6 +33,12 @@ const Index = ({ PlayersData }) => {
   const handleChange = (event) => {
     setActiveTag(event.target.value);
   };
+
+  //GetCurrentLocale
+  const router = useRouter();
+  const CurrentLocale = router.locale;
+  //I18N
+  let { t } = useTranslation();
 
   return (
     <StyledContainer>
@@ -101,13 +111,43 @@ const Index = ({ PlayersData }) => {
           {FilterPlayersByPosition("Goalkeeper").map((Player) => {
             return (
               <Link key={Player.id} href={"/football/players/" + Player.id}>
-                <StyledCard>
+                <StyledCard Language={CurrentLocale}>
                   <div className="TopStyledCard">
                     <img className="img" src={"/assets/Media/Pre.png"} />
                   </div>
                   <div className="BottomStyledCard">
-                    <h1>{Player["Full Name"]}</h1>
-                    <h3>{Player.Position}</h3>
+                    <h1
+                      className={`${
+                        CurrentLocale === "ar" ? styles.ArTitle : ""
+                      }`}
+                    >
+                      {CurrentLocale === "ar"
+                        ? Player.ArName
+                        : Player["Full Name"]}
+                    </h1>
+                    <h3>
+                      {CurrentLocale != "ar"
+                        ? Player.Position
+                        : Player.Position === "Goalkeeper"
+                        ? "حارس مرمى"
+                        : Player.Position === "Centre-Back"
+                        ? "قلب دفاع"
+                        : Player.Position === "Left-Back"
+                        ? "ظهير أيسر"
+                        : Player.Position === "Left-Back"
+                        ? "ظهير أيمن"
+                        : Player.Position === "Defensive Midfield"
+                        ? "وسط مدافع"
+                        : Player.Position === "Central Midfield"
+                        ? "خط وسط"
+                        : Player.Position === "Attacking Midfield"
+                        ? "صانع العاب"
+                        : Player.Position === "Left Winger"
+                        ? "جناح ايسر"
+                        : Player.Position === "Right Winger"
+                        ? "جناح أيمن"
+                        : ""}
+                    </h3>
                   </div>
                   <div className="NumberStyledCard">
                     <h1>{Player.Number}</h1>
@@ -127,13 +167,47 @@ const Index = ({ PlayersData }) => {
             {FilterPlayersByPosition("Centre-Back").map((Player) => {
               return (
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
-                  <StyledCard>
+                  <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
                       <img className="img" src={"/assets/Media/Pre.png"} />
                     </div>
-                    <div className="BottomStyledCard">
-                      <h1>{Player["Full Name"]}</h1>
-                      <h3>{Player.Position}</h3>
+                    <div
+                      className={`BottomStyledCard ${
+                        CurrentLocale === "ar" ? "Ar_" : ""
+                      }`}
+                    >
+                      <h1
+                        className={`${
+                          CurrentLocale === "ar" ? styles.ArTitle : ""
+                        }`}
+                      >
+                        {CurrentLocale === "ar"
+                          ? Player.ArName
+                          : Player["Full Name"]}
+                      </h1>
+                      <h3>
+                        {CurrentLocale != "ar"
+                          ? Player.Position
+                          : Player.Position === "Goalkeeper"
+                          ? "حارس مرمى"
+                          : Player.Position === "Centre-Back"
+                          ? "قلب دفاع"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيسر"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيمن"
+                          : Player.Position === "Defensive Midfield"
+                          ? "وسط مدافع"
+                          : Player.Position === "Central Midfield"
+                          ? "خط وسط"
+                          : Player.Position === "Attacking Midfield"
+                          ? "صانع العاب"
+                          : Player.Position === "Left Winger"
+                          ? "جناح ايسر"
+                          : Player.Position === "Right Winger"
+                          ? "جناح أيمن"
+                          : ""}
+                      </h3>
                     </div>
                     <div className="NumberStyledCard">
                       <h1>{Player.Number}</h1>
@@ -147,13 +221,43 @@ const Index = ({ PlayersData }) => {
             {FilterPlayersByPosition("Left-Back").map((Player) => {
               return (
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
-                  <StyledCard>
+                  <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
                       <img className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
-                      <h1>{Player["Full Name"]}</h1>
-                      <h3>{Player.Position}</h3>
+                      <h1
+                        className={`${
+                          CurrentLocale === "ar" ? styles.ArTitle : ""
+                        }`}
+                      >
+                        {CurrentLocale === "ar"
+                          ? Player.ArName
+                          : Player["Full Name"]}
+                      </h1>
+                      <h3>
+                        {CurrentLocale != "ar"
+                          ? Player.Position
+                          : Player.Position === "Goalkeeper"
+                          ? "حارس مرمى"
+                          : Player.Position === "Centre-Back"
+                          ? "قلب دفاع"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيسر"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيمن"
+                          : Player.Position === "Defensive Midfield"
+                          ? "وسط مدافع"
+                          : Player.Position === "Central Midfield"
+                          ? "خط وسط"
+                          : Player.Position === "Attacking Midfield"
+                          ? "صانع العاب"
+                          : Player.Position === "Left Winger"
+                          ? "جناح ايسر"
+                          : Player.Position === "Right Winger"
+                          ? "جناح أيمن"
+                          : ""}
+                      </h3>
                     </div>
                     <div className="NumberStyledCard">
                       <h1>{Player.Number}</h1>
@@ -167,13 +271,43 @@ const Index = ({ PlayersData }) => {
             {FilterPlayersByPosition("Right-Back").map((Player) => {
               return (
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
-                  <StyledCard>
+                  <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
                       <img className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
-                      <h1>{Player["Full Name"]}</h1>
-                      <h3>{Player.Position}</h3>
+                      <h1
+                        className={`${
+                          CurrentLocale === "ar" ? styles.ArTitle : ""
+                        }`}
+                      >
+                        {CurrentLocale === "ar"
+                          ? Player.ArName
+                          : Player["Full Name"]}
+                      </h1>
+                      <h3>
+                        {CurrentLocale != "ar"
+                          ? Player.Position
+                          : Player.Position === "Goalkeeper"
+                          ? "حارس مرمى"
+                          : Player.Position === "Centre-Back"
+                          ? "قلب دفاع"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيسر"
+                          : Player.Position === "Right-Back"
+                          ? "ظهير أيمن"
+                          : Player.Position === "Defensive Midfield"
+                          ? "وسط مدافع"
+                          : Player.Position === "Central Midfield"
+                          ? "خط وسط"
+                          : Player.Position === "Attacking Midfield"
+                          ? "صانع العاب"
+                          : Player.Position === "Left Winger"
+                          ? "جناح ايسر"
+                          : Player.Position === "Right Winger"
+                          ? "جناح أيمن"
+                          : ""}
+                      </h3>
                     </div>
                     <div className="NumberStyledCard">
                       <h1>{Player.Number}</h1>
@@ -194,13 +328,44 @@ const Index = ({ PlayersData }) => {
             {FilterPlayersByPosition("Defensive Midfield").map((Player) => {
               return (
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
-                  <StyledCard>
+                  <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
                       <img className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
-                      <h1>{Player["Full Name"]}</h1>
-                      <h3>{Player.Position}</h3>
+                      <h1
+                        className={`${
+                          CurrentLocale === "ar" ? styles.ArTitle : ""
+                        }`}
+                      >
+                        {" "}
+                        {CurrentLocale === "ar"
+                          ? Player.ArName
+                          : Player["Full Name"]}
+                      </h1>
+                      <h3>
+                        {CurrentLocale != "ar"
+                          ? Player.Position
+                          : Player.Position === "Goalkeeper"
+                          ? "حارس مرمى"
+                          : Player.Position === "Centre-Back"
+                          ? "قلب دفاع"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيسر"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيمن"
+                          : Player.Position === "Defensive Midfield"
+                          ? "وسط مدافع"
+                          : Player.Position === "Central Midfield"
+                          ? "خط وسط"
+                          : Player.Position === "Attacking Midfield"
+                          ? "صانع العاب"
+                          : Player.Position === "Left Winger"
+                          ? "جناح ايسر"
+                          : Player.Position === "Right Winger"
+                          ? "جناح أيمن"
+                          : ""}
+                      </h3>
                     </div>
                     <div className="NumberStyledCard">
                       <h1>{Player.Number}</h1>
@@ -215,13 +380,44 @@ const Index = ({ PlayersData }) => {
             {FilterPlayersByPosition("Central Midfield").map((Player) => {
               return (
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
-                  <StyledCard>
+                  <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
                       <img className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
-                      <h1>{Player["Full Name"]}</h1>
-                      <h3>{Player.Position}</h3>
+                      <h1
+                        className={`${
+                          CurrentLocale === "ar" ? styles.ArTitle : ""
+                        }`}
+                      >
+                        {" "}
+                        {CurrentLocale === "ar"
+                          ? Player.ArName
+                          : Player["Full Name"]}
+                      </h1>
+                      <h3>
+                        {CurrentLocale != "ar"
+                          ? Player.Position
+                          : Player.Position === "Goalkeeper"
+                          ? "حارس مرمى"
+                          : Player.Position === "Centre-Back"
+                          ? "قلب دفاع"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيسر"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيمن"
+                          : Player.Position === "Defensive Midfield"
+                          ? "وسط مدافع"
+                          : Player.Position === "Central Midfield"
+                          ? "خط وسط"
+                          : Player.Position === "Attacking Midfield"
+                          ? "صانع العاب"
+                          : Player.Position === "Left Winger"
+                          ? "جناح ايسر"
+                          : Player.Position === "Right Winger"
+                          ? "جناح أيمن"
+                          : ""}
+                      </h3>
                     </div>
                     <div className="NumberStyledCard">
                       <h1>{Player.Number}</h1>
@@ -236,13 +432,44 @@ const Index = ({ PlayersData }) => {
             {FilterPlayersByPosition("Attacking Midfield").map((Player) => {
               return (
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
-                  <StyledCard>
+                  <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
                       <img className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
-                      <h1>{Player["Full Name"]}</h1>
-                      <h3>{Player.Position}</h3>
+                      <h1
+                        className={`${
+                          CurrentLocale === "ar" ? styles.ArTitle : ""
+                        }`}
+                      >
+                        {" "}
+                        {CurrentLocale === "ar"
+                          ? Player.ArName
+                          : Player["Full Name"]}
+                      </h1>
+                      <h3>
+                        {CurrentLocale != "ar"
+                          ? Player.Position
+                          : Player.Position === "Goalkeeper"
+                          ? "حارس مرمى"
+                          : Player.Position === "Centre-Back"
+                          ? "قلب دفاع"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيسر"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيمن"
+                          : Player.Position === "Defensive Midfield"
+                          ? "وسط مدافع"
+                          : Player.Position === "Central Midfield"
+                          ? "خط وسط"
+                          : Player.Position === "Attacking Midfield"
+                          ? "صانع العاب"
+                          : Player.Position === "Left Winger"
+                          ? "جناح ايسر"
+                          : Player.Position === "Right Winger"
+                          ? "جناح أيمن"
+                          : ""}
+                      </h3>
                     </div>
                     <div className="NumberStyledCard">
                       <h1>{Player.Number}</h1>
@@ -262,14 +489,45 @@ const Index = ({ PlayersData }) => {
           <div className="Container">
             {FilterPlayersByPosition("Left Winger").map((Player) => {
               return (
-                <Link key={Player.id} href={"/players/" + Player.id}>
-                  <StyledCard>
+                <Link key={Player.id} href={`/football/players/${Player.id}`}>
+                  <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
                       <img className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
-                      <h1>{Player["Full Name"]}</h1>
-                      <h3>{Player.Position}</h3>
+                      <h1
+                        className={`${
+                          CurrentLocale === "ar" ? styles.ArTitle : ""
+                        }`}
+                      >
+                        {" "}
+                        {CurrentLocale === "ar"
+                          ? Player.ArName
+                          : Player["Full Name"]}
+                      </h1>
+                      <h3>
+                        {CurrentLocale != "ar"
+                          ? Player.Position
+                          : Player.Position === "Goalkeeper"
+                          ? "حارس مرمى"
+                          : Player.Position === "Centre-Back"
+                          ? "قلب دفاع"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيسر"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيمن"
+                          : Player.Position === "Defensive Midfield"
+                          ? "وسط مدافع"
+                          : Player.Position === "Central Midfield"
+                          ? "خط وسط"
+                          : Player.Position === "Attacking Midfield"
+                          ? "صانع العاب"
+                          : Player.Position === "Left Winger"
+                          ? "جناح ايسر"
+                          : Player.Position === "Right Winger"
+                          ? "جناح أيمن"
+                          : ""}
+                      </h3>
                     </div>
                     <div className="NumberStyledCard">
                       <h1>{Player.Number}</h1>
@@ -283,14 +541,45 @@ const Index = ({ PlayersData }) => {
           <div className="Container">
             {FilterPlayersByPosition("Right Winger").map((Player) => {
               return (
-                <Link key={Player.id} href={"/players/" + Player.id}>
-                  <StyledCard>
+                <Link key={Player.id} href={`/football/players/${Player.id}`}>
+                  <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
                       <img className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
-                      <h1>{Player["Full Name"]}</h1>
-                      <h3>{Player.Position}</h3>
+                      <h1
+                        className={`${
+                          CurrentLocale === "ar" ? styles.ArTitle : ""
+                        }`}
+                      >
+                        {" "}
+                        {CurrentLocale === "ar"
+                          ? Player.ArName
+                          : Player["Full Name"]}
+                      </h1>
+                      <h3>
+                        {CurrentLocale != "ar"
+                          ? Player.Position
+                          : Player.Position === "Goalkeeper"
+                          ? "حارس مرمى"
+                          : Player.Position === "Centre-Back"
+                          ? "قلب دفاع"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيسر"
+                          : Player.Position === "Left-Back"
+                          ? "ظهير أيمن"
+                          : Player.Position === "Defensive Midfield"
+                          ? "وسط مدافع"
+                          : Player.Position === "Central Midfield"
+                          ? "خط وسط"
+                          : Player.Position === "Attacking Midfield"
+                          ? "صانع العاب"
+                          : Player.Position === "Left Winger"
+                          ? "جناح ايسر"
+                          : Player.Position === "Right Winger"
+                          ? "جناح أيمن"
+                          : ""}
+                      </h3>
                     </div>
                     <div className="NumberStyledCard">
                       <h1>{Player.Number}</h1>
@@ -304,14 +593,29 @@ const Index = ({ PlayersData }) => {
           <div className="Container">
             {FilterPlayersByPosition("Centre-Forward").map((Player) => {
               return (
-                <Link key={Player.id} href={"/players/" + Player.id}>
-                  <StyledCard>
+                <Link key={Player.id} href={`/football/players/${Player.id}`}>
+                  <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
                       <img className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
-                      <h1>{Player["Full Name"]}</h1>
-                      <h3>{Player.Position}</h3>
+                      <h1
+                        className={`${
+                          CurrentLocale === "ar" ? styles.ArTitle : ""
+                        }`}
+                      >
+                        {" "}
+                        {CurrentLocale === "ar"
+                          ? Player.ArName
+                          : Player["Full Name"]}
+                      </h1>
+                      <h3>
+                        {CurrentLocale != "ar"
+                          ? Player.Position
+                          : Player.Position === "Centre-Forward"
+                          ? "رأس الحربة"
+                          : ""}
+                      </h3>
                     </div>
                     <div className="NumberStyledCard">
                       <h1>{Player.Number}</h1>
@@ -451,13 +755,15 @@ const StyledCard = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     h1 {
       margin-bottom: 0;
       font-size: 1.3rem;
     }
     h3 {
       font-size: 1rem;
-      font-family: var(--font-secondary);
+      font-family: ${(Props) =>
+        Props.Language === "ar" ? "Cairo" : "var(--font-secondary)"};
       color: #949494;
     }
   }

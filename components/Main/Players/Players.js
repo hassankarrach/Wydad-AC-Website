@@ -12,7 +12,7 @@ import "swiper/css/navigation";
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
-function Players() {
+function Players({ locale }) {
   return (
     <StyledPlayers>
       <div className="PlayersCard">
@@ -54,16 +54,47 @@ function Players() {
                 <SwiperSlide key={Player.id}>
                   {({ isActive }) => (
                     <Link href={`football/players/${Player.id}`}>
-                      <div className={`PlayerCard ${isActive ? "Actif" : ""}`}>
+                      <div
+                        className={`PlayerCard ${isActive ? "Actif" : ""} ${
+                          locale === "ar" ? "Ar_" : ""
+                        }`}
+                      >
                         <img
                           className="PlayerImg"
                           src={`/assets/Media/Players/${Player.id}.png`}
                         />
                         <div className="OverlayDetails">
                           <h1>
-                            {Player.Number} {Player["Full Name"]}
+                            <span>{Player.Number}</span>
+                            {locale === "ar"
+                              ? Player.ArName
+                              : Player["Full Name"]}
                           </h1>
-                          <span>{Player.Position}</span>
+                          <span>
+                            {locale != "ar"
+                              ? Player.Position
+                              : Player.Position === "Goalkeeper"
+                              ? "حارس مرمى"
+                              : Player.Position === "Centre-Back"
+                              ? "قلب دفاع"
+                              : Player.Position === "Left-Back"
+                              ? "ظهير أيسر"
+                              : Player.Position === "Right-Back"
+                              ? "ظهير أيمن"
+                              : Player.Position === "Defensive Midfield"
+                              ? "وسط مدافع"
+                              : Player.Position === "Central Midfield"
+                              ? "خط وسط"
+                              : Player.Position === "Attacking Midfield"
+                              ? "صانع العاب"
+                              : Player.Position === "Left Winger"
+                              ? "جناح ايسر"
+                              : Player.Position === "Right Winger"
+                              ? "جناح أيمن"
+                              : Player.Position === "Centre-Forward"
+                              ? "رأس الحربة"
+                              : ""}
+                          </span>
                         </div>
                       </div>
                     </Link>
@@ -128,6 +159,26 @@ const StyledPlayers = styled.div`
           filter: none;
         }
         .OverlayDetails {
+        }
+      }
+
+      .PlayerCard.Ar_ {
+        .OverlayDetails {
+          h1 {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--Arabic);
+            line-height: 40px;
+            margin: 0px;
+            span {
+              margin-left: 10px;
+            }
+          }
+          span {
+            font-family: "Cairo", sans-serif;
+          }
         }
       }
 

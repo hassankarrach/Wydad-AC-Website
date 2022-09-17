@@ -3,16 +3,27 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import styles from "../../styles/Home.module.css";
+//
+//I18N
+import { Router, useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 
 function Footer() {
+  //GetCurrentLocale
+  const router = useRouter();
+  const CurrentLocale = router.locale;
+  //I18N
+  let { t } = useTranslation();
+
   return (
-    <StyledFooter>
+    <StyledFooter CurrentLocale={CurrentLocale}>
       <div className="FooterTop">
         <img src={"/assets/Media/Logos/WydadFull.png"} />
       </div>
 
       <div className="FooterBottom">
-        <p>Copyright © 2022 Wydad Ac. All rights reserved.</p>
+        <p>{t("main:Copyright")}</p>
       </div>
     </StyledFooter>
   );
@@ -49,7 +60,10 @@ const StyledFooter = styled.footer`
     p {
       color: white;
       font-size: 0.9rem;
-      font-family: var(--font-secondary);
+      font-family: ${(props) =>
+        props.CurrentLocale === "ar"
+          ? "'Cairo', sans-serif;"
+          : "var(--font-secondary)"};
     }
   }
 `;

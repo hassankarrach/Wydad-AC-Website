@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+//I18N
+import { Router, useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import axios from "axios";
-import cheerio from "cheerio";
+
 import styled from "styled-components";
+import styles from "../../../styles/Home.module.css";
 
 //Icons
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
@@ -18,15 +21,13 @@ import { PlayersData } from "../../../data/Players";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 //GetData
-export const getStaticPaths = async () => {
-  // const res = await fetch("http://localhost:3000/api/players");
-  // const data = await res.json();
-  // map data to  an array of path objects with params (id)
-  const paths = PlayersData.map((player) => {
-    return {
+export const getStaticPaths = async ({ locales }) => {
+  const paths = PlayersData.map((player) =>
+    locales.map((locale) => ({
       params: { id: player.id.toString() },
-    };
-  });
+      locale, //locale should not be inside `params`
+    }))
+  ).flat(); // to avoid nested arrays
 
   return {
     paths,
@@ -48,6 +49,12 @@ export const getStaticProps = async (context) => {
 };
 
 const PlayerId = ({ PlayersData, CurrentID }) => {
+  //GetCurrentLocale
+  const router = useRouter();
+  const CurrentLocale = router.locale;
+  //I18N
+  let { t } = useTranslation();
+
   const PlayerStats = {
     labels: ["Caf CL", "Botola", "Coupe du Trône"],
     datasets: [
@@ -72,7 +79,7 @@ const PlayerId = ({ PlayersData, CurrentID }) => {
   return (
     <StyledContainer id={PlayersData.id}>
       <div
-        className="StyledBanner"
+        className={`StyledBanner ${CurrentLocale === "ar" ? "Ar_" : ""}`}
         style={{
           backgroundImage:
             "linear-gradient(0deg, rgba(200,16,46,1) 0%, rgba(200,16,46,0) 100%), url(/assets/Media/Header/TheFamily.jpg)",
@@ -83,17 +90,17 @@ const PlayerId = ({ PlayersData, CurrentID }) => {
             CurrentID > 1
               ? parseInt(CurrentID) - 1
               : CurrentID === 1
-              ? "30"
-              : "30"
+              ? "35"
+              : "35"
           }`}
         >
           <ArrowBackIosIcon className="BannerIcon" />
         </Link>
         <Link
           href={`${
-            CurrentID > 0 && CurrentID < 30
+            CurrentID > 0 && CurrentID < 35
               ? parseInt(CurrentID) + 1
-              : CurrentID === 30
+              : CurrentID === 35
               ? "1"
               : "1"
           }`}
@@ -106,46 +113,74 @@ const PlayerId = ({ PlayersData, CurrentID }) => {
             <h1>{PlayersData.Number}</h1>
           </div>
           <div className="PlayerName">
-            <h1>{PlayersData["Full Name"]}</h1>
-            <h2>{PlayersData.Position}</h2>
+            <h1 className={`${CurrentLocale === "ar" ? styles.ArTitle : ""}`}>
+              {CurrentLocale === "ar"
+                ? PlayersData.ArName
+                : PlayersData["Full Name"]}
+            </h1>
+            <h2>
+              {CurrentLocale != "ar"
+                ? PlayersData.Position
+                : PlayersData.Position === "Goalkeeper"
+                ? "حارس مرمى"
+                : PlayersData.Position === "Centre-Back"
+                ? "قلب دفاع"
+                : PlayersData.Position === "Left-Back"
+                ? "ظهير أيسر"
+                : PlayersData.Position === "Left-Back"
+                ? "ظهير أيمن"
+                : PlayersData.Position === "Defensive Midfield"
+                ? "وسط مدافع"
+                : PlayersData.Position === "Central Midfield"
+                ? "خط وسط"
+                : PlayersData.Position === "Attacking Midfield"
+                ? "صانع العاب"
+                : PlayersData.Position === "Left Winger"
+                ? "جناح ايسر"
+                : PlayersData.Position === "Right Winger"
+                ? "جناح أيمن"
+                : PlayersData.Position === "Centre-Forward"
+                ? "رأس الحربة"
+                : ""}
+            </h2>
           </div>
         </div>
       </div>
 
-      <div className="DataContainer">
+      <div className={`DataContainer ${CurrentLocale === "ar" ? "Ar_" : ""}`}>
         <div className="Title">
-          <h1>Profile</h1>
+          <h1>{t("player:ProfileTitle")}</h1>
         </div>
 
         <div className="PlayerProfile">
           <div className="Joined item">
-            <h1>JOINED</h1>
+            <h1>{t("player:JOINED")}</h1>
             <h2>30 JUN 2018</h2>
           </div>
           <div className="Divider"></div>
 
           <div className="Country item">
-            <h1>Country</h1>
+            <h1>{t("player:Country")}</h1>
             <h2>{PlayersData.Citizenship}</h2>
           </div>
 
           <div className="Divider"></div>
 
           <div className="DateOfBirth item">
-            <h1>Date Of Birth</h1>
+            <h1>{t("player:Date Of Birth")}</h1>
             <h2>{PlayersData.BirthDate}</h2>
           </div>
 
           <div className="Divider"></div>
 
           <div className="MarketValue item">
-            <h1>Market Value</h1>
+            <h1>{t("player:Market Value")}</h1>
             <h2>{PlayersData["Current market value"]}</h2>
           </div>
         </div>
 
         <div className="Title">
-          <h1>Titles</h1>
+          <h1>{t("player:TitlesTitle")}</h1>
         </div>
 
         <div className="PlayerTitles">
@@ -186,7 +221,7 @@ const PlayerId = ({ PlayersData, CurrentID }) => {
         </div>
 
         <div className="Title">
-          <h1>Stats</h1>
+          <h1>{t("player:StatsTitle")}</h1>
         </div>
 
         <div className="InnerContainer">
@@ -225,14 +260,16 @@ const PlayerId = ({ PlayersData, CurrentID }) => {
           <div className="RightSmallContainer">
             <DataItem
               icon_={<SportsSoccerIcon className="Icon" />}
-              text="Appearances"
+              text={t("player:Appearances")}
               value="0"
+              CurrentLocale={CurrentLocale}
             />
             <div className="Divider"></div>
             <DataItem
               icon_={<QueryBuilderIcon className="Icon" />}
-              text="Minutes played"
+              text={t("player:Minutes played")}
               value="0"
+              CurrentLocale={CurrentLocale}
             />
             <div className="Divider"></div>
 
@@ -240,8 +277,9 @@ const PlayerId = ({ PlayersData, CurrentID }) => {
               icon_={<RectangleRoundedIcon className="Icon" />}
               color="red"
               transform
-              text="Red Cards"
+              text={t("player:Red Cards")}
               value="0"
+              CurrentLocale={CurrentLocale}
             />
             <div className="Divider"></div>
 
@@ -249,8 +287,9 @@ const PlayerId = ({ PlayersData, CurrentID }) => {
               icon_={<RectangleRoundedIcon className="Icon" />}
               color="yellow"
               transform
-              text="Yellow Cards"
+              text={t("player:Yellow Cards")}
               value="0"
+              CurrentLocale={CurrentLocale}
             />
             <div className="Divider"></div>
 
@@ -277,9 +316,14 @@ const PlayerId = ({ PlayersData, CurrentID }) => {
   );
 };
 
-const DataItem = ({ icon_, text, value, transform, color }) => {
+const DataItem = ({ icon_, text, value, transform, color, CurrentLocale }) => {
+  console.log(CurrentLocale);
   return (
-    <StyledDataItem transform={transform} cardColor={color}>
+    <StyledDataItem
+      transform={transform}
+      cardColor={color}
+      CurrentLocale={CurrentLocale}
+    >
       <div className="LeftStatsNumbers">
         {icon_}
         <span>{text}</span>
@@ -294,12 +338,20 @@ const DataItem = ({ icon_, text, value, transform, color }) => {
 const StyledDataItem = styled.div`
   display: flex;
   border-radius: 8px;
+  flex-direction: ${(props) =>
+    props.CurrentLocale === "ar" ? "row-reverse" : "row"};
+
   .LeftStatsNumbers {
     display: flex;
     align-items: center;
+    justify-content: ${(props) =>
+      props.CurrentLocale === "ar" ? "right" : ""};
+    flex-direction: ${(props) =>
+      props.CurrentLocale === "ar" ? "row-reverse" : ""};
     width: 80%;
     .Icon {
       margin-right: 10px;
+      margin-left: ${(props) => (props.CurrentLocale === "ar" ? "10px" : "")};
       transform: ${(props) => (props.transform ? "rotate(90deg)" : "")};
       color: ${(props) =>
         props.cardColor === "red"
@@ -311,6 +363,7 @@ const StyledDataItem = styled.div`
     span {
       font-size: 1.1rem;
       color: var(--grey);
+      font-family: ${(props) => (props.CurrentLocale === "ar" ? "Cairo" : "")};
     }
   }
   .RightStatsNumbers {
@@ -335,6 +388,30 @@ const StyledContainer = styled.div`
     background-position-y: 68%;
     padding: 0px 10%;
     position: relative;
+    &.Ar_ {
+      flex-direction: row-reverse;
+      .PlayerData {
+        margin-right: 10px;
+        margin-left: 0px;
+        flex-direction: row-reverse;
+        .PlayerName {
+          h1 {
+            margin: 0px;
+            padding: 0px;
+            line-height: 25px;
+          }
+          h2 {
+            font-family: "Cairo", sans-serif;
+            text-align: right;
+            font-weight: 100;
+            font-size: 1.3rem;
+          }
+        }
+        .PlayerNumber {
+          line-height: 70px;
+        }
+      }
+    }
     @media (max-width: 768px) {
       justify-content: center;
     }
@@ -441,6 +518,28 @@ const StyledContainer = styled.div`
     @media (max-width: 768px) {
       padding: 0px 5%;
     }
+    &.Ar_ {
+      .Title {
+        text-align: right;
+        h1 {
+          font-family: var(--Arabic);
+        }
+      }
+      .PlayerProfile {
+        .item {
+          h1 {
+            font-family: var(--Arabic);
+          }
+        }
+      }
+      .PlayerTitles {
+        justify-content: flex-end;
+      }
+      .InnerContainer {
+        .RightSmallContainer {
+        }
+      }
+    }
 
     .Title {
       width: 100%;
@@ -505,6 +604,7 @@ const StyledContainer = styled.div`
           color: var(--grey);
           font-weight: 100;
           font-family: var(--font-secondary);
+          text-align: center;
         }
       }
     }

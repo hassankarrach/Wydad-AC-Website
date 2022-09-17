@@ -45,7 +45,6 @@ const Matches = ({ LastGamesData, CurrentID }) => {
       router.push(`/football/fixtures-results/${CurrentID - 1}`);
     }
   };
-
   const HandleNext = (e) => {
     if (CurrentID < 7) {
       e.preventDefault();
@@ -79,6 +78,7 @@ const Matches = ({ LastGamesData, CurrentID }) => {
   }
   return (
     <StyledResults>
+      <h1>First Team Results</h1>
       {LastGamesData ? (
         LastGamesData.events
           .slice(0)
@@ -132,14 +132,20 @@ const Matches = ({ LastGamesData, CurrentID }) => {
 
 const StyledResults = styled.div`
   height: auto;
-  padding: 100px 10%;
+  padding: 5% 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  h1 {
+    @media (max-width: 768px) {
+      margin-top: 8%;
+      font-size: 1.3rem;
+    }
+  }
 
   @media (max-width: 768px) {
-    padding: 100px 2%;
+    padding: 10% 5%;
   }
 
   .Pagination {
