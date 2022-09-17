@@ -69,7 +69,7 @@ function Titles({ locale }) {
               >
                 {WydadTytles.slice(0, 6).map((Title) => {
                   return (
-                    <SwiperSlide className="SlideItem">
+                    <SwiperSlide key={Title.id} className="SlideItem">
                       {({ isActive }) => (
                         <div
                           className={`TrophyHolder ${isActive ? "Actif" : ""}`}
