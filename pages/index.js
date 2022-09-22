@@ -13,7 +13,6 @@ import TopNav from "../components/Navbar/TopNav";
 import Matches from "../components/Main/Matches/Matches";
 import UpComingGames from "../components/Main/UpCommingGames/UpComingGames";
 import Shop from "../components/Main/Shop/Shop";
-
 //I18N
 import useTranslation from "next-translate/useTranslation";
 
@@ -24,13 +23,17 @@ export const getStaticProps = async () => {
   )
     .then((response) => response.json())
     .then((data) => {
-      return fetch(
-        `https://api.sofascore.com/api/v1/event/${data.events[0].id}`
-      );
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      return data;
+      try {
+        return fetch(
+          `https://api.sofascore.com/api/v1/event/${data.events[0].id}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            return data;
+          });
+      } catch (err) {
+        return null;
+      }
     });
 
   //GettingLastGameData
@@ -57,6 +60,7 @@ export const getStaticProps = async () => {
 
 export default function Home({ NextGame, Lastgame }) {
   const [isNextGameLive, setisNextGameLive] = useState(false);
+  const [IsThereIsNoNextEvents, setIsThereIsNoNextEvents] = useState(false);
   const [DisplayedGame, setDisplayedGame] = useState();
 
   //GetCurrentLocale
@@ -72,11 +76,20 @@ export default function Home({ NextGame, Lastgame }) {
       //GetNextAndLastGame
       const NextGame_ = NextGame;
       const LastGame_ = Lastgame;
+
+      if (typeof NextGame_ != "object") {
+        setIsThereIsNoNextEvents(true);
+      }
+
       //CalcTime;
       const GameStartTime = TimeStampToDate(LastGame_.event.startTimestamp);
       const GameEndTime = TimeStampToDate(
         LastGame_.event.startTimestamp + 3 * 3600
       );
+      if (typeof NextGame_ != "object") {
+        setIsThereIsNoNextEvents(true);
+      }
+
       if (
         currentTimeStamp >= GameStartTime &&
         currentTimeStamp <= GameEndTime
@@ -102,6 +115,7 @@ export default function Home({ NextGame, Lastgame }) {
       <Matches
         DisplayedGame={DisplayedGame}
         isLive={isNextGameLive}
+        IsThereIsNoNextEvents={IsThereIsNoNextEvents}
         locale={CurrentLocale}
         NextMatchText={t("main:NextMatchText")}
         StandingText={t("main:StandingText")}

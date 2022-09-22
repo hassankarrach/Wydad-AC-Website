@@ -13,6 +13,25 @@ import Typography from "@mui/material/Typography";
 //CountDown
 import Countdown from "react-countdown";
 
+const ClubsIconsList = [
+  "AS FAR",
+  "Difaâ El-Jadidi",
+  "FUS Rabat",
+  "HUSA",
+  "Ittihad Tanger",
+  "JS Soualem",
+  "MA Tétouan",
+  "MAS",
+  "Mouloudia Oujda",
+  "OC Khouribga",
+  "OC Safi",
+  "Raja Club Athletic",
+  "RS Berkane",
+  "SCCM",
+  "Union Touarga",
+  "WAC",
+];
+
 const StyledLive = styled.div`
   position: absolute;
   left: 20px;
@@ -162,6 +181,7 @@ const renderer = ({ hours, days, minutes, seconds, completed }) => {
 
 function Matches({
   DisplayedGame,
+  IsThereIsNoNextEvents,
   isLive,
   locale,
   NextMatchText,
@@ -199,6 +219,8 @@ function Matches({
                           : DisplayedGame.event.tournament.uniqueTournament
                               .name === "CAF Super Cup"
                           ? "Sc"
+                          : "CAF Champions League"
+                          ? "Cl"
                           : "botola"
                       }.png`}
                     />
@@ -227,13 +249,27 @@ function Matches({
                 <div className="ClubCard">
                   <div className="imgHolder">
                     {DisplayedGame ? (
-                      <img
-                        src={`./assets/Media/Teams/${DisplayedGame.event.homeTeam.shortName}.png`}
-                      />
+                      ClubsIconsList.includes(
+                        DisplayedGame.event.homeTeam.shortName
+                      ) ? (
+                        <img
+                          src={`./assets/Media/Teams/${DisplayedGame.event.homeTeam.shortName}.png`}
+                        />
+                      ) : !ClubsIconsList.includes(
+                          DisplayedGame.event.homeTeam.shortName
+                        ) ? (
+                        <img
+                          style={{ width: "75px" }}
+                          src={`./assets/Media/Teams/Team.svg`}
+                        />
+                      ) : (
+                        ""
+                      )
                     ) : (
                       <Skeleton variant="circular" width={130} height={130} />
                     )}
                   </div>
+
                   <div className="titleHolder">
                     {DisplayedGame ? (
                       <span>{DisplayedGame.event.homeTeam.name}</span>
@@ -257,9 +293,22 @@ function Matches({
                 <div className="ClubCard">
                   <div className="imgHolder">
                     {DisplayedGame ? (
-                      <img
-                        src={`./assets/Media/Teams/${DisplayedGame.event.awayTeam.shortName}.png`}
-                      />
+                      ClubsIconsList.includes(
+                        DisplayedGame.event.awayTeam.shortName
+                      ) ? (
+                        <img
+                          src={`./assets/Media/Teams/${DisplayedGame.event.awayTeam.shortName}.png`}
+                        />
+                      ) : !ClubsIconsList.includes(
+                          DisplayedGame.event.awayTeam.shortName
+                        ) ? (
+                        <img
+                          style={{ width: "75px" }}
+                          src={`./assets/Media/Teams/Team.svg`}
+                        />
+                      ) : (
+                        ""
+                      )
                     ) : (
                       <Skeleton variant="circular" width={130} height={130} />
                     )}
@@ -302,6 +351,8 @@ function Matches({
                     </StyledGameBoard>
                   )}
                 </div>
+              ) : DisplayedGame === null ? (
+                <span>The next match hasn't been scheduled yet!</span>
               ) : (
                 <Skeleton variant="rounded" width={210} height={60} />
               )}
@@ -318,25 +369,22 @@ function Matches({
               {StandingText}
             </h1>
           </div>
-          {DisplayedGame ? (
-            <Standings />
-          ) : (
-            <div className="StandingsSkelet">
-              <Skeleton width="100%" height={40}>
-                <Typography>.</Typography>
-              </Skeleton>
+          <Standings />
+          {/* <div className="StandingsSkelet">
+            <Skeleton width="100%" height={40}>
+              <Typography>.</Typography>
+            </Skeleton>
 
-              <Skeleton width="100%" height={40}>
-                <Typography>.</Typography>
-              </Skeleton>
-              <Skeleton width="100%" height={40}>
-                <Typography>.</Typography>
-              </Skeleton>
-              <Skeleton width="100%" height={40}>
-                <Typography>.</Typography>
-              </Skeleton>
-            </div>
-          )}
+            <Skeleton width="100%" height={40}>
+              <Typography>.</Typography>
+            </Skeleton>
+            <Skeleton width="100%" height={40}>
+              <Typography>.</Typography>
+            </Skeleton>
+            <Skeleton width="100%" height={40}>
+              <Typography>.</Typography>
+            </Skeleton>
+          </div> */}
         </div>
       </div>
     </StyledMatches>
