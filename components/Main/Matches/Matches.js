@@ -352,7 +352,7 @@ function Matches({
                   )}
                 </div>
               ) : DisplayedGame === null ? (
-                <span>The next match hasn't been scheduled yet!</span>
+                <span>The next match hasn&apost been scheduled yet!</span>
               ) : (
                 <Skeleton variant="rounded" width={210} height={60} />
               )}
