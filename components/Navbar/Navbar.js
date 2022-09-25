@@ -514,9 +514,6 @@ function Navbar() {
             </li>
             <li className="NavItem"> {t("navbar:store")}</li>
             <li className="NavItem"> {t("navbar:Tickets")}</li>
-            <Link href={"/fantasy"}>
-              <li className="NavItem">Fantasy</li>
-            </Link>
           </ul>
         </div>
 

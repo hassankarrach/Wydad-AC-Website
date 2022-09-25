@@ -369,22 +369,23 @@ function Matches({
               {StandingText}
             </h1>
           </div>
-          <Standings />
-          {/* <div className="StandingsSkelet">
-            <Skeleton width="100%" height={40}>
-              <Typography>.</Typography>
-            </Skeleton>
 
-            <Skeleton width="100%" height={40}>
-              <Typography>.</Typography>
-            </Skeleton>
-            <Skeleton width="100%" height={40}>
-              <Typography>.</Typography>
-            </Skeleton>
-            <Skeleton width="100%" height={40}>
-              <Typography>.</Typography>
-            </Skeleton>
-          </div> */}
+          <Standings />
+          {/* <div>
+                <Skeleton width="100%" height={40}>
+                  <Typography>.</Typography>
+                </Skeleton>
+
+                <Skeleton width="100%" height={40}>
+                  <Typography>.</Typography>
+                </Skeleton>
+                <Skeleton width="100%" height={40}>
+                  <Typography>.</Typography>
+                </Skeleton>
+                <Skeleton width="100%" height={40}>
+                  <Typography>.</Typography>
+                </Skeleton>
+              </div> */}
         </div>
       </div>
     </StyledMatches>
@@ -397,6 +398,7 @@ const StyledMatches = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
   @media (max-width: 768px) {
     height: 550px;
   }

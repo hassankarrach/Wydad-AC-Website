@@ -45,12 +45,26 @@ const StyledMainCard = styled.div`
   }
 
   .ImgPrev {
+    background-color: #2b2b2b;
     height: 100%;
     overflow: hidden;
     width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-color: #2b2b2b;
+      background-image: url("/assets/Media/Logos/LogoWhite.png");
+      background-position: center;
+      background-repeat: no-repeat;
+    }
     @media (max-width: 768px) {
       width: 100%;
       height: 60%;
@@ -58,6 +72,7 @@ const StyledMainCard = styled.div`
     img {
       height: 100%;
       transition: 1.1s ease-in-out;
+      z-index: 2;
       @media (max-width: 768px) {
         width: 100%;
         height: auto;

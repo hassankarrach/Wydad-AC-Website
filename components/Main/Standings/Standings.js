@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+//Skeleton
+import Skeleton from "@mui/material/Skeleton";
+import Typography from "@mui/material/Typography";
 
 function Standings() {
   const [TopTeams, setTopTeams] = useState();
