@@ -86,7 +86,7 @@ function Header() {
                 >
                   {LastThreeNews.map((Item) => {
                     return (
-                      <SwiperSlide className="Slide">
+                      <SwiperSlide className="Slide" key={Item.id}>
                         {({ isActive }) => (
                           <div className={`Card ${isActive ? "actif" : ""}`}>
                             <img src={Item.img} />
