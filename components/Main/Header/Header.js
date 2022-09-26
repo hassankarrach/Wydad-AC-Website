@@ -137,6 +137,7 @@ const StyledHeader = styled.div`
     color: white;
     display: flex;
     position: relative;
+    overflow: hidden;
     @media (max-width: 768px) {
       flex-direction: column;
     }
@@ -175,6 +176,9 @@ const StyledHeader = styled.div`
           position: absolute;
           display: flex;
           margin-top: 30px;
+          @media (max-width: 768px) {
+            left: 0;
+          }
 
           .mySwiper {
             width: 100%;
@@ -190,6 +194,9 @@ const StyledHeader = styled.div`
               align-items: center;
               justify-content: center;
               background-color: transparent;
+              @media (max-width: 768px) {
+                max-width: 100%;
+              }
               .Card {
                 width: 260px;
                 margin-right: 10px;
@@ -197,7 +204,7 @@ const StyledHeader = styled.div`
                 background-color: white;
                 border-radius: 8px;
                 cursor: pointer;
-                opacity: 0.2;
+                opacity: 0.5;
                 overflow: hidden;
                 position: relative;
                 &:before {
@@ -205,14 +212,16 @@ const StyledHeader = styled.div`
                   position: absolute;
                   width: 100%;
                   height: 100%;
+                  z-index: 1;
                   background: linear-gradient(
                     180deg,
                     rgba(220, 5, 45, 0) 0%,
-                    rgba(220, 5, 45, 1) 100%
+                    rgba(220, 5, 45, 0.7) 100%
                   );
                 }
                 img {
                   width: 100%;
+                  transition: 1s ease-in-out;
                 }
                 .Date {
                   position: absolute;
@@ -226,15 +235,18 @@ const StyledHeader = styled.div`
                   bottom: 5px;
                   left: 5px;
                   font-weight: 100;
+                  z-index: 2;
                 }
               }
               .Card.actif {
                 opacity: 1;
+                /* transform: scale(1.05); */
                 transition: 0.2s ease-in-out;
-
                 &:hover {
-                  transform: scale(1.08);
                   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+                  img {
+                    transform: scale(1.2);
+                  }
                 }
               }
             }
@@ -296,7 +308,8 @@ const StyledHeader = styled.div`
       justify-content: center;
       bottom: 130px;
       @media (max-width: 768px) {
-        bottom: 330px;
+        bottom: 60px;
+        z-index: 8;
       }
 
       .Dots {
