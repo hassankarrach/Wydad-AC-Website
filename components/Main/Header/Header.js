@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import styles from "../../../styles/Home.module.css";
 import { useTransition, animated } from "@react-spring/web";
 //Swiper
 import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
@@ -14,24 +15,27 @@ const LastThreeNews = [
   {
     id: 0,
     title: "Said naciri Answers your Questions #WACTalk",
+    arTitle: "#WACTalk سعيد الناصري يجيب على أسئلتك",
     img: "https://scontent.fcmn5-1.fna.fbcdn.net/v/t39.30808-6/306359121_5817968878265098_790139753703801729_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeGouOagQ9j7Bu62Dvn5w1Wz06bR1EDRXU3TptHUQNFdTXawGeP-B41ABytqts9cOIsYhXJPA8u1pklzXjPC3tZd&_nc_ohc=upeIJLjmh5wAX_-_26m&_nc_zt=23&_nc_ht=scontent.fcmn5-1.fna&oh=00_AT_JcPqIakYjgbHCJ_qYRplE2YGzDlRJIv3yqv3psKcLtQ&oe=6334E4C5",
     Date: "12-02-2022",
   },
   {
     id: 1,
     title: "Pictures from today's win against FC Saint Éloi Lupopo",
+    arTitle: "صور من فوز اليوم على إف سي سانت إلوي لوبوبو",
     img: "https://scontent.fcmn5-2.fna.fbcdn.net/v/t39.30808-6/307487784_5845646285497357_4926266484943855725_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeGC5Tars9yIqhUqwg-kvGEsUbCncmJOCsRRsKdyYk4KxOCuihT-Z1cgXWrOwF_a1DaIRZLZRvg4Z9CMfukngklV&_nc_ohc=eFEnnsg2w0oAX-uyoqQ&_nc_zt=23&_nc_ht=scontent.fcmn5-2.fna&oh=00_AT9eVKpM5wUuhJ7qULMN26LtOSZ0En4o1d84DCbPpQenNA&oe=6334FF0E",
     Date: "12-02-2022",
   },
   {
     id: 2,
     title: "Haj mohammed benjelloun ...",
+    arTitle: "...الحاج محمد بنجلون",
     img: "https://scontent.fcmn5-1.fna.fbcdn.net/v/t39.30808-6/306942332_5833513310043988_885819983185652640_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeHXQdwVcuJQq_vB64WbYwrQop3pbft3QAOinelt-3dAA43ID_PSnE5bU7dEk5aJoduyqGyX0GEAUFnCmgb4W4v3&_nc_ohc=H1ORZL6pYVkAX8TnXvl&_nc_zt=23&_nc_ht=scontent.fcmn5-1.fna&oh=00_AT_OSPvfirkoGlviTusKIOkOcp98Qa4_WEMjNkJtkUAuzw&oe=633576F6",
     Date: "12-02-2022",
   },
 ];
 
-function Header() {
+function Header({ locale }) {
   const [CurrentBg, setCurrentBg] = useState(0);
 
   const HandleSliderChange = (currentSlid) => {
@@ -50,7 +54,7 @@ function Header() {
   return (
     <StyledHeader>
       {transitions((style, i) => (
-        <div className="Slide">
+        <div className={`Slide ${locale === "ar" ? "Ar_" : ""}`}>
           <div className="LeftHeader">
             <animated.img
               key={LastThreeNews[i].id}
@@ -60,8 +64,13 @@ function Header() {
           </div>
 
           <div className="RightHeader">
-            <h1 style={{ ...style }} className="title">
-              {LastThreeNews[CurrentBg].title}
+            <h1
+              style={{ ...style }}
+              className={`title ${locale === "ar" ? styles.ArTitle : ""}`}
+            >
+              {locale === "ar"
+                ? LastThreeNews[CurrentBg].arTitle
+                : LastThreeNews[CurrentBg].title}
             </h1>
 
             <div className="NewsCards">
@@ -334,6 +343,48 @@ const StyledHeader = styled.div`
 
     @media (max-width: 768px) {
       height: 80vh;
+    }
+  }
+  .Slide.Ar_ {
+    flex-direction: row-reverse;
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+    .LeftHeader {
+      &:after {
+        background: linear-gradient(
+          270deg,
+          rgba(220, 5, 45, 0) 0%,
+          rgba(220, 5, 45, 1) 100%
+        );
+
+        @media (max-width: 768px) {
+          background: linear-gradient(
+            180deg,
+            rgba(220, 5, 45, 0) 0%,
+            rgba(220, 5, 45, 1) 100%
+          );
+        }
+      }
+    }
+    .RightHeader {
+      .title {
+        left: unset;
+        right: -20%;
+        @media (max-width: 768px) {
+          right: 5%;
+          top: -35%;
+          width: 80%;
+          font-size: 1.7rem;
+          line-height: 40px;
+        }
+      }
+      .NewsCards {
+        .Container {
+          left: unset;
+          right: -20%;
+        }
+      }
     }
   }
 

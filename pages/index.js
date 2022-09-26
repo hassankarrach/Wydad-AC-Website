@@ -13,6 +13,7 @@ import TopNav from "../components/Navbar/TopNav";
 import Matches from "../components/Main/Matches/Matches";
 import UpComingGames from "../components/Main/UpCommingGames/UpComingGames";
 import Shop from "../components/Main/Shop/Shop";
+import Loader from "../components/Loader/Loader";
 //I18N
 import useTranslation from "next-translate/useTranslation";
 
@@ -62,6 +63,7 @@ export default function Home({ NextGame, Lastgame }) {
   const [isNextGameLive, setisNextGameLive] = useState(false);
   const [IsThereIsNoNextEvents, setIsThereIsNoNextEvents] = useState(false);
   const [DisplayedGame, setDisplayedGame] = useState();
+  const [Loading, setLoading] = useState(true);
 
   //GetCurrentLocale
   const router = useRouter();
@@ -70,38 +72,41 @@ export default function Home({ NextGame, Lastgame }) {
   //I18N
   let { t } = useTranslation();
 
-  // useEffect(() => {
-  //   const HandleShowedGame = async () => {
-  //     const currentTimeStamp = new Date(Date.now());
-  //     //GetNextAndLastGame
-  //     const NextGame_ = NextGame;
-  //     const LastGame_ = Lastgame;
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+    // const HandleShowedGame = async () => {
+    //   const currentTimeStamp = new Date(Date.now());
+    //   //GetNextAndLastGame
+    //   const NextGame_ = NextGame;
+    //   const LastGame_ = Lastgame;
 
-  //     if (typeof NextGame_ != "object") {
-  //       setIsThereIsNoNextEvents(true);
-  //     }
+    //   if (typeof NextGame_ != "object") {
+    //     setIsThereIsNoNextEvents(true);
+    //   }
 
-  //     //CalcTime;
-  //     const GameStartTime = TimeStampToDate(LastGame_.event.startTimestamp);
-  //     const GameEndTime = TimeStampToDate(
-  //       LastGame_.event.startTimestamp + 3 * 3600
-  //     );
-  //     if (typeof NextGame_ != "object") {
-  //       setIsThereIsNoNextEvents(true);
-  //     }
+    //   //CalcTime;
+    //   const GameStartTime = TimeStampToDate(LastGame_.event.startTimestamp);
+    //   const GameEndTime = TimeStampToDate(
+    //     LastGame_.event.startTimestamp + 3 * 3600
+    //   );
+    //   if (typeof NextGame_ != "object") {
+    //     setIsThereIsNoNextEvents(true);
+    //   }
 
-  //     if (
-  //       currentTimeStamp >= GameStartTime &&
-  //       currentTimeStamp <= GameEndTime
-  //     ) {
-  //       setisNextGameLive(true);
-  //       setDisplayedGame(LastGame_);
-  //     } else {
-  //       setDisplayedGame(NextGame_);
-  //     }
-  //   };
-  //   HandleShowedGame();
-  // }, []);
+    //   if (
+    //     currentTimeStamp >= GameStartTime &&
+    //     currentTimeStamp <= GameEndTime
+    //   ) {
+    //     setisNextGameLive(true);
+    //     setDisplayedGame(LastGame_);
+    //   } else {
+    //     setDisplayedGame(NextGame_);
+    //   }
+    // };
+    // HandleShowedGame();
+  }, []);
 
   const TimeStampToDate = (TimeStamp_) => {
     var timestamp = TimeStamp_;
@@ -111,7 +116,8 @@ export default function Home({ NextGame, Lastgame }) {
 
   return (
     <>
-      <Header />
+      {/* {Loading ? <Loader /> : ""} */}
+      <Header locale={CurrentLocale} />
       <Matches
         DisplayedGame={DisplayedGame}
         isLive={isNextGameLive}

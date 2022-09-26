@@ -163,7 +163,7 @@ const StyledTitles = styled.div`
             height: 120%;
             bottom: 0;
             z-index: 2;
-            left: -40px;
+            left: 10px;
 
             @media (max-width: 768px) {
               height: 100%;
