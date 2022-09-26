@@ -13,7 +13,6 @@ import TopNav from "../components/Navbar/TopNav";
 import Matches from "../components/Main/Matches/Matches";
 import UpComingGames from "../components/Main/UpCommingGames/UpComingGames";
 import Shop from "../components/Main/Shop/Shop";
-import Loader from "../components/Loader/Loader";
 //I18N
 import useTranslation from "next-translate/useTranslation";
 
@@ -73,19 +72,14 @@ export default function Home({ NextGame, Lastgame }) {
   let { t } = useTranslation();
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
     // const HandleShowedGame = async () => {
     //   const currentTimeStamp = new Date(Date.now());
     //   //GetNextAndLastGame
     //   const NextGame_ = NextGame;
     //   const LastGame_ = Lastgame;
-
     //   if (typeof NextGame_ != "object") {
     //     setIsThereIsNoNextEvents(true);
     //   }
-
     //   //CalcTime;
     //   const GameStartTime = TimeStampToDate(LastGame_.event.startTimestamp);
     //   const GameEndTime = TimeStampToDate(
@@ -94,7 +88,6 @@ export default function Home({ NextGame, Lastgame }) {
     //   if (typeof NextGame_ != "object") {
     //     setIsThereIsNoNextEvents(true);
     //   }
-
     //   if (
     //     currentTimeStamp >= GameStartTime &&
     //     currentTimeStamp <= GameEndTime
@@ -116,7 +109,6 @@ export default function Home({ NextGame, Lastgame }) {
 
   return (
     <>
-      {/* {Loading ? <Loader /> : ""} */}
       <Header locale={CurrentLocale} />
       <Matches
         DisplayedGame={DisplayedGame}
