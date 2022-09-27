@@ -4,6 +4,11 @@ const nextTranslate = require("next-translate");
 const nextConfig = {
   reactStrictMode: true,
   ...nextTranslate(),
+  experimental: {
+    images: {
+      allowFutureImage: true,
+    },
+  },
 };
 
 module.exports = nextConfig;
