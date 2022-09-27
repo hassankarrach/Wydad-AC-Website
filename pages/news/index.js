@@ -26,15 +26,15 @@ export const getServerSideProps = async (context) => {
   }
 };
 
-function index({ posts }) {
+function Index({ posts }) {
+  //GetCurrentLocale
+  const router = useRouter();
+  const CurrentLocale = router.locale;
+
   const imgBuilder = createImageUrlBuilder({
     projectId: "fr34sbmn",
     dataset: "production",
   });
-
-  //GetCurrentLocale
-  const router = useRouter();
-  const CurrentLocale = router.locale;
 
   return (
     <StyledNews>
@@ -102,4 +102,4 @@ const StyledNews = styled.div`
   }
 `;
 
-export default index;
+export default Index;
