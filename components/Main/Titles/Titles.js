@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/future/image";
 import { useState } from "react";
 import styles from "../../../styles/Home.module.css";
 import Link from "next/link";
@@ -39,7 +40,7 @@ function Titles({ locale }) {
             </div>
             <div className="MiddleRightTitlesCardData">
               <div className="LeftImgClubHolder">
-                <img
+                <Image
                   className="LeftImgClub"
                   src="/assets/Media/Extras/Team.png"
                 />
@@ -74,7 +75,9 @@ function Titles({ locale }) {
                         <div
                           className={`TrophyHolder ${isActive ? "Actif" : ""}`}
                         >
-                          <img src={`/assets/Media/Titles/${Title.Link}.png`} />
+                          <Image
+                            src={`/assets/Media/Titles/${Title.Link}.png`}
+                          />
                           <span>{Title.times.length}</span>
                         </div>
                       )}
@@ -84,7 +87,7 @@ function Titles({ locale }) {
               </Swiper>
             </div>
             <div className="BottomRightTitlesCardData">
-              <img src={"/assets/Media/Logos/wydadLogos.png"} />
+              <Image src={"/assets/Media/Logos/wydadLogos.png"} />
               <Link href={"/football/achievements"}>
                 <button>
                   See all <ArrowForwardIosIcon fontSize="20" />

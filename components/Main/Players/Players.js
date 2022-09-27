@@ -1,7 +1,7 @@
 import { useState } from "react";
+import Image from "next/future/image";
 import Link from "next/link";
 import styled from "styled-components";
-import Image from "next/image";
 import { PlayersData } from "../../../data/Players";
 //Swiper
 import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
@@ -20,9 +20,9 @@ function Players({ locale }) {
           className="ImgHolder"
           style={{ backgroundImage: "url(./assets/Media/Textures/White.png)" }}
         >
-          <img
+          <Image
             className="StadiumLamp"
-            src={"./assets/Media/Extras/StadiumLamp.webp"}
+            src={"/assets/Media/Extras/StadiumLamp.webp"}
           />
         </div>
 
@@ -59,7 +59,7 @@ function Players({ locale }) {
                           locale === "ar" ? "Ar_" : ""
                         }`}
                       >
-                        <img
+                        <Image
                           className="PlayerImg"
                           src={`/assets/Media/Players/${Player.id}.png`}
                         />

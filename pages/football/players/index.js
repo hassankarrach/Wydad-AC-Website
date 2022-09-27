@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 //I18N
 import { Router, useRouter } from "next/router";
+import Image from "next/future/image";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import styled from "styled-components";
@@ -42,7 +43,10 @@ const Index = ({ PlayersData }) => {
 
   return (
     <StyledContainer>
-      <Header img={"/assets/Media/Header/TheFamily.jpg"} text="Wydad Players" />
+      <Header
+        img={"/assets/Media/Header/TheFamily.webp"}
+        text="Wydad Players"
+      />
       <StyledFilterHolder>
         <div className="PlayersFilter">
           <ul>
@@ -113,7 +117,7 @@ const Index = ({ PlayersData }) => {
               <Link key={Player.id} href={"/football/players/" + Player.id}>
                 <StyledCard Language={CurrentLocale}>
                   <div className="TopStyledCard">
-                    <img className="img" src={"/assets/Media/Pre.png"} />
+                    <Image className="img" src={"/assets/Media/Pre.png"} />
                   </div>
                   <div className="BottomStyledCard">
                     <h1
@@ -169,7 +173,7 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <img className="img" src={"/assets/Media/Pre.png"} />
+                      <Image className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div
                       className={`BottomStyledCard ${
@@ -223,7 +227,7 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <img className="img" src={"/assets/Media/Pre.png"} />
+                      <Image className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -273,7 +277,7 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <img className="img" src={"/assets/Media/Pre.png"} />
+                      <Image className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -330,7 +334,7 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <img className="img" src={"/assets/Media/Pre.png"} />
+                      <Image className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -382,7 +386,7 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <img className="img" src={"/assets/Media/Pre.png"} />
+                      <Image className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -434,7 +438,7 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <img className="img" src={"/assets/Media/Pre.png"} />
+                      <Image className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -492,7 +496,7 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={`/football/players/${Player.id}`}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <img className="img" src={"/assets/Media/Pre.png"} />
+                      <Image className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -544,7 +548,7 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={`/football/players/${Player.id}`}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <img className="img" src={"/assets/Media/Pre.png"} />
+                      <Image className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -596,7 +600,7 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={`/football/players/${Player.id}`}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <img className="img" src={"/assets/Media/Pre.png"} />
+                      <Image className="img" src={"/assets/Media/Pre.png"} />
                     </div>
                     <div className="BottomStyledCard">
                       <h1

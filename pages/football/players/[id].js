@@ -82,7 +82,7 @@ const PlayerId = ({ PlayersData, CurrentID }) => {
         className={`StyledBanner ${CurrentLocale === "ar" ? "Ar_" : ""}`}
         style={{
           backgroundImage:
-            "linear-gradient(0deg, rgba(200,16,46,1) 0%, rgba(200,16,46,0) 100%), url(/assets/Media/Header/TheFamily.jpg)",
+            "linear-gradient(0deg, rgba(200,16,46,1) 0%, rgba(200,16,46,0) 100%), url(/assets/Media/Header/TheFamily.webp)",
         }}
       >
         <Link
@@ -380,7 +380,7 @@ const StyledContainer = styled.div`
   .StyledBanner {
     margin-top: 64px;
     height: 250px;
-    background-color: blue;
+    background-color: transparent;
     position: "relative";
     display: flex;
     background-position: center;

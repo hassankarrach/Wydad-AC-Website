@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Image from "next/future/image";
 import styled from "styled-components";
 import styles from "../../../styles/Home.module.css";
 import { useTransition, animated } from "@react-spring/web";
