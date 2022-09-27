@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 //I18N
 import { Router, useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
+import Image from "next/future/image";
 import Link from "next/link";
 
 import styled from "styled-components";
@@ -187,7 +188,7 @@ const PlayerId = ({ PlayersData, CurrentID }) => {
           {PlayersData.titles["CAF Champions League"] != undefined ? (
             <div className="Card">
               <div className="LeftCard">
-                <img
+                <Image
                   className="TitleLogo"
                   src={"/assets/Media/Titles/Cl.png"}
                 />
@@ -206,7 +207,7 @@ const PlayerId = ({ PlayersData, CurrentID }) => {
           {PlayersData.titles.Botola != undefined ? (
             <div className="Card">
               <div className="LeftCard" style={{ backgroundColor: "#c45fbb" }}>
-                <img
+                <Image
                   className="TitleLogo"
                   src={"/assets/Media/Titles/Botola.png"}
                 />
