@@ -223,7 +223,13 @@ const ResultCard = ({
 
           <div className="AwayClub">
             <span>{awayTeam}</span>
-            <img src={`/assets/Media/Teams/${awayTeamImg}.png`} />
+            <img
+              src={`/assets/Media/Teams/${awayTeamImg}.png`}
+              onError={(e) => (
+                (e.target.onerror = null),
+                (e.target.src = "/assets/Media/Teams/Team.svg")
+              )}
+            />
           </div>
         </div>
       </div>

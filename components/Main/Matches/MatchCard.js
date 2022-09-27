@@ -48,7 +48,13 @@ function MatchCard({
         <div className="Data">
           <div className="GameTeams">
             <div className="Team">
-              <img src={`/assets/Media/Teams/${HomeClubLogo}.png`} />
+              <img
+                src={`/assets/Media/Teams/${HomeClubLogo}.png`}
+                onError={(e) => (
+                  (e.target.onerror = null),
+                  (e.target.src = "/assets/Media/Teams/Team.svg")
+                )}
+              />
               <span>{HomeClub}</span>
             </div>
 
@@ -57,7 +63,13 @@ function MatchCard({
             </div>
 
             <div className="Team">
-              <img src={`/assets/Media/Teams/${AwayClubLogo}.png`} />
+              <img
+                src={`/assets/Media/Teams/${AwayClubLogo}.png`}
+                onError={(e) => (
+                  (e.target.onerror = null),
+                  (e.target.src = "/assets/Media/Teams/Team.svg")
+                )}
+              />
               <span>{AwayClub}</span>
             </div>
           </div>
