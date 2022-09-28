@@ -6,7 +6,7 @@ import { Router, useRouter } from "next/router";
 import { WydadPresidents } from "../../data/Presidents";
 import PersonCard from "../../components/Cards/PersonCard";
 
-function presidents() {
+function Presidents() {
   //GetCurrentLocale
   const router = useRouter();
   const CurrentLocale = router.locale;
@@ -249,4 +249,4 @@ const StyledPresidents = styled.div`
   }
 `;
 
-export default presidents;
+export default Presidents;
