@@ -18,47 +18,47 @@ import useTranslation from "next-translate/useTranslation";
 
 import Data from "../data/FakeData";
 
-// export const getStaticProps = async () => {
-//   //GettingNextGameData
-//   const NextGameData = await fetch(
-//     `https://api.sofascore.com/api/v1/team/36268/events/next/0`
-//   )
-//     .then((response) => response.json())
-//     .then((data) => {
-//       try {
-//         return fetch(
-//           `https://api.sofascore.com/api/v1/event/${data.events[0].id}`
-//         )
-//           .then((response) => response.json())
-//           .then((data) => {
-//             return data;
-//           });
-//       } catch (err) {
-//         return null;
-//       }
-//     });
+export const getStaticProps = async () => {
+  //GettingNextGameData
+  const NextGameData = await fetch(
+    `https://api.sofascore.com/api/v1/team/36268/events/next/0`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      try {
+        return fetch(
+          `https://api.sofascore.com/api/v1/event/${data.events[0].id}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            return data;
+          });
+      } catch (err) {
+        return null;
+      }
+    });
 
-//   //GettingLastGameData
-//   const LastGameData = await fetch(
-//     "https://api.sofascore.com/api/v1/team/36268/events/last/0"
-//   )
-//     .then((response) => response.json())
-//     .then((data) => {
-//       return fetch(
-//         `https://api.sofascore.com/api/v1/event/${
-//           data.events[data.events.length - 1].id
-//         }`
-//       );
-//     })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       return data;
-//     });
+  //GettingLastGameData
+  const LastGameData = await fetch(
+    "https://api.sofascore.com/api/v1/team/36268/events/last/0"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      return fetch(
+        `https://api.sofascore.com/api/v1/event/${
+          data.events[data.events.length - 1].id
+        }`
+      );
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    });
 
-//   return {
-//     props: { NextGame: NextGameData, Lastgame: LastGameData },
-//   };
-// };
+  return {
+    props: { NextGame: NextGameData, Lastgame: LastGameData },
+  };
+};
 
 export default function Home({ NextGame, Lastgame }) {
   const [isNextGameLive, setisNextGameLive] = useState(false);
@@ -74,33 +74,33 @@ export default function Home({ NextGame, Lastgame }) {
   let { t } = useTranslation();
 
   useEffect(() => {
-    // const HandleShowedGame = async () => {
-    //   const currentTimeStamp = new Date(Date.now());
-    //   //GetNextAndLastGame
-    //   const NextGame_ = NextGame;
-    //   const LastGame_ = Lastgame;
-    //   if (typeof NextGame_ != "object") {
-    //     setIsThereIsNoNextEvents(true);
-    //   }
-    //   //CalcTime;
-    //   const GameStartTime = TimeStampToDate(LastGame_.event.startTimestamp);
-    //   const GameEndTime = TimeStampToDate(
-    //     LastGame_.event.startTimestamp + 3 * 3600
-    //   );
-    //   if (typeof NextGame_ != "object") {
-    //     setIsThereIsNoNextEvents(true);
-    //   }
-    //   if (
-    //     currentTimeStamp >= GameStartTime &&
-    //     currentTimeStamp <= GameEndTime
-    //   ) {
-    //     setisNextGameLive(true);
-    //     setDisplayedGame(LastGame_);
-    //   } else {
-    //     setDisplayedGame(NextGame_);
-    //   }
-    // };
-    // HandleShowedGame();
+    const HandleShowedGame = async () => {
+      const currentTimeStamp = new Date(Date.now());
+      //GetNextAndLastGame
+      const NextGame_ = NextGame;
+      const LastGame_ = Lastgame;
+      if (typeof NextGame_ != "object") {
+        setIsThereIsNoNextEvents(true);
+      }
+      //CalcTime;
+      const GameStartTime = TimeStampToDate(LastGame_.event.startTimestamp);
+      const GameEndTime = TimeStampToDate(
+        LastGame_.event.startTimestamp + 3 * 3600
+      );
+      if (typeof NextGame_ != "object") {
+        setIsThereIsNoNextEvents(true);
+      }
+      if (
+        currentTimeStamp >= GameStartTime &&
+        currentTimeStamp <= GameEndTime
+      ) {
+        setisNextGameLive(true);
+        setDisplayedGame(LastGame_);
+      } else {
+        setDisplayedGame(NextGame_);
+      }
+    };
+    HandleShowedGame();
   }, []);
 
   const TimeStampToDate = (TimeStamp_) => {
