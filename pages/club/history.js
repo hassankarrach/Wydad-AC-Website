@@ -6,6 +6,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 //Swiper
 import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
+import { Router, useRouter } from "next/router";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
@@ -18,10 +19,22 @@ function History() {
   const [currentID, setcurrentID] = useState(0);
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
+  //GetCurrentLocale
+  const router = useRouter();
+  const CurrentLocale = router.locale;
 
   return (
     <StyledHistory img={currentID}>
-      <Header text={"Wydad History"} img={"/assets/Media/History/banner.jpg"} />
+      <Header
+        text={
+          CurrentLocale === "en"
+            ? "Wydad History"
+            : CurrentLocale === "fr"
+            ? "Histoire du Wydad"
+            : "تاريخ الوداد"
+        }
+        img={"/assets/Media/History/banner.jpg"}
+      />
 
       <div className="Content">
         <div className="TimeLindeNavigation"></div>

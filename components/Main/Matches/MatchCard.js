@@ -9,22 +9,19 @@ function MatchCard({
   GameTime,
   Competition,
 }) {
+  console.log(Competition);
   return (
-    <StyledMatchCard>
-      <img
-        src={
-          Competition === "Botola"
-            ? "/assets/Media/Matches/Botola.png"
-            : Competition === "Cdt"
-            ? "/assets/Media/Matches/Cdt.png"
-            : Competition === "Cl"
-            ? "/assets/Media/Matches/Cl.png"
-            : Competition === "CAF Super Cup"
-            ? "/assets/Media/Matches/Sc.png"
-            : ""
-        }
-        className="BgMatchCard"
-      />
+    <StyledMatchCard
+      rgba={`${
+        Competition === "Botola Pro"
+          ? "rgba(147, 67, 151, 1)"
+          : Competition === "CAF Champions League"
+          ? "rgb(249,185,8)"
+          : Competition === "CAF Super Cup"
+          ? "rgb(249,185,8)"
+          : "rgb(205,205,205)"
+      } `}
+    >
       <div className="MatchCardData">
         <div className="LeftCard">
           <div className="CompName">
@@ -34,8 +31,8 @@ function MatchCard({
                   ? "/assets/Media/competitions/botola.png"
                   : Competition === "CAF Super Cup"
                   ? "/assets/Media/competitions/Sc.png"
-                  : Competition === "Cl"
-                  ? "/assets/Media/competitions/botola.png"
+                  : Competition === "CAF Champions League"
+                  ? "/assets/Media/competitions/Cl.png"
                   : Competition === "Cdt"
                   ? "/assets/Media/competitions/botola.png"
                   : ""
@@ -48,14 +45,16 @@ function MatchCard({
         <div className="Data">
           <div className="GameTeams">
             <div className="Team">
-              <img
-                src={`/assets/Media/Teams/${HomeClubLogo}.png`}
-                onError={(e) => (
-                  (e.target.onerror = null),
-                  (e.target.src = "/assets/Media/Teams/Team.svg")
-                )}
-              />
-              <span>{HomeClub}</span>
+              <div className="LogoHolder">
+                <img
+                  src={`/assets/Media/Teams/${HomeClubLogo}.png`}
+                  onError={(e) => (
+                    (e.target.onerror = null),
+                    (e.target.src = "/assets/Media/Teams/Team.svg")
+                  )}
+                />
+                <span>{HomeClub}</span>
+              </div>
             </div>
 
             <div className="Vs">
@@ -63,14 +62,16 @@ function MatchCard({
             </div>
 
             <div className="Team">
-              <img
-                src={`/assets/Media/Teams/${AwayClubLogo}.png`}
-                onError={(e) => (
-                  (e.target.onerror = null),
-                  (e.target.src = "/assets/Media/Teams/Team.svg")
-                )}
-              />
-              <span>{AwayClub}</span>
+              <div className="LogoHolder">
+                <img
+                  src={`/assets/Media/Teams/${AwayClubLogo}.png`}
+                  onError={(e) => (
+                    (e.target.onerror = null),
+                    (e.target.src = "/assets/Media/Teams/Team.svg")
+                  )}
+                />
+                <span>{AwayClub}</span>
+              </div>
             </div>
           </div>
           <div className="GameDate">
@@ -121,11 +122,8 @@ const StyledMatchCard = styled.div`
     .LeftCard {
       width: 20%;
       height: 100%;
-      background: linear-gradient(
-        90deg,
-        rgba(149, 67, 151, 1) 0%,
-        rgba(149, 67, 151, 0) 200%
-      );
+      background: ${(props) =>
+        `linear-gradient( 90deg, ${props.rgba} 0%,rgba(0, 0, 0, 0) 200%)`};
       display: flex;
       justify-content: center;
       align-items: center;
@@ -151,6 +149,9 @@ const StyledMatchCard = styled.div`
         h1 {
           font-size: 1.3rem;
           text-align: center;
+          @media (max-width: 768px) {
+            display: none;
+          }
         }
       }
     }
@@ -242,13 +243,23 @@ const StyledMatchCard = styled.div`
             margin: 0px 10px;
             width: 100px;
           }
-          img {
-            height: 90%;
+
+          .LogoHolder {
+            width: 300px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-right: 20px;
-          }
-          span {
-            @media (max-width: 768px) {
-              display: none;
+            padding: 0px;
+            span {
+              @media (max-width: 768px) {
+                display: none;
+              }
+            }
+
+            img {
+              height: 100%;
             }
           }
         }

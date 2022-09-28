@@ -1,15 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import styles from "../../styles/Home.module.css";
+import { Router, useRouter } from "next/router";
 
 function ManagementCard({ name, sub, img }) {
+  //GetCurrentLocale
+  const router = useRouter();
+  const CurrentLocale = router.locale;
   return (
     <StyledManagementCard>
       <div className="ImgHolder">
-        <img src={img} />
+        <img
+          src={img}
+          onError={(e) => (
+            (e.target.onerror = null), (e.target.src = "./assets/Media/Pre.png")
+          )}
+        />
       </div>
       <div className="CardContent">
-        <h1>{name}</h1>
-        <h2>{sub}</h2>
+        <h1 className={`${CurrentLocale === "ar" ? styles.ArTitle : ""}`}>
+          {name}
+        </h1>
+        <h2 className={`${CurrentLocale === "ar" ? styles.ArTitle : ""}`}>
+          {sub}
+        </h2>
       </div>
     </StyledManagementCard>
   );
@@ -41,6 +55,12 @@ const StyledManagementCard = styled.div`
     img {
       width: 100%;
       position: relative;
+      filter: grayscale(100%);
+      transition: 0.4s ease-in-out;
+
+      &:hover {
+        filter: none;
+      }
     }
   }
   .CardContent {

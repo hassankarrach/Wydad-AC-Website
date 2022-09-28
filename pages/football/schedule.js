@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import MatchCard from "../../components/Main/Matches/MatchCard";
+import { Data } from "../../data/FakeData";
 
 export const getStaticProps = async () => {
   const Res = await fetch(
@@ -15,7 +16,6 @@ export const getStaticProps = async () => {
 function schedule({ NextGames }) {
   const Events = NextGames.events;
   // startTimestamp
-  console.log(Events[0]);
 
   function timeConverter(UNIX_timestamp) {
     var a = new Date(UNIX_timestamp * 1000);

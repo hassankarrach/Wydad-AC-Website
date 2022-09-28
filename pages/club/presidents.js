@@ -1,31 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import styles from "../../styles/Home.module.css";
+
+import { Router, useRouter } from "next/router";
 import { WydadPresidents } from "../../data/Presidents";
 import PersonCard from "../../components/Cards/PersonCard";
 
-const SubNavList = [
-  {
-    title: "history",
-  },
-  {
-    title: "Management",
-  },
-  {
-    title: "wydad presidents",
-  },
-  {
-    title: "Partners",
-  },
-  {
-    title: "supporters",
-  },
-];
-
 function presidents() {
+  //GetCurrentLocale
+  const router = useRouter();
+  const CurrentLocale = router.locale;
   return (
     <>
       <StyledPresidents>
-        <div className="CurrentPresident">
+        <div
+          className={`CurrentPresident ${CurrentLocale === "ar" ? "Ar_" : ""}`}
+        >
           <div className="CurrentPresidentImg">
             <img
               className="WacPresident"
@@ -34,12 +24,22 @@ function presidents() {
           </div>
           <div className="CurrentPresidentContent">
             <div className="PersInfo">
-              <h1>Said Naciri</h1>
-              <span>2014 - to present</span>
+              <h1 className={`${CurrentLocale === "ar" ? styles.ArTitle : ""}`}>
+                {CurrentLocale === "ar" ? "سعيد الناصري" : "Said Naciri"}
+              </h1>
+              <span
+                className={`${CurrentLocale === "ar" ? styles.ArText : ""}`}
+              >
+                {CurrentLocale === "ar"
+                  ? "من 2014 الى الوقت الحاضر"
+                  : "2014 - to present"}
+              </span>
             </div>
 
             <div className="palmares">
-              <h1>palmares</h1>
+              <h1 className={`${CurrentLocale === "ar" ? styles.ArTitle : ""}`}>
+                {CurrentLocale === "ar" ? "الانجازات" : "palmares"}
+              </h1>
               <div className="Cards">
                 <div className="Card">
                   <div
@@ -91,16 +91,20 @@ function presidents() {
         </div>
 
         <div className="WydadPresidents">
-          {WydadPresidents.map((President) => {
-            return (
-              <PersonCard
-                key={President.id}
-                name={President.EnName}
-                img={`/assets/Media/Presidents/${President.id}.jpg`}
-                sub={President.period}
-              />
-            );
-          })}
+          {WydadPresidents.slice(0)
+            .reverse()
+            .map((President) => {
+              return (
+                <PersonCard
+                  key={President.id}
+                  name={
+                    CurrentLocale === "ar" ? President.ArName : President.EnName
+                  }
+                  img={`/assets/Media/Presidents/${President.id}.jpg`}
+                  sub={President.period}
+                />
+              );
+            })}
         </div>
       </StyledPresidents>
     </>
@@ -137,6 +141,7 @@ const StyledPresidents = styled.div`
       height: 100%;
       border: 1px solid #ededed;
       border-radius: 10px;
+      border-bottom-right-radius: 0px;
       overflow: hidden;
       background-color: white;
       .WacPresident {
@@ -212,6 +217,17 @@ const StyledPresidents = styled.div`
               }
             }
           }
+        }
+      }
+    }
+  }
+  .CurrentPresident.Ar_ {
+    flex-direction: row-reverse;
+    .CurrentPresidentContent {
+      .PersInfo {
+        width: 100%;
+        span {
+          text-align: right;
         }
       }
     }
