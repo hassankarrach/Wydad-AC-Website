@@ -19,6 +19,20 @@ import useTranslation from "next-translate/useTranslation";
 import Data from "../data/FakeData";
 
 export const getStaticProps = async () => {
+  //GettingNews
+  const query = encodeURIComponent('*[ _type == "post" ]');
+  const url = `https://fr34sbmn.api.sanity.io/v1/data/query/production?query=${query}`;
+  const result = await fetch(url).then((res) => res.json());
+  let NewsArray = [];
+  //EndGettingNews
+
+  if (!result.result || !result.result.length) {
+    NewsArray = [];
+  } else {
+    NewsArray = result.result;
+  }
+
+  //FeetchingSocerApi
   //GettingNextGameData
   const NextGameData = await fetch(
     `https://api.sofascore.com/api/v1/team/36268/events/next/0`
@@ -56,11 +70,15 @@ export const getStaticProps = async () => {
     });
 
   return {
-    props: { NextGame: NextGameData, Lastgame: LastGameData },
+    props: {
+      NextGame: NextGameData,
+      Lastgame: LastGameData,
+      NewsArr: NewsArray,
+    },
   };
 };
 
-export default function Home({ NextGame, Lastgame }) {
+export default function Home({ NextGame, Lastgame, NewsArr }) {
   const [isNextGameLive, setisNextGameLive] = useState(false);
   const [IsThereIsNoNextEvents, setIsThereIsNoNextEvents] = useState(false);
   const [DisplayedGame, setDisplayedGame] = useState();
@@ -111,7 +129,7 @@ export default function Home({ NextGame, Lastgame }) {
 
   return (
     <>
-      <Header locale={CurrentLocale} />
+      <Header locale={CurrentLocale} NewsArr={NewsArr} />
       <Matches
         DisplayedGame={DisplayedGame}
         isLive={isNextGameLive}

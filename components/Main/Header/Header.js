@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/future/image";
+import Link from "next/link";
 import styled from "styled-components";
 import styles from "../../../styles/Home.module.css";
 import { useTransition, animated } from "@react-spring/web";
@@ -9,6 +10,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+//SanityImgBuilder
+import createImageUrlBuilder from "@sanity/image-url";
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
@@ -36,7 +39,7 @@ const LastThreeNews = [
   },
 ];
 
-function Header({ locale }) {
+function Header({ locale, NewsArr }) {
   const [CurrentBg, setCurrentBg] = useState(0);
 
   const HandleSliderChange = (currentSlid) => {
@@ -52,27 +55,36 @@ function Header({ locale }) {
 
     exitBeforeEnter: true,
   });
+
+  const imgBuilder = createImageUrlBuilder({
+    projectId: "fr34sbmn",
+    dataset: "production",
+  });
+
+  console.log(NewsArr);
   return (
     <StyledHeader>
       {transitions((style, i) => (
         <div className={`Slide ${locale === "ar" ? "Ar_" : ""}`}>
           <div className="LeftHeader">
             <animated.img
-              key={LastThreeNews[i].id}
+              key={NewsArr[i].id}
               style={{ ...style }}
-              src={LastThreeNews[i].img}
+              src={imgBuilder.image(NewsArr[i].mainImage)}
             />
           </div>
 
           <div className="RightHeader">
-            <h1
-              style={{ ...style }}
-              className={`title ${locale === "ar" ? styles.ArTitle : ""}`}
-            >
-              {locale === "ar"
-                ? LastThreeNews[CurrentBg].arTitle
-                : LastThreeNews[CurrentBg].title}
-            </h1>
+            <Link href={`news/${NewsArr[CurrentBg].slug.current}`}>
+              <h1
+                style={{ ...style }}
+                className={`title ${locale === "ar" ? styles.ArTitle : ""}`}
+              >
+                {locale === "ar"
+                  ? NewsArr[CurrentBg].arTitle
+                  : NewsArr[CurrentBg].title}
+              </h1>
+            </Link>
 
             <div className="NewsCards">
               <div className="Container">
@@ -94,15 +106,17 @@ function Header({ locale }) {
                   }}
                   // loop={true}
                 >
-                  {LastThreeNews.map((Item) => {
+                  {NewsArr.map((Item) => {
                     return (
                       <SwiperSlide className="Slide" key={Item.id}>
                         {({ isActive }) => (
-                          <div className={`Card ${isActive ? "actif" : ""}`}>
-                            <img src={Item.img} />
-                            <span className="Date">1d</span>
-                            <span className="Ctg">Category</span>
-                          </div>
+                          <Link href={`news/${Item.slug.current}`}>
+                            <div className={`Card ${isActive ? "actif" : ""}`}>
+                              <img src={imgBuilder.image(Item.mainImage)} />
+                              <span className="Date">1d</span>
+                              <span className="Ctg">Category</span>
+                            </div>
+                          </Link>
                         )}
                       </SwiperSlide>
                     );
@@ -114,7 +128,7 @@ function Header({ locale }) {
 
           <div className="Pagination">
             <div className="Dots">
-              {LastThreeNews.map((Item) => {
+              {NewsArr.map((Item) => {
                 return (
                   <div
                     key={Item.id}
@@ -167,6 +181,7 @@ const StyledHeader = styled.div`
         left: -20%;
         top: 20%;
         width: 80%;
+        cursor: pointer;
         @media (max-width: 768px) {
           left: 5%;
           top: -35%;
