@@ -61,7 +61,6 @@ function Header({ locale, NewsArr }) {
     dataset: "production",
   });
 
-  console.log(NewsArr);
   return (
     <StyledHeader>
       {transitions((style, i) => (
@@ -108,7 +107,7 @@ function Header({ locale, NewsArr }) {
                 >
                   {NewsArr.map((Item) => {
                     return (
-                      <SwiperSlide className="Slide" key={Item.id}>
+                      <SwiperSlide className="Slide" key={Item._id}>
                         {({ isActive }) => (
                           <Link href={`news/${Item.slug.current}`}>
                             <div className={`Card ${isActive ? "actif" : ""}`}>
@@ -128,14 +127,14 @@ function Header({ locale, NewsArr }) {
 
           <div className="Pagination">
             <div className="Dots">
-              {NewsArr.map((Item) => {
+              {NewsArr.map((Item, index) => {
                 return (
                   <div
                     key={Item.id}
                     onClick={() => {
-                      setCurrentBg(Item.id);
+                      setCurrentBg(index);
                     }}
-                    className={`Dot ${CurrentBg === Item.id ? "actif" : ""}`}
+                    className={`Dot ${CurrentBg === index ? "actif" : ""}`}
                   ></div>
                 );
               })}
@@ -193,6 +192,9 @@ const StyledHeader = styled.div`
         width: 100%;
         height: 240px;
         position: relative;
+        @media (max-width: 768px) {
+          height: 300px;
+        }
         .Container {
           padding: 10px 0px;
           left: -20%;
@@ -203,6 +205,7 @@ const StyledHeader = styled.div`
           margin-top: 30px;
           @media (max-width: 768px) {
             left: 0;
+            top: -40px;
           }
 
           .mySwiper {
@@ -292,6 +295,7 @@ const StyledHeader = styled.div`
       background-size: cover;
       @media (max-width: 768px) {
         width: 100%;
+        height: 1200px; //pff
       }
       img {
         min-width: 100%;

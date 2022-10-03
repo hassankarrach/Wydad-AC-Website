@@ -9,6 +9,7 @@ import Modal from "@mui/material/Modal";
 import { PlayersData } from "../data/Players";
 
 function Fantasy() {
+  console.log(PlayersData);
   //ModalStats
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -185,8 +186,9 @@ function Fantasy() {
               handleClose();
             }}
           />
-          {DisplayedList.map((Player) => {
-            return <Player key={Player.id} name="Ahmed Reda" pic="1" />;
+
+          {PlayersData.map((Player_) => {
+            return <Player key={Player_.id} name={Player_.shortName} pic="1" />;
           })}
         </StyledModal>
       </Modal>
@@ -368,8 +370,10 @@ const StyledBanner = styled.div`
 `;
 
 const StyledModal = styled.div`
+  padding: 30px 0px;
   width: 600px;
   height: 80%;
+  overflow-y: scroll;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -381,7 +385,6 @@ const StyledModal = styled.div`
   outline: none;
   border-radius: 8px;
   position: relative;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -434,7 +437,6 @@ const StyledPlayer = styled.div`
   width: 400px;
   background-color: white;
   border-radius: 8px;
-  overflow: hidden;
   display: flex;
   align-items: center;
   margin: 4px 0px;

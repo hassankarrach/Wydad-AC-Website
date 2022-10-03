@@ -117,7 +117,10 @@ const Index = ({ PlayersData }) => {
               <Link key={Player.id} href={"/football/players/" + Player.id}>
                 <StyledCard Language={CurrentLocale}>
                   <div className="TopStyledCard">
-                    <Image className="img" src={"/assets/Media/Pre.png"} />
+                    <Image
+                      className="img"
+                      src={`/assets/Media/Players/${Player.id}.png`}
+                    />
                   </div>
                   <div className="BottomStyledCard">
                     <h1
@@ -173,7 +176,10 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <Image className="img" src={"/assets/Media/Pre.png"} />
+                      <Image
+                        className="img"
+                        src={`/assets/Media/Players/${Player.id}.png`}
+                      />
                     </div>
                     <div
                       className={`BottomStyledCard ${
@@ -227,7 +233,10 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <Image className="img" src={"/assets/Media/Pre.png"} />
+                      <Image
+                        className="img"
+                        src={`/assets/Media/Players/${Player.id}.png`}
+                      />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -277,7 +286,10 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <Image className="img" src={"/assets/Media/Pre.png"} />
+                      <Image
+                        className="img"
+                        src={`/assets/Media/Players/${Player.id}.png`}
+                      />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -334,7 +346,10 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <Image className="img" src={"/assets/Media/Pre.png"} />
+                      <Image
+                        className="img"
+                        src={`/assets/Media/Players/${Player.id}.png`}
+                      />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -386,7 +401,10 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <Image className="img" src={"/assets/Media/Pre.png"} />
+                      <Image
+                        className="img"
+                        src={`/assets/Media/Players/${Player.id}.png`}
+                      />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -438,7 +456,10 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={"/football/players/" + Player.id}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <Image className="img" src={"/assets/Media/Pre.png"} />
+                      <Image
+                        className="img"
+                        src={`/assets/Media/Players/${Player.id}.png`}
+                      />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -496,7 +517,10 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={`/football/players/${Player.id}`}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <Image className="img" src={"/assets/Media/Pre.png"} />
+                      <Image
+                        className="img"
+                        src={`/assets/Media/Players/${Player.id}.png`}
+                      />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -548,7 +572,10 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={`/football/players/${Player.id}`}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <Image className="img" src={"/assets/Media/Pre.png"} />
+                      <Image
+                        className="img"
+                        src={`/assets/Media/Players/${Player.id}.png`}
+                      />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -600,7 +627,10 @@ const Index = ({ PlayersData }) => {
                 <Link key={Player.id} href={`/football/players/${Player.id}`}>
                   <StyledCard Language={CurrentLocale}>
                     <div className="TopStyledCard">
-                      <Image className="img" src={"/assets/Media/Pre.png"} />
+                      <Image
+                        className="img"
+                        src={`/assets/Media/Players/${Player.id}.png`}
+                      />
                     </div>
                     <div className="BottomStyledCard">
                       <h1
@@ -720,7 +750,7 @@ const StyledContainer = styled.div`
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
     padding: 10px;
-    border-left: 5px solid var(--Red);
+    border-left: 5px solid #d0d0d0;
   }
 `;
 
